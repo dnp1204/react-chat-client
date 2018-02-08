@@ -9,7 +9,6 @@ const Header = ({ leftComponent, rightComponent, title, subTitle }) => {
       </div>
       <div className="header--title">
         <h3>{title}</h3>
-        <small className="light-text">{subTitle}</small>
       </div>
       <div>
         {rightComponent}

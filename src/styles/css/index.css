@@ -451,13 +451,36 @@ table {
     .header .header--title h3 {
       margin-bottom: 5px; }
 
+.search {
+  position: relative;
+  padding: 10px;
+  margin-right: 17px;
+  margin-left: 2px; }
+  .search .search--icon {
+    position: absolute;
+    margin: 7px 0 0 7px; }
+  .search input {
+    border-radius: 3px;
+    padding: 7px;
+    text-indent: 20px;
+    outline: none;
+    border: none;
+    background-color: #F6F7F9;
+    width: 100%;
+    margin: 0; }
+  .search ::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px; }
+
 #app {
   font-family: 'Lato', sans-serif;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   height: 100vh; }
   #app .section {
-    border-right: 0.6px solid rgba(0, 0, 0, 0.3);
-    height: 100%; }
+    border-right: 0.6px solid rgba(0, 0, 0, 0.3); }
+
+.cursor-pointer {
+  cursor: pointer; }
 
 /*# sourceMappingURL=index.css.map */

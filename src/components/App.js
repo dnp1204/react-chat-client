@@ -7,9 +7,9 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <FriendSection />
-        <MessageSection />
-        <ToolSection />
+        <div className="section"><FriendSection /></div>
+        <div className="section"><MessageSection /></div>
+        <div className="section"><ToolSection /></div>
       </div>
     );
   }

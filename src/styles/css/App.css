@@ -1,4 +1,10 @@
 #app {
-  font-family: 'Lato', sans-serif; }
+  font-family: 'Lato', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 100vh; }
+  #app .section {
+    border-right: 0.6px solid rgba(0, 0, 0, 0.3);
+    height: 100%; }
 
 /*# sourceMappingURL=App.css.map */

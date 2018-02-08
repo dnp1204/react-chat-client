@@ -8,11 +8,10 @@ class FriendSection extends Component {
     return (
       <div>
         <Header
-          leftComponent={<Icon isCursorPointer iconName="cog" size="2x" />}
+          leftComponent={<Icon isCursorPointer iconName="cog" />}
           title="Messenger"
-          subTitle="Active on Messenger"
-          rightComponent={<Icon isCursorPointer iconName="pencil-square-o" size="2x" />} />
-          <Search iconName="search" placeholder="Search Messenger" />
+          rightComponent={<Icon isCursorPointer iconName="pencil-square-o" />} />
+        <Search iconName="search" placeholder="Search Messenger" />
       </div>
     );
   }

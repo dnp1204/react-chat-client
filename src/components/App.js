@@ -9,7 +9,6 @@ class App extends Component {
       <div id="app">
         <div className="section"><FriendSection /></div>
         <div className="section"><MessageSection /></div>
-        <div className="section"><ToolSection /></div>
       </div>
     );
   }

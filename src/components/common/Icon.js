@@ -20,7 +20,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  size: 'lg',
+  size: '2x',
   style: { color: '#0084FF' },
   isCursorPointer: false
 }

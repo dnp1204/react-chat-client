@@ -443,7 +443,8 @@ table {
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
-  border-bottom: 0.6px solid rgba(0, 0, 0, 0.3); }
+  border-bottom: 0.6px solid rgba(0, 0, 0, 0.3);
+  height: 40px; }
   .header .header--title {
     display: flex;
     flex-direction: column;
@@ -472,10 +473,20 @@ table {
     color: rgba(0, 0, 0, 0.3);
     font-size: 14px; }
 
+.multiple-icon-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+  .multiple-icon-row .fa {
+    margin-left: 20px; }
+
+.message .header--title {
+  margin-left: 140px !important; }
+
 #app {
   font-family: 'Lato', sans-serif;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr;
   height: 100vh; }
   #app .section {
     border-right: 0.6px solid rgba(0, 0, 0, 0.3); }

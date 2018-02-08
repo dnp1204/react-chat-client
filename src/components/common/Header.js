@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 const Header = ({ leftComponent, rightComponent, title, subTitle }) => {
   return (
     <div className="header">
-      <div>
+      <div className="header--left">
         {leftComponent}
       </div>
       <div className="header--title">
         <h3>{title}</h3>
+        <small className="light-text">{subTitle}</small>
       </div>
-      <div>
+      <div className="header--right">
         {rightComponent}
       </div>
     </div>

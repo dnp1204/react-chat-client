@@ -1,0 +1,8 @@
+.multiple-icon-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+  .multiple-icon-row .fa {
+    margin-left: 20px; }
+
+/*# sourceMappingURL=multiple-icon-row.css.map */

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../common/Header';
-import Icon from '../../common/Icon';
+import Icon from '../../common/icon/Icon';
 import Search from '../../common/Search';
 
 class FriendSection extends Component {

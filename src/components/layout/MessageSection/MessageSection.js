@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../common/Header';
-import Icon from '../../common/Icon';
-import MultipleIconRow from '../../common/MultipleIconRow';
+import MultipleIconRow from '../../common/icon/MultipleIconRow';
 
 class MessageSection extends Component {
   render() {

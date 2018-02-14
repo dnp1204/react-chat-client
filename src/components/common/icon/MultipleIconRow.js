@@ -9,9 +9,9 @@ const renderIconArray = (iconArray) => {
   });
 }
 
-const renderIcon = (icon) => {
+const renderIcon = ({ iconName, size, style }) => {
   return (
-    <Icon key={icon.iconName} isCursorPointer iconName={icon.iconName} />
+    <Icon key={iconName} isCursorPointer iconName={iconName} size={size} style={style} />
   );
 }
 

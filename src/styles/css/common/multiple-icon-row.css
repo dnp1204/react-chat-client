@@ -1,7 +1,6 @@
 .multiple-icon-row {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around; }
+  flex-direction: row; }
   .multiple-icon-row .fa {
     margin-left: 20px; }
 

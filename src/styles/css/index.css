@@ -475,13 +475,18 @@ table {
 
 .multiple-icon-row {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around; }
+  flex-direction: row; }
   .multiple-icon-row .fa {
     margin-left: 20px; }
 
-.message .header--title {
-  margin-left: 140px !important; }
+.message {
+  height: 100%; }
+  .message .header--title {
+    margin-left: 140px !important; }
+  .message .message--content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 0fr 1fr; }
 
 #app {
   font-family: 'Lato', sans-serif;
@@ -493,5 +498,8 @@ table {
 
 .cursor-pointer {
   cursor: pointer; }
+
+.border-right {
+  border-right: 1px solid rgba(0, 0, 0, 0.2); }
 
 /*# sourceMappingURL=index.css.map */

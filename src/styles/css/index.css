@@ -479,20 +479,36 @@ table {
   .multiple-icon-row .fa {
     margin-left: 20px; }
 
-.message {
-  height: 100%; }
-  .message .header--title {
-    margin-left: 140px !important; }
-  .message .message--content {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 2fr 0fr 1fr; }
+.message .header--title {
+  margin-left: 140px !important; }
+.message .message--content {
+  display: grid;
+  grid-template-columns: 2fr 0fr 1fr; }
+
+#conversation-and-message-input .conversation-and-message-input--conversation {
+  height: 500px;
+  overflow: auto;
+  z-index: 1;
+  background-color: #fafafa; }
+#conversation-and-message-input .conversation-and-message-input--message-input {
+  position: fixed;
+  z-index: 999;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.3);
+  padding: 0px 10px; }
+  #conversation-and-message-input .conversation-and-message-input--message-input textarea {
+    border: none;
+    outline: none;
+    width: 100%;
+    overflow: auto;
+    padding: 14px 0px 0px 8px; }
+    #conversation-and-message-input .conversation-and-message-input--message-input textarea::-webkit-input-placeholder {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.3); }
 
 #app {
   font-family: 'Lato', sans-serif;
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  height: 100vh; }
+  grid-template-columns: 1fr 3fr; }
   #app .section {
     border-right: 0.6px solid rgba(0, 0, 0, 0.3); }
 

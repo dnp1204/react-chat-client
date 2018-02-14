@@ -8,12 +8,22 @@ class ConversationAndMessageInput extends Component {
     const iconArray = [{ iconName: 'file-image-o', size, style },
     { iconName: 'sticky-note-o', size, style },
     { iconName: 'smile-o', size, style },
-    { iconName: 'microphone', size, style }, 
+    { iconName: 'microphone', size, style },
     { iconName: 'camera', size, style }];
 
     return (
-      <div>
-        <MultipleIconRow iconArray={iconArray} />
+      <div id="conversation-and-message-input">
+        <div className="conversation-and-message-input--conversation">
+
+        </div>
+        <div className="conversation-and-message-input--message-input">
+          <div>
+            <textarea placeholder="Type a message..." />
+          </div>
+          <div>
+            <MultipleIconRow iconArray={iconArray} />
+          </div>
+        </div>
       </div>
     );
   }

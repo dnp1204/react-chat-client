@@ -1,21 +1,19 @@
+import moment from 'moment';
 import { FETCH_FRIEND_LIST } from '../actions/types';
 
-const imageUrl =
-  'https://en.wikipedia.org/wiki/Avatar_(computing)#/media/File:CandymyloveYasu.png';
-
-const person = {
-  _id: 0,
-  avatar: imageUrl,
-  firstName: 'An',
-  lastName: 'Nguyen',
-  lastMessage: 'hello',
-  lastSendMessageDate: Date.now()
-};
+const imageUrl = 'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
 
 const initialState = [];
 
 for (let index = 0; index < 20; index++) {
-  person._id = index;
+  const person = {
+    _id: index,
+    avatar: imageUrl,
+    firstName: 'An',
+    lastName: 'Nguyen',
+    lastMessage: 'hello',
+    lastSendMessageDate: moment.now()
+  };
   initialState.push(person);
 }
 

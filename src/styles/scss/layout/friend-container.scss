@@ -1,0 +1,31 @@
+.friend-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+
+  .friend-container--info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .friend-container--info__name {
+      margin-left: 10px;
+
+      h4 {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .light-text {
+    font-size: 14px;
+  }
+  
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+  }
+}

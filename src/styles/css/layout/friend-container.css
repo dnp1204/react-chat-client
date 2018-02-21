@@ -1,0 +1,22 @@
+.friend-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px; }
+  .friend-container .friend-container--info {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .friend-container .friend-container--info .friend-container--info__name {
+      margin-left: 10px; }
+      .friend-container .friend-container--info .friend-container--info__name h4 {
+        margin-bottom: 5px; }
+  .friend-container .light-text {
+    font-size: 14px; }
+  .friend-container:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3); }
+
+/*# sourceMappingURL=friend-container.css.map */

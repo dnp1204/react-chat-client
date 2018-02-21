@@ -30,7 +30,7 @@ class App extends Component {
           />
         </div>
         <div id="content-section">
-          <div className="section">
+          <div className="section friend-section">
             <FriendSection />
           </div>
           <div className="section">

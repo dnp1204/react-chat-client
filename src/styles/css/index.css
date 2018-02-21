@@ -487,6 +487,10 @@ table {
   .multiple-icon-row .fa {
     margin-left: 20px; }
 
+.friend-section .active {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3); }
+
 .friend-container {
   display: flex;
   flex-direction: row;
@@ -508,10 +512,6 @@ table {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.3); }
 
-.active {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.3); }
-
 #app {
   font-family: 'Lato', sans-serif;
   display: flex;
@@ -524,9 +524,10 @@ table {
     grid-template-columns: 1.1fr 2fr 1.1fr;
     height: calc(100vh - 50.59px); }
   #app .section {
-    border-right: 0.6px solid rgba(0, 0, 0, 0.3);
+    border-right: 0.6px solid rgba(0, 0, 0, 0.3); }
+  #app .friend-section {
     overflow: hidden; }
-    #app .section:hover {
+    #app .friend-section:hover {
       overflow: scroll; }
 
 .cursor-pointer {

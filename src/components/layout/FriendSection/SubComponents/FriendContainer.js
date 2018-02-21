@@ -4,14 +4,20 @@ import moment from 'moment';
 import SquareAvatar from '../../../common/SquareAvatar';
 
 const FriendContainer = ({
+  id,
   avatar,
   firstName,
   lastName,
   lastMessage,
-  lastSendMessageDate
+  lastSendMessageDate,
+  onSelectFriend,
+  selectedFriendId
 }) => {
   return (
-    <div className="friend-container">
+    <div
+      onClick={() => onSelectFriend(id)}
+      className={`friend-container ${id === selectedFriendId ? 'active' : ''}`}
+    >
       <div className="friend-container--info">
         <SquareAvatar avatar={avatar} />
         <div className="friend-container--info__name">
@@ -31,11 +37,14 @@ const FriendContainer = ({
 };
 
 FriendContainer.propTypes = {
+  id: PropTypes.number,
   avatar: PropTypes.string,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   lastMessage: PropTypes.string,
-  lastSendMessageDate: PropTypes.number
+  lastSendMessageDate: PropTypes.number,
+  onSelectFriend: PropTypes.func,
+  selectedFriendId: PropTypes.number
 };
 
 export default FriendContainer;

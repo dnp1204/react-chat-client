@@ -4,7 +4,7 @@ const imageUrl =
   'https://en.wikipedia.org/wiki/Avatar_(computing)#/media/File:CandymyloveYasu.png';
 
 const person = {
-  _id: '1',
+  _id: 0,
   avatar: imageUrl,
   firstName: 'An',
   lastName: 'Nguyen',
@@ -15,6 +15,7 @@ const person = {
 const initialState = [];
 
 for (let index = 0; index < 20; index++) {
+  person._id = index;
   initialState.push(person);
 }
 

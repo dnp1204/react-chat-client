@@ -481,27 +481,6 @@ table {
   .multiple-icon-row .fa {
     margin-left: 20px; }
 
-#conversation-and-message-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  #conversation-and-message-input .conversation-and-message-input--conversation {
-    flex: 1;
-    background-color: #fafafa; }
-  #conversation-and-message-input .conversation-and-message-input--message-input {
-    position: fixed;
-    z-index: 999;
-    padding: 0px 10px; }
-    #conversation-and-message-input .conversation-and-message-input--message-input textarea {
-      border: none;
-      outline: none;
-      width: 100%;
-      overflow: auto;
-      padding: 14px 0px 0px 8px; }
-      #conversation-and-message-input .conversation-and-message-input--message-input textarea::-webkit-input-placeholder {
-        font-size: 14px;
-        color: rgba(0, 0, 0, 0.3); }
-
 #app {
   font-family: 'Lato', sans-serif;
   display: flex;

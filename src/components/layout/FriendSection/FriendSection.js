@@ -4,7 +4,6 @@ import Search from '../../common/Search';
 
 class FriendSection extends Component {
   render() {
-    console.log(this.props.friendList);
     return (
       <div>
         <Search iconName="search" placeholder="Search Messenger" />

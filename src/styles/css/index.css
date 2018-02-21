@@ -508,6 +508,10 @@ table {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.3); }
 
+.active {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3); }
+
 #app {
   font-family: 'Lato', sans-serif;
   display: flex;

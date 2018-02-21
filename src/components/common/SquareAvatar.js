@@ -7,6 +7,6 @@ const SquareAvatar = ({ avatar }) => {
 
 SquareAvatar.propTypes = {
   avatar: PropTypes.string
-}
+};
 
 export default SquareAvatar;

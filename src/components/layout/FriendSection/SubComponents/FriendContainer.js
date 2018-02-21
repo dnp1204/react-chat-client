@@ -22,7 +22,9 @@ const FriendContainer = ({
         </div>
       </div>
       <div className="friend-container--date">
-        <p className="light-text">{moment(lastSendMessageDate).fromNow(true)}</p>
+        <p className="light-text">
+          {moment(lastSendMessageDate).fromNow(true)}
+        </p>
       </div>
     </div>
   );

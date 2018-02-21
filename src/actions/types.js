@@ -1,0 +1,1 @@
+export const FETCH_FRIEND_LIST = 'fetch_friend_list';

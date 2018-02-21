@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
+import friendListReducer from './friendListReducer';
 
 export default combineReducers({
-  test: () => { return {}; }
+  friendList: friendListReducer
 });

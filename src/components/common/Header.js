@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Header = ({ leftComponent, rightComponent, title, subTitle }) => {
+const Header = ({ leftComponent, rightComponent, title, subTitle, className }) => {
   return (
-    <div className="header">
+    <div className={`header ${className}`}>
       <div className="header--left">
         {leftComponent}
       </div>
@@ -23,6 +23,11 @@ Header.propTypes = {
   rightComponent: PropTypes.element,
   title: PropTypes.string,
   subTitle: PropTypes.string,
+  className: PropTypes.string
+}
+
+Header.defaultPropTypes = {
+  className: ''
 }
 
 export default Header;

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import Header from '../../common/Header';
-import Icon from '../../common/icon/Icon';
+import { connect } from 'react-redux';
 import Search from '../../common/Search';
 
 class FriendSection extends Component {
   render() {
+    console.log(this.props.friendList);
     return (
       <div>
-        <Header
-          leftComponent={<Icon isCursorPointer iconName="cog" />}
-          title="Messenger"
-          rightComponent={<Icon isCursorPointer iconName="pencil-square-o" />} />
         <Search iconName="search" placeholder="Search Messenger" />
       </div>
     );
   }
 }
 
-export default FriendSection;
+function mapStateToProps(state) {
+  return { friendList: state.friendList };
+}
+
+export default connect(mapStateToProps)(FriendSection);

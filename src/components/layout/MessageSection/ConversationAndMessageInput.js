@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MultipleIconRow from '../../../common/icon/MultipleIconRow';
+import MultipleIconRow from '../../common/icon/MultipleIconRow';
 
 class ConversationAndMessageInput extends Component {
   render() {

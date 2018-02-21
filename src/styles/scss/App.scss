@@ -1,7 +1,18 @@
 #app {
   font-family: 'Lato', sans-serif;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  display: flex;
+  flex-direction: column;
+  
+  #header-section {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  #content-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: calc(100vh - 50.59px);
+  }
 
   .section {
     border-right: 0.6px solid rgba(0, 0, 0, 0.3);

@@ -15,7 +15,7 @@ const FriendContainer = ({
 }) => {
   return (
     <div
-      onClick={() => onSelectFriend(id)}
+      onClick={() => onSelectFriend()}
       className={`friend-container ${id === selectedFriendId ? 'active' : ''}`}
     >
       <div className="friend-container--info">

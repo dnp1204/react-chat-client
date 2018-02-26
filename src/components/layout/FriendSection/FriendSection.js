@@ -25,8 +25,8 @@ class FriendSection extends Component {
           lastName={lastName}
           lastMessage={lastMessage}
           lastSendMessageDate={lastSendMessageDate}
-          onSelectFriend={(id) => this.props.selectFriend(id)}
-          selectedFriendId={this.props.selectedFriend}
+          onSelectFriend={() => this.props.selectFriend(friend)}
+          selectedFriendId={this.props.selectedFriend._id}
         />
       );
     });

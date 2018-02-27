@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from '../../common/Search';
@@ -14,19 +15,23 @@ class FriendSection extends Component {
         firstName,
         lastName,
         lastMessage,
-        lastSendMessageDate,
+        lastSendMessageDate
       } = friend;
+
       return (
         <FriendContainer
           key={_id}
-          id={_id}
           avatar={avatar}
           firstName={firstName}
           lastName={lastName}
-          lastMessage={lastMessage}
-          lastSendMessageDate={lastSendMessageDate}
+          subTitleComponent={<p className="light-text">{lastMessage}</p>}
+          rightComponent={
+            <p className="light-text">
+              {moment(lastSendMessageDate).fromNow(true)}
+            </p>
+          }
           onSelectFriend={() => this.props.selectFriend(friend)}
-          selectedFriendId={this.props.selectedFriend._id}
+          isActive={this.props.selectedFriend._id === _id}
         />
       );
     });

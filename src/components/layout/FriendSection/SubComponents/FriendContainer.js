@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import SquareAvatar from '../../../common/SquareAvatar';
 
 const FriendContainer = ({
-  id,
   avatar,
   firstName,
   lastName,
-  lastMessage,
-  lastSendMessageDate,
+  subTitleComponent,
+  rightComponent,
   onSelectFriend,
-  selectedFriendId
+  isActive
 }) => {
   return (
     <div
       onClick={() => onSelectFriend()}
-      className={`friend-container ${id === selectedFriendId ? 'active' : ''}`}
+      className={`friend-container ${isActive ? 'active' : ''}`}
     >
       <div className="friend-container--info">
         <SquareAvatar avatar={avatar} />
@@ -24,27 +22,29 @@ const FriendContainer = ({
           <h4>
             {firstName} {lastName}
           </h4>
-          <p className="light-text">{lastMessage}</p>
+          {subTitleComponent}
         </div>
       </div>
-      <div className="friend-container--date">
-        <p className="light-text">
-          {moment(lastSendMessageDate).fromNow(true)}
-        </p>
-      </div>
+      <div className="friend-container--date">{rightComponent}</div>
     </div>
   );
 };
 
 FriendContainer.propTypes = {
-  id: PropTypes.number,
   avatar: PropTypes.string,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  lastMessage: PropTypes.string,
-  lastSendMessageDate: PropTypes.number,
+  subTitleComponent: PropTypes.element,
+  rightComponent: PropTypes.element,
   onSelectFriend: PropTypes.func,
-  selectedFriendId: PropTypes.number
+  isActive: PropTypes.bool
+};
+
+FriendContainer.defaultProps = {
+  subTitleComponent: <div />,
+  rightComponent: <div />,
+  isActive: false,
+  onSelectFriend: () => {}
 };
 
 export default FriendContainer;

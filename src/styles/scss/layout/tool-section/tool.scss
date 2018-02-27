@@ -3,7 +3,7 @@
     padding: 10px 0px;
   }
 
-  .tool--options {
+  .tool--options, .tool--photos {
     padding: 7px 10px;
     padding-top: 20px;
 
@@ -14,7 +14,9 @@
         font-size: 18px;
       }
     }
+  }
 
+  .tool--options {
     .element {
       margin: 5px 0px;
       width: 100%;

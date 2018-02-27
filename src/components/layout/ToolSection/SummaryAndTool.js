@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FriendContainer from '../FriendSection/SubComponents/FriendContainer';
 import Options from './SubComponents/Options';
+import Photos from './SubComponents/Photos';
 
 class SummaryAndTool extends Component {
   render() {
@@ -29,7 +30,7 @@ class SummaryAndTool extends Component {
           />
         </div>
         <Options />
-        <div className="tool--section tool-photos" />
+        <Photos />
       </div>
     );
   }

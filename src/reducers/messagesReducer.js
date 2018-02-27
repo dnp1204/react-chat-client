@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { FETCH_MESSAGES } from '../actions/types';
+import { FETCH_MESSAGES, SEND_MESSAGE } from '../actions/types';
 
 const imageUrl = 'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
 
@@ -21,6 +21,8 @@ for (let index = 0; index < 20; index++) {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case SEND_MESSAGE:
+      return { ...state, messages: [...state.messages, action.payload] };
     case FETCH_MESSAGES:
     default:
       return state;

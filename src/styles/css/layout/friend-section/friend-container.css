@@ -15,8 +15,9 @@
         margin-bottom: 5px; }
   .friend-container .light-text {
     font-size: 14px; }
-  .friend-container:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.3); }
+
+.mouse-hover:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3); }
 
 /*# sourceMappingURL=friend-container.css.map */

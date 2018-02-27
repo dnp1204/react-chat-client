@@ -24,6 +24,7 @@ class SummaryAndTool extends Component {
                 {moment(lastSendMessageDate).fromNow(true)}
               </p>
             }
+            isHover={false}
           />
         </div>
         <div />

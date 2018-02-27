@@ -9,12 +9,13 @@ const FriendContainer = ({
   subTitleComponent,
   rightComponent,
   onSelectFriend,
-  isActive
+  isActive,
+  isHover,
 }) => {
   return (
     <div
       onClick={() => onSelectFriend()}
-      className={`friend-container ${isActive ? 'active' : ''}`}
+      className={`friend-container ${isActive ? 'active' : ''} ${isHover ? 'mouse-hover' : ''}`}
     >
       <div className="friend-container--info">
         <SquareAvatar avatar={avatar} />
@@ -37,13 +38,15 @@ FriendContainer.propTypes = {
   subTitleComponent: PropTypes.element,
   rightComponent: PropTypes.element,
   onSelectFriend: PropTypes.func,
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
+  isHover: PropTypes.bool
 };
 
 FriendContainer.defaultProps = {
   subTitleComponent: <div />,
   rightComponent: <div />,
   isActive: false,
+  isHover: true,
   onSelectFriend: () => {}
 };
 

@@ -22,4 +22,17 @@
 .border-right {
   border-right: 1px solid rgba(0, 0, 0, 0.2); }
 
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+
+.flex--row {
+  display: flex;
+  flex-direction: row; }
+
+.align__center {
+  align-items: center; }
+
+.justify--space__between {
+  justify-content: space-between; }
+
 /*# sourceMappingURL=App.css.map */

@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FriendContainer from '../FriendSection/SubComponents/FriendContainer';
+import Options from './SubComponents/Options';
 
 class SummaryAndTool extends Component {
   render() {
@@ -13,8 +14,8 @@ class SummaryAndTool extends Component {
     } = this.props.selectedFriend;
 
     return (
-      <div>
-        <div>
+      <div id="tool">
+        <div className="tool--section tool--header border-bottom">
           <FriendContainer
             avatar={avatar}
             firstName={firstName}
@@ -27,10 +28,8 @@ class SummaryAndTool extends Component {
             isHover={false}
           />
         </div>
-        <div />
-        <div />
-        <div />
-        <div />
+        <Options />
+        <div className="tool--section tool-photos" />
       </div>
     );
   }

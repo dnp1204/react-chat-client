@@ -6,7 +6,7 @@ class Icon extends Component {
     const { iconName, size, style, isCursorPointer } = this.props;
 
     return (
-      <div>
+      <div id="icon">
         <i style={style} className={`fa fa-${iconName} fa-${size} ${isCursorPointer ? 'cursor-pointer' : '' }`} aria-hidden="true"></i>
       </div>
     );

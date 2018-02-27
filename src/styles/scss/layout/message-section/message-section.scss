@@ -1,16 +1,21 @@
 #message-section {
-  height: 100%;
-
+  height: calc(100vh - 59px);
+  
   .message-section--conversation, .message-section--input, .message-section--tool {
     padding: 0px 10px;
   }
 
   .message-section--conversation {
     flex-grow: 1;
-    overflow-y: hidden;
+    overflow: hidden;
 
     &:hover {
       overflow-y: scroll;
+    }
+
+    .message-section--conversation__element {
+      // margin-bottom: 20px;
+      clear: both;
     }
   }
 

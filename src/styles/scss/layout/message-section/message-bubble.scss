@@ -1,0 +1,11 @@
+#message-bubble {
+  .message-bubble--content {
+    max-width: 300px;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 10px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 200;
+  }
+}

@@ -1,11 +1,16 @@
 import React from 'react';
 
-const MessageBubble = () => {
+const MessageBubble = ({ content, color, imageUrl, textColor }) => {
   return (
-    <div>
-      
+    <div id="message-bubble">
+      <div
+        style={{ backgroundColor: color, color: textColor }}
+        className="message-bubble--content"
+      >
+        {content}
+      </div>
     </div>
   );
-}
+};
 
 export default MessageBubble;

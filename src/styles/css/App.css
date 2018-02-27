@@ -42,4 +42,10 @@
 .justify--space__between {
   justify-content: space-between; }
 
+.float__left {
+  float: left; }
+
+.float__right {
+  float: right; }
+
 /*# sourceMappingURL=App.css.map */

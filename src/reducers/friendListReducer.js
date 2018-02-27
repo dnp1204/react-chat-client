@@ -5,7 +5,7 @@ const imageUrl = 'https://pbs.twimg.com/profile_images/833767319973212161/Ft904p
 
 const initialState = [];
 
-for (let index = 0; index < 20; index++) {
+for (let index = 1; index < 20; index++) {
   const person = {
     _id: index,
     avatar: imageUrl,

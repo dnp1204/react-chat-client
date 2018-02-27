@@ -534,14 +534,16 @@ table {
   height: 40px; }
 
 #message-section {
-  height: 100%; }
+  height: calc(100vh - 59px); }
   #message-section .message-section--conversation, #message-section .message-section--input, #message-section .message-section--tool {
     padding: 0px 10px; }
   #message-section .message-section--conversation {
     flex-grow: 1;
-    overflow-y: hidden; }
+    overflow: hidden; }
     #message-section .message-section--conversation:hover {
       overflow-y: scroll; }
+    #message-section .message-section--conversation .message-section--conversation__element {
+      clear: both; }
   #message-section .message-section--input textarea {
     box-sizing: border-box;
     width: 100%;
@@ -558,6 +560,15 @@ table {
     font-size: 15px; }
   #message-section .message-section--tool {
     height: 30px; }
+
+#message-bubble .message-bubble--content {
+  max-width: 300px;
+  height: fit-content;
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 200; }
 
 #app {
   font-family: 'Lato', sans-serif;
@@ -602,5 +613,11 @@ table {
 
 .justify--space__between {
   justify-content: space-between; }
+
+.float__left {
+  float: left; }
+
+.float__right {
+  float: right; }
 
 /*# sourceMappingURL=index.css.map */

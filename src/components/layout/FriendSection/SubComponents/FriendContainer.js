@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SquareAvatar from '../../../common/SquareAvatar';
+import CircleAvatar from '../../../common/CircleAvatar';
 
 const FriendContainer = ({
   avatar,
@@ -18,7 +18,7 @@ const FriendContainer = ({
       className={`friend-container ${isActive ? 'active' : ''} ${isHover ? 'mouse-hover' : ''}`}
     >
       <div className="friend-container--info">
-        <SquareAvatar avatar={avatar} />
+        <CircleAvatar avatar={avatar} />
         <div className="friend-container--info__name">
           <h4>
             {firstName} {lastName}

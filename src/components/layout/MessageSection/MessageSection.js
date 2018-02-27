@@ -8,23 +8,21 @@ class MessageSection extends Component {
     const blue = '#0584FF';
     const gray = '#F1F0F0';
     
-    let previousUserId = this.props.friendMessages.messages[0].user.userId;
-    const nextUserId = this.props.friendMessages.messages[1].user.userId;
-    let marginBottom = previousUserId === nextUserId ? 3 : 20;
-    previousUserId = -1;
-
-    return this.props.friendMessages.messages.map(message => {
+    const { friendId, messages } = this.props.friendMessages;
+    
+    let marginBottom;
+    let index = 0;
+  
+    return messages.map(message => {
       const { _id, user: { userId, imageUrl }, timestamp, content } = message;
       const float = userId === 0 ? 'float__right' : 'float__left';
       
-      if (previousUserId !== -1) {
-        if (previousUserId === userId) {
-          marginBottom = 3;
-        } else {
-          marginBottom = 20;
-        }
+      if (index + 1 < messages.length) {
+        marginBottom = userId === messages[index + 1].user.userId ? 3 : 20;
+        index += 1;
+      } else {
+        marginBottom = 20;
       }
-      previousUserId = userId;
 
       return (
         <div key={_id} style={{ marginBottom }} className={`message-section--conversation__element ${float}`}>

@@ -3,7 +3,7 @@ import { FETCH_MESSAGES } from '../actions/types';
 
 const imageUrl = 'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
 
-const initialState = { friendId: 0, messages: []};
+const initialState = { friendId: 1, messages: []};
 
 for (let index = 0; index < 20; index++) {
   const message = {

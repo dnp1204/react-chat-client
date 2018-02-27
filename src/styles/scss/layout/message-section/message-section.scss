@@ -1,0 +1,42 @@
+#message-section {
+  height: 100%;
+
+  .message-section--conversation, .message-section--input, .message-section--tool {
+    padding: 0px 10px;
+  }
+
+  .message-section--conversation {
+    flex-grow: 1;
+    overflow-y: hidden;
+
+    &:hover {
+      overflow-y: scroll;
+    }
+  }
+
+  .message-section--input {
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      height: 40px;
+      padding: 10px 0px 0px 10px;
+      margin: 10px 0px 8px 0px;
+      border: none;
+      outline: none;
+    }
+
+    ::-webkit-input-placeholder { 
+      color: rgba(0, 0, 0, 0.2);
+      font-size: 15px;
+    }
+
+    ::-moz-placeholder { 
+      color: rgba(0, 0, 0, 0.2);
+      font-size: 15px;
+    }
+  }
+  
+  .message-section--tool {
+    height: 30px;
+  }
+}

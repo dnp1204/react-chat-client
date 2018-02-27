@@ -6,7 +6,7 @@ const Photos = () => {
     <div className="tool--section tool--photos">
       <div className="title">
         <TextAndRightIcon
-          text="Photos"
+          text="Shared Photos"
           iconName="ellipsis-h"
           isCursorPointer
         />

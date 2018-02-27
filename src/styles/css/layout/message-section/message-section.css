@@ -1,0 +1,27 @@
+#message-section {
+  height: 100%; }
+  #message-section .message-section--conversation, #message-section .message-section--input, #message-section .message-section--tool {
+    padding: 0px 10px; }
+  #message-section .message-section--conversation {
+    flex-grow: 1;
+    overflow-y: hidden; }
+    #message-section .message-section--conversation:hover {
+      overflow-y: scroll; }
+  #message-section .message-section--input textarea {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0px 0px 10px;
+    margin: 10px 0px 8px 0px;
+    border: none;
+    outline: none; }
+  #message-section .message-section--input ::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 15px; }
+  #message-section .message-section--input ::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 15px; }
+  #message-section .message-section--tool {
+    height: 30px; }
+
+/*# sourceMappingURL=message-section.css.map */

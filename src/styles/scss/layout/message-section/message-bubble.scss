@@ -1,4 +1,6 @@
 #message-bubble {
+  position: relative;
+  
   .message-bubble--content {
     max-width: 300px;
     height: fit-content;
@@ -7,5 +9,52 @@
     border-radius: 14px;
     font-size: 15px;
     font-weight: 200;
+  }
+  
+  .message-bubble--timestamp {
+    z-index: 9999;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 7px 5px;
+    position: absolute;
+    top: 0px;
+    opacity: 0;
+   
+   &:before, &:after {
+     content: '';
+     width: 10px;
+     height: 10px;
+     background-color: #000;
+     position: absolute;
+     transform: rotate(45deg);
+     top: 8.5px;
+     transition: all 200ms ease-in-out;
+     opacity: 0;
+   }
+  }
+  
+  .message-bubble--timestamp__left {
+    left: 260px;
+    
+    &:before {
+      left: -5px;
+      opacity: 1;
+    }
+  }
+  
+  .message-bubble--timestamp__right {
+    right: 260px;
+    
+    &:after {
+      right: -5px;
+      opacity: 1;
+    }
+  }
+  
+  &:hover {
+    .message-bubble--timestamp {
+      opacity: 1;
+    }
   }
 }

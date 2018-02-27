@@ -33,7 +33,7 @@ class App extends Component {
           <div className="section friend-section">
             <FriendSection />
           </div>
-          <div className="section">
+          <div className="section message-section">
             <MessageSection />
           </div>
           <div className="section">

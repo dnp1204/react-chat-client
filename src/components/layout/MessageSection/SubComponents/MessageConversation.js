@@ -5,7 +5,7 @@ const renderMessages = (friendMessages) => {
     const blue = '#0584FF';
     const gray = '#F1F0F0';
     
-    const { friendId, messages } = friendMessages;
+    const { messages } = friendMessages;
     
     let marginBottom;
     let index = 0;

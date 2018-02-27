@@ -561,14 +561,47 @@ table {
   #message-section .message-section--tool {
     height: 30px; }
 
-#message-bubble .message-bubble--content {
-  max-width: 300px;
-  height: fit-content;
-  width: fit-content;
-  padding: 8px 10px;
-  border-radius: 14px;
-  font-size: 15px;
-  font-weight: 200; }
+#message-bubble {
+  position: relative; }
+  #message-bubble .message-bubble--content {
+    max-width: 300px;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 10px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 200; }
+  #message-bubble .message-bubble--timestamp {
+    z-index: 9999;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 7px 5px;
+    position: absolute;
+    top: 0px;
+    opacity: 0; }
+    #message-bubble .message-bubble--timestamp:before, #message-bubble .message-bubble--timestamp:after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+      position: absolute;
+      transform: rotate(45deg);
+      top: 8.5px;
+      transition: all 200ms ease-in-out;
+      opacity: 0; }
+  #message-bubble .message-bubble--timestamp__left {
+    left: 260px; }
+    #message-bubble .message-bubble--timestamp__left:before {
+      left: -5px;
+      opacity: 1; }
+  #message-bubble .message-bubble--timestamp__right {
+    right: 260px; }
+    #message-bubble .message-bubble--timestamp__right:after {
+      right: -5px;
+      opacity: 1; }
+  #message-bubble:hover .message-bubble--timestamp {
+    opacity: 1; }
 
 #app {
   font-family: 'Lato', sans-serif;

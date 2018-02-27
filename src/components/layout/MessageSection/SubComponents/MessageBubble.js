@@ -1,6 +1,7 @@
 import React from 'react';
+import moment from 'moment';
 
-const MessageBubble = ({ content, color, imageUrl, textColor }) => {
+const MessageBubble = ({ content, color, imageUrl, textColor, timestamp, isFriendMessage }) => {
   return (
     <div id="message-bubble">
       <div
@@ -8,6 +9,13 @@ const MessageBubble = ({ content, color, imageUrl, textColor }) => {
         className="message-bubble--content"
       >
         {content}
+      </div>
+      <div className={`message-bubble--timestamp ${isFriendMessage ? 'message-bubble--timestamp__left' : 'message-bubble--timestamp__right'}`}>
+        {moment().calendar(timestamp, {
+          sameDay: 'h:mm a',
+          lastWeek: 'dddd h:mm a',
+          sameElse: 'MMMM D, YYYY h:mm a'
+        })}
       </div>
     </div>
   );

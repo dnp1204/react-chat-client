@@ -11,6 +11,14 @@
     font-weight: 200;
   }
   
+  .message-bubble--content__margin-left {
+    margin-left: 80px;
+  }
+  
+  .message-bubble--content__margin-right {
+    margin-right: 80px;
+  }
+  
   .message-bubble--timestamp {
     z-index: 9999;
     background-color: black;
@@ -35,7 +43,7 @@
   }
   
   .message-bubble--timestamp__left {
-    left: 260px;
+    right: 0;
     
     &:before {
       left: -5px;
@@ -44,7 +52,7 @@
   }
   
   .message-bubble--timestamp__right {
-    right: 260px;
+    left: 0;
     
     &:after {
       right: -5px;

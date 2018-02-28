@@ -6,7 +6,7 @@ const MessageBubble = ({ content, color, imageUrl, textColor, timestamp, isFrien
     <div id="message-bubble">
       <div
         style={{ backgroundColor: color, color: textColor }}
-        className="message-bubble--content"
+        className={`message-bubble--content ${isFriendMessage ? 'message-bubble--content__margin-right' : 'message-bubble--content__margin-left'}`}
       >
         {content}
       </div>

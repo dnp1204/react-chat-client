@@ -20,7 +20,6 @@ class ScrollToBottom extends Component {
         let scrollTop = el.scrollTop;
         let scrollHeight = el.scrollHeight;
         let clientHeight = el.clientHeight;
-        let difference;
         
         if(scrollTop + clientHeight < scrollHeight) {
             let scrollInterval = setInterval(() => {
@@ -28,7 +27,6 @@ class ScrollToBottom extends Component {
                 scrollTop += 10;
                 if (scrollTop + clientHeight >= scrollHeight) {
                     clearInterval(scrollInterval);
-                    console.log(true);
                     this.props.onScrollToBottomFinishHandler();
                 }
             }, 5);

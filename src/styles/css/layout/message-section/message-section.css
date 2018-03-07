@@ -1,7 +1,7 @@
 #message-section {
   height: calc(100vh - 59px); }
   #message-section .message-section--conversation, #message-section .message-section--input, #message-section .message-section--tool {
-    padding: 0px 10px; }
+    padding: 0px 20px 0px 10px; }
   #message-section .message-section--conversation {
     flex-grow: 1; }
     #message-section .message-section--conversation .message-section--conversation__element {

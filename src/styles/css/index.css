@@ -476,8 +476,6 @@ table {
     font-size: 14px; }
 
 .circle-avatar {
-  width: 55px;
-  height: 55px;
   border-radius: 50%;
   background-color: black; }
 
@@ -536,7 +534,7 @@ table {
 #message-section {
   height: calc(100vh - 59px); }
   #message-section .message-section--conversation, #message-section .message-section--input, #message-section .message-section--tool {
-    padding: 0px 10px; }
+    padding: 0px 20px 0px 10px; }
   #message-section .message-section--conversation {
     flex-grow: 1; }
     #message-section .message-section--conversation .message-section--conversation__element {
@@ -559,7 +557,10 @@ table {
     height: 30px; }
 
 #message-bubble {
-  position: relative; }
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
   #message-bubble .message-bubble--content {
     max-width: 300px;
     height: fit-content;
@@ -613,14 +614,14 @@ table {
     grid-template-columns: 1.065fr 3fr; }
   #app #content-section {
     display: grid;
-    grid-template-columns: 1.1fr 2fr 1.1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     height: calc(100vh - 50.59px); }
   #app .section {
     border-right: 0.6px solid rgba(0, 0, 0, 0.3); }
   #app .friend-section {
     overflow: hidden; }
     #app .friend-section:hover {
-      overflow: scroll; }
+      overflow-y: overlay; }
 
 .cursor-pointer {
   cursor: pointer; }
@@ -653,5 +654,24 @@ table {
 
 .float__right {
   float: right; }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  display: none; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4); }
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 0, 0, 0.4); }
 
 /*# sourceMappingURL=index.css.map */

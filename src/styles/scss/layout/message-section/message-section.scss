@@ -1,8 +1,8 @@
 #message-section {
   height: calc(100vh - 59px);
-  
+
   .message-section--conversation, .message-section--input, .message-section--tool {
-    padding: 0px 10px;
+    padding: 0px 20px 0px 10px;
   }
 
   .message-section--conversation {

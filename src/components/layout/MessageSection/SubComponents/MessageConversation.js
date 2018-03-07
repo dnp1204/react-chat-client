@@ -32,6 +32,7 @@ const renderMessages = (friendMessages) => {
             imageUrl={imageUrl}
             timestamp={timestamp}
             isFriendMessage={userId !== 0}
+            isShowFriendAvatarOnLastText={marginBottom === 20 ? true : false}
           />
         </div>
       );

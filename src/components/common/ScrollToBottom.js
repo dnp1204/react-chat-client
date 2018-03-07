@@ -35,7 +35,7 @@ class ScrollToBottom extends Component {
     
     render() {
         return (
-            <div style={{ overflow: `${this.state.hover ? 'auto' : 'hidden' }` }} 
+            <div style={{ overflowY: `${this.state.hover ? 'overlay' : 'hidden' }` }} 
                 onMouseEnter={() => this.setState({ hover: true })} 
                 onMouseLeave={() => this.setState({ hover:false })} 
                 id="__scroll-to-bottom-component">

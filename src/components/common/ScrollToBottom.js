@@ -15,20 +15,24 @@ class ScrollToBottom extends Component {
         }
     }
     
-    componentWillUnmount() {
-        
-    }
-    
     scrollToBottom() {
         let el = document.getElementById("__scroll-to-bottom-component");
         let scrollTop = el.scrollTop;
         let scrollHeight = el.scrollHeight;
         let clientHeight = el.clientHeight;
+        let difference;
         
         if(scrollTop + clientHeight < scrollHeight) {
-            el.scrollTo(scrollTop, clientHeight);
-            this.props.onScrollToBottomFinishHandler();
-        }
+            let scrollInterval = setInterval(() => {
+                el.scroll(scrollTop, scrollTop + 10);
+                scrollTop += 10;
+                if (scrollTop + clientHeight >= scrollHeight) {
+                    clearInterval(scrollInterval);
+                    console.log(true);
+                    this.props.onScrollToBottomFinishHandler();
+                }
+            }, 5);
+        } 
     }
     
     render() {

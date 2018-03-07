@@ -1,8 +1,5 @@
 #message-bubble {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center; }
+  position: relative; }
   #message-bubble .message-bubble--content {
     max-width: 300px;
     height: fit-content;

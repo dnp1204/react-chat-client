@@ -7,14 +7,8 @@
 
   .message-section--conversation {
     flex-grow: 1;
-    //overflow: hidden;
-
-    &:hover {
-     //overflow-y: scroll;
-    }
 
     .message-section--conversation__element {
-      // margin-bottom: 20px;
       clear: both;
     }
   }

@@ -475,26 +475,6 @@ table {
     color: rgba(0, 0, 0, 0.3);
     font-size: 14px; }
 
-.circle-avatar {
-  border-radius: 50%;
-  background-color: black; }
-
-.multiple-icon-row {
-  display: flex;
-  flex-direction: row; }
-  .multiple-icon-row .fa {
-    margin-left: 20px; }
-
-#icon-with-next-text p {
-  margin-left: 20px; }
-#icon-with-next-text #icon {
-  width: 20px;
-  height: 20px; }
-
-.friend-section .active {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.3); }
-
 .friend-container {
   display: flex;
   flex-direction: row;
@@ -557,10 +537,7 @@ table {
     height: 30px; }
 
 #message-bubble {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center; }
+  position: relative; }
   #message-bubble .message-bubble--content {
     max-width: 300px;
     height: fit-content;
@@ -611,7 +588,7 @@ table {
   flex-direction: column; }
   #app #header-section {
     display: grid;
-    grid-template-columns: 1.065fr 3fr; }
+    grid-template-columns: 1fr 3fr; }
   #app #content-section {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -620,6 +597,9 @@ table {
     border-right: 0.6px solid rgba(0, 0, 0, 0.3); }
   #app .friend-section {
     overflow: hidden; }
+    #app .friend-section .active {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.3); }
     #app .friend-section:hover {
       overflow-y: overlay; }
 

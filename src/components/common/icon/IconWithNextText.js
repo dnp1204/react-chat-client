@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const IconWithNextText = ({ iconName, isCursorPointer, text }) => {
+  const textStyle = { marginLeft: 20 };
+
   return (
     <div
       id="icon-with-next-text"
@@ -10,8 +12,8 @@ const IconWithNextText = ({ iconName, isCursorPointer, text }) => {
         isCursorPointer ? 'cursor-pointer' : ''
       } flex--row align__center`}
     >
-      <Icon iconName={iconName} isCursorPointer size='lg' />
-      <p>{text}</p>
+      <Icon style={{ width: 20, height: 20 }} iconName={iconName} isCursorPointer size='lg' />
+      <p style={textStyle}>{text}</p>
     </div>
   );
 };

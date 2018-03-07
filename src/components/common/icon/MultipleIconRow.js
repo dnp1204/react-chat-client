@@ -3,28 +3,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
 
-const renderIconArray = (iconArray) => {
+const multipleIconRowStyle = { display: 'flex', flexDirection: 'row' };
+const iconStyle = { marginLeft: 20 };
+
+const renderIconArray = iconArray => {
   return _.map(iconArray, icon => {
     return renderIcon(icon);
   });
-}
+};
 
-const renderIcon = ({ iconName, size, style }) => {
+const renderIcon = ({ iconName, size, style, color }) => {
   return (
-    <Icon key={iconName} isCursorPointer iconName={iconName} size={size} style={style} />
+    <Icon
+      key={iconName}
+      isCursorPointer
+      iconName={iconName}
+      size={size}
+      color={color}
+      style={Object.assign({}, style, iconStyle)}
+    />
   );
-}
+};
 
 const MultipleIconRow = ({ iconArray }) => {
-  return(
-    <div className="multiple-icon-row">
+  return (
+    <div style={multipleIconRowStyle} className="multiple-icon-row">
       {renderIconArray(iconArray)}
     </div>
   );
-}
+};
 
 MultipleIconRow.propTypes = {
-  iconArray: PropTypes.array
-}
+  iconArray: PropTypes.array.isRequired,
+  size: PropTypes.object,
+  style: PropTypes.object,
+  color: PropTypes.string
+};
 
 export default MultipleIconRow;

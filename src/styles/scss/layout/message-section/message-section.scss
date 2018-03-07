@@ -7,10 +7,10 @@
 
   .message-section--conversation {
     flex-grow: 1;
-    overflow: hidden;
+    //overflow: hidden;
 
     &:hover {
-      overflow-y: scroll;
+     //overflow-y: scroll;
     }
 
     .message-section--conversation__element {

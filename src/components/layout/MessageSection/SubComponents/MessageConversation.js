@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageBubble from './MessageBubble';
+import ScrollToBottom from '../../../../components/common/ScrollToBottom';
 
 const renderMessages = (friendMessages) => {
     const blue = '#0584FF';
@@ -20,7 +21,7 @@ const renderMessages = (friendMessages) => {
       } else {
         marginBottom = 20;
       }
-
+      
       return (
         <div key={_id} style={{ marginBottom }} className={`message-section--conversation__element ${float}`}>
           <MessageBubble
@@ -37,11 +38,13 @@ const renderMessages = (friendMessages) => {
     });
   }
 
-const MessageConversation = ({ friendMessages }) => {
+const MessageConversation = ({ friendMessages, shouldScroll, onScrollToBottomFinishHandler }) => {
     return (
-        <div className="message-section--conversation">
-          {renderMessages(friendMessages)}
-        </div>
+        <ScrollToBottom shouldScroll={shouldScroll} onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}>
+          <div className="message-section--conversation">
+            {renderMessages(friendMessages)}
+          </div>
+        </ScrollToBottom>
     );
 }
 

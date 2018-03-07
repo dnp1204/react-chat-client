@@ -7,6 +7,7 @@ class MessageInput extends Component {
         if (event.key === "Enter") {
              event.preventDefault();
              this.props.sendMessage(this.state.messageText);
+             this.props.onNewMessageHandler();
              this.setState({ messageText: '' });
         }
     }

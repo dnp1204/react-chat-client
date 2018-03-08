@@ -13,9 +13,13 @@ const MessageBubble = ({
 }) => {
   const imageSize = 30;
   const marginRightForAvatar = 10;
-  const marginLeftForContent = isShowFriendAvatarOnLastText
-    ? 0
-    : imageSize + marginRightForAvatar;
+
+  let marginLeftForContent = imageSize + marginRightForAvatar;
+  if (isShowFriendAvatarOnLastText && isFriendMessage) {
+    marginLeftForContent = 0;
+  } else if (!isFriendMessage) {
+    marginLeftForContent = 75;
+  }
 
   return (
     <div id="message-bubble" className="flex--row align__center">

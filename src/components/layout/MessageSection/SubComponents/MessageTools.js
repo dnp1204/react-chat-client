@@ -6,7 +6,6 @@ const MessageTools = () => {
     const size = 'lg';
     const iconArray = [
       { iconName: 'file-image-o', size, color },
-      { iconName: 'sticky-note-o', size, color },
       { iconName: 'smile-o', size, color },
       { iconName: 'microphone', size, color },
       { iconName: 'camera', size, color }

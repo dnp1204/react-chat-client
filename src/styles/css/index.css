@@ -669,6 +669,6 @@ table {
   background: rgba(0, 0, 0, 0.4); }
 
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(255, 0, 0, 0.4); }
+  background: rgba(0, 0, 0, 0.3); }
 
 /*# sourceMappingURL=index.css.map */

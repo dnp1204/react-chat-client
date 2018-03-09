@@ -1,12 +1,15 @@
 #tool .tool--section {
   padding: 10px 0px; }
 #tool .tool--options, #tool .tool--photos {
-  padding: 7px 10px;
-  padding-top: 20px; }
+  padding: 7px 15px;
+  padding-top: 20px;
+  position: relative; }
   #tool .tool--options .title, #tool .tool--photos .title {
     margin-bottom: 30px; }
     #tool .tool--options .title p, #tool .tool--photos .title p {
       font-size: 18px; }
+    #tool .tool--options .title .tool--options__drop-down, #tool .tool--options .title .tool--photos__drop-down, #tool .tool--photos .title .tool--options__drop-down, #tool .tool--photos .title .tool--photos__drop-down {
+      right: 6px; }
 #tool .tool--options .element {
   margin: 5px 0px;
   width: 100%;

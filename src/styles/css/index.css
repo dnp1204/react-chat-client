@@ -475,6 +475,26 @@ table {
     color: rgba(0, 0, 0, 0.3);
     font-size: 14px; }
 
+#drop-down {
+  box-shadow: 2px 3px 10px 0px #888888;
+  width: fit-content !important;
+  min-width: 120px !important;
+  padding: 8px 18px !important;
+  position: absolute;
+  border: 0.3px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px; }
+  #drop-down:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background-color: white;
+    border-top: 0.3px solid rgba(0, 0, 0, 0.2);
+    border-left: 0.3px solid rgba(0, 0, 0, 0.2); }
+
 .friend-container {
   display: flex;
   flex-direction: row;
@@ -500,12 +520,15 @@ table {
 #tool .tool--section {
   padding: 10px 0px; }
 #tool .tool--options, #tool .tool--photos {
-  padding: 7px 10px;
-  padding-top: 20px; }
+  padding: 7px 15px;
+  padding-top: 20px;
+  position: relative; }
   #tool .tool--options .title, #tool .tool--photos .title {
     margin-bottom: 30px; }
     #tool .tool--options .title p, #tool .tool--photos .title p {
       font-size: 18px; }
+    #tool .tool--options .title .tool--options__drop-down, #tool .tool--options .title .tool--photos__drop-down, #tool .tool--photos .title .tool--options__drop-down, #tool .tool--photos .title .tool--photos__drop-down {
+      right: 6px; }
 #tool .tool--options .element {
   margin: 5px 0px;
   width: 100%;

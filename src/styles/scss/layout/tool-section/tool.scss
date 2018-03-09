@@ -4,14 +4,19 @@
   }
 
   .tool--options, .tool--photos {
-    padding: 7px 10px;
+    padding: 7px 15px;
     padding-top: 20px;
+    position: relative;
 
     .title {
       margin-bottom: 30px;
 
       p {
         font-size: 18px;
+      }
+      
+      .tool--options__drop-down, .tool--photos__drop-down {
+        right: 6px;
       }
     }
   }

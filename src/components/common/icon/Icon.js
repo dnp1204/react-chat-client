@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 class Icon extends Component {
   render() {
-    const { iconName, size, style, isCursorPointer, color } = this.props;
+    const { iconName, size, style, isCursorPointer, color, onClickHandler } = this.props;
 
     return (
-      <div id="icon">
+      <div id="icon" onClick={() => onClickHandler()}>
         <i
           style={{ ...style, color}}
           className={`fa fa-${iconName} fa-${size} ${
@@ -23,7 +23,8 @@ Icon.propTypes = {
   iconName: PropTypes.string,
   size: PropTypes.string,
   isCursorPointer: PropTypes.bool,
-  color: PropTypes.string
+  color: PropTypes.string,
+  onClickHandler: PropTypes.func
 };
 
 Icon.defaultProps = {

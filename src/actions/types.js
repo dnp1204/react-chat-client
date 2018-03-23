@@ -4,3 +4,5 @@ export const SELECT_FRIEND = 'select_friend';
 
 export const FETCH_MESSAGES = 'fetch_messages';
 export const SEND_MESSAGE = 'send_message';
+
+export const SELECT_EMOJI = "select_emoji";

@@ -611,14 +611,14 @@ table {
   #message-bubble .message-bubble--timestamp__left {
     right: 0;
     transform-origin: left;
-    animation: rotate-left 500ms ease-in-out; }
+    animation: rotate-left 200ms ease-in-out; }
     #message-bubble .message-bubble--timestamp__left:before {
       left: -5px;
       opacity: 1; }
   #message-bubble .message-bubble--timestamp__right {
     left: 0;
     transform-origin: right;
-    animation: rotate-right 500ms ease-in-out; }
+    animation: rotate-right 200ms ease-in-out; }
     #message-bubble .message-bubble--timestamp__right:after {
       right: -5px;
       opacity: 1; }

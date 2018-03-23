@@ -1,11 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import IconWithNextText from '../../../common/icon/IconWithNextText';
-import TextAndRightIcon from '../../../common/icon/TextAndRightIcon';
+import BaseComponent from './BaseComponent';
 
 class Options extends Component {
-  
-  state = { showChild: true }
   
   renderAllIconForTool() {
     const iconTools = [
@@ -34,20 +32,9 @@ class Options extends Component {
 
     render() {
       return (
-      <div className="tool--section tool--options border-bottom">
-        <div className="title">
-          <TextAndRightIcon
-            text="Options"
-            iconName="chevron-down"
-            isCursorPointer
-            iconClassName={this.state.showChild ? "move-down-90deg-animation" : "move-left-90deg-animation"}
-            onIconClickHandler={() => this.setState({ showChild: !this.state.showChild })}
-          />
-        </div>
-        <div className="children">
-          {this.state.showChild ? this.renderAllIconForTool() : <div />}  
-        </div>
-      </div>
+        <BaseComponent usedBySubComponent="tool--options" isNeededBorderBottom={true}>
+          {this.renderAllIconForTool()}
+        </BaseComponent>
     );
   }
 }

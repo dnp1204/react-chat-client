@@ -595,33 +595,33 @@ table {
     width: fit-content;
     padding: 7px 5px;
     position: absolute;
-    top: 0px;
-    display: none; }
+    display: none;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 300ms ease-in-out; }
     #message-bubble .message-bubble--timestamp:before, #message-bubble .message-bubble--timestamp:after {
       content: '';
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background-color: #000;
       position: absolute;
       transform: rotate(45deg);
-      top: 9px;
+      top: 10px;
       transition: all 200ms ease-in-out;
       opacity: 0; }
   #message-bubble .message-bubble--content:hover + .message-bubble--timestamp {
     display: block; }
   #message-bubble .message-bubble--timestamp__left {
     right: 0;
-    transform-origin: left;
-    animation: rotate-left 200ms ease-in-out; }
+    transform-origin: left; }
     #message-bubble .message-bubble--timestamp__left:before {
-      left: -5px;
+      left: -4px;
       opacity: 1; }
   #message-bubble .message-bubble--timestamp__right {
     left: 0;
-    transform-origin: right;
-    animation: rotate-right 200ms ease-in-out; }
+    transform-origin: 100% 50%; }
     #message-bubble .message-bubble--timestamp__right:after {
-      right: -5px;
+      right: -4px;
       opacity: 1; }
 @keyframes rotate-right {
   0% {

@@ -1,23 +1,20 @@
 #tool {
-  .tool--section {
-    padding: 10px 0px;
-  }
-
   .tool--options, .tool--photos {
-    padding: 7px 15px;
-    padding-top: 20px;
-    position: relative;
-
     .title {
-      margin-bottom: 30px;
+      padding: 15px 10px;
+      transition: all 200ms ease-in-out;
 
       p {
         font-size: 18px;
       }
       
-      .tool--options__drop-down, .tool--photos__drop-down {
-        right: 6px;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
       }
+    }
+    
+    .children {
+      padding: 0px 10px;
     }
   }
 
@@ -29,3 +26,32 @@
     }
   }
 }
+
+.move-left-90deg-animation {
+  animation: rotate-left-90-deg 200ms ease-in-out 0s normal forwards;
+}
+
+@keyframes rotate-left-90-deg {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.move-down-90deg-animation {
+  animation: rotate-down-90-deg 200ms ease-in-out 0s normal forwards;
+}
+
+@keyframes rotate-down-90-deg {
+  0% {
+    transform: rotate(90deg);
+  }
+  
+  100% {
+    transform: rotate(0deg);
+  }
+}
+

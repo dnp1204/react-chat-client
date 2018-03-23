@@ -1,18 +1,32 @@
-#tool .tool--section {
-  padding: 10px 0px; }
-#tool .tool--options, #tool .tool--photos {
-  padding: 7px 15px;
-  padding-top: 20px;
-  position: relative; }
-  #tool .tool--options .title, #tool .tool--photos .title {
-    margin-bottom: 30px; }
-    #tool .tool--options .title p, #tool .tool--photos .title p {
-      font-size: 18px; }
-    #tool .tool--options .title .tool--options__drop-down, #tool .tool--options .title .tool--photos__drop-down, #tool .tool--photos .title .tool--options__drop-down, #tool .tool--photos .title .tool--photos__drop-down {
-      right: 6px; }
+#tool .tool--options .title, #tool .tool--photos .title {
+  padding: 15px 10px;
+  transition: all 200ms ease-in-out; }
+  #tool .tool--options .title p, #tool .tool--photos .title p {
+    font-size: 18px; }
+  #tool .tool--options .title:hover, #tool .tool--photos .title:hover {
+    background-color: rgba(0, 0, 0, 0.1); }
+#tool .tool--options .children, #tool .tool--photos .children {
+  padding: 0px 10px; }
 #tool .tool--options .element {
   margin: 5px 0px;
   width: 100%;
   height: 40px; }
+
+.move-left-90deg-animation {
+  animation: rotate-left-90-deg 200ms ease-in-out 0s normal forwards; }
+
+@keyframes rotate-left-90-deg {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(90deg); } }
+.move-down-90deg-animation {
+  animation: rotate-down-90-deg 200ms ease-in-out 0s normal forwards; }
+
+@keyframes rotate-down-90-deg {
+  0% {
+    transform: rotate(90deg); }
+  100% {
+    transform: rotate(0deg); } }
 
 /*# sourceMappingURL=tool.css.map */

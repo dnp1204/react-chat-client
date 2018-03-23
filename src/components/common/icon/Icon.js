@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Icon extends Component {
   render() {
-    const { iconName, size, style, isCursorPointer, color, onClickHandler } = this.props;
+    const { iconName, size, style, isCursorPointer, color, onClickHandler, optionClassName } = this.props;
 
     return (
       <div id="icon" onClick={() => onClickHandler()}>
@@ -11,7 +11,7 @@ class Icon extends Component {
           style={{ ...style, color}}
           className={`fa fa-${iconName} fa-${size} ${
             isCursorPointer ? 'cursor-pointer' : ''
-          }`}
+          } ${optionClassName}`}
           aria-hidden="true"
         />
       </div>
@@ -24,13 +24,16 @@ Icon.propTypes = {
   size: PropTypes.string,
   isCursorPointer: PropTypes.bool,
   color: PropTypes.string,
+  optionClassName: PropTypes.string,
   onClickHandler: PropTypes.func
 };
 
 Icon.defaultProps = {
   size: '2x',
   color: '#0084FF',
-  isCursorPointer: false
+  isCursorPointer: false,
+  onClickHandler: () => {},
+  optionClassName: ""
 };
 
 export default Icon;

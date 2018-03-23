@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TextAndRightIcon from '../../../common/icon/TextAndRightIcon';
-import Dropdown from '../../../common/Dropdown';
 
 class Photos extends Component {
-  state = { isShowDropdown: false };
+  
+  state = { showChild: true }
   
   render() {
     return (
@@ -11,10 +11,13 @@ class Photos extends Component {
         <div className="title">
           <TextAndRightIcon
             text="Shared Photos"
-            iconName="ellipsis-h"
+            iconName="chevron-down"
             isCursorPointer
-            onIconClickHandler={() => this.setState({ isShowDropdown: !this.state.isShowDropdown })}
+            iconClassName={this.state.showChild ? "move-down-90deg-animation" : "move-left-90deg-animation"}
+            onIconClickHandler={() => this.setState({ showChild: !this.state.showChild })}
           />
+        </div>
+        <div className="children">
           
         </div>
       </div>

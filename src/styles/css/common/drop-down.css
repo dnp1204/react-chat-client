@@ -5,7 +5,8 @@
   padding: 8px 18px !important;
   position: absolute;
   border: 0.3px solid rgba(0, 0, 0, 0.2);
-  border-radius: 2px; }
+  border-radius: 2px;
+  right: 5px; }
   #drop-down:before {
     content: '';
     width: 10px;

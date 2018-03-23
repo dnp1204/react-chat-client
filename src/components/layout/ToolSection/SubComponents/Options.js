@@ -2,10 +2,10 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import IconWithNextText from '../../../common/icon/IconWithNextText';
 import TextAndRightIcon from '../../../common/icon/TextAndRightIcon';
-import Dropdown from '../../../common/Dropdown';
 
 class Options extends Component {
-  state = { isShowDropdown: false };
+  
+  state = { showChild: true }
   
   renderAllIconForTool() {
     const iconTools = [
@@ -36,18 +36,17 @@ class Options extends Component {
       return (
       <div className="tool--section tool--options border-bottom">
         <div className="title">
-          <Dropdown className="tool--options__drop-down" 
-            isDisplay={this.state.isShowDropdown} 
-            onHide={(value) => this.setState({ isShowDropdown: value })}>
-            <TextAndRightIcon
-              text="Options"
-              iconName="ellipsis-h"
-              isCursorPointer
-              onIconClickHandler={() => this.setState({ isShowDropdown: !this.state.isShowDropdown })}
-            />
-          </Dropdown>
+          <TextAndRightIcon
+            text="Options"
+            iconName="chevron-down"
+            isCursorPointer
+            iconClassName={this.state.showChild ? "move-down-90deg-animation" : "move-left-90deg-animation"}
+            onIconClickHandler={() => this.setState({ showChild: !this.state.showChild })}
+          />
         </div>
-        {this.renderAllIconForTool()}
+        <div className="children">
+          {this.state.showChild ? this.renderAllIconForTool() : <div />}  
+        </div>
       </div>
     );
   }

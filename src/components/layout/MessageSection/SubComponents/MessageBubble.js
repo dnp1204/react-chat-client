@@ -1,5 +1,6 @@
-import React from 'react';
 import moment from 'moment';
+import React from 'react';
+
 import CircleAvatar from '../../../common/CircleAvatar';
 
 const MessageBubble = ({

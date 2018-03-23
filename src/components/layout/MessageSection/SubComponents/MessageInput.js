@@ -3,6 +3,17 @@ import React, { Component } from 'react';
 class MessageInput extends Component {
   state = { messageText: '' };
 
+  chunkString(stringToChunk, length) {
+    let numOfElement = Math.ceil(stringToChunk.length / length);
+    let returnedArray = [];
+    for (let i = 0; i < numOfElement; i++) {
+      let start = i * length;
+      let end = (i + 1) * length;
+      returnedArray.push(stringToChunk.substring(start, end));
+    }
+    return returnedArray;
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.emoji !== '') {
       this.setState({ messageText: this.state.messageText + nextProps.emoji });
@@ -14,7 +25,20 @@ class MessageInput extends Component {
       event.preventDefault();
 
       if (this.state.messageText.trim() !== '') {
-        this.props.sendMessage(this.state.messageText);
+        const MAX_LENGTH_WORD = 50;
+        let contentArrayWithoutLongWord = [];
+        
+        for (const word of this.state.messageText.trim().split(' ')) {
+          if (word.length < MAX_LENGTH_WORD) {
+            contentArrayWithoutLongWord.push(word);
+          } else {
+            contentArrayWithoutLongWord = contentArrayWithoutLongWord.concat(
+              this.chunkString(word, MAX_LENGTH_WORD)
+            );
+          }
+        }
+
+        this.props.sendMessage(contentArrayWithoutLongWord.join(' '));
         this.props.onNewMessageHandler();
         this.setState({ messageText: '' });
       }

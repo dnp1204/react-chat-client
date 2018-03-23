@@ -12,7 +12,7 @@ const renderIconArray = iconArray => {
   });
 };
 
-const renderIcon = ({ iconName, size, style, color }) => {
+const renderIcon = ({ iconName, size, style, color, showComponentWhenClick }) => {
   return (
     <Icon
       key={iconName}
@@ -21,6 +21,7 @@ const renderIcon = ({ iconName, size, style, color }) => {
       size={size}
       color={color}
       style={Object.assign({}, style, iconStyle)}
+      showComponentWhenClick={showComponentWhenClick}
     />
   );
 };

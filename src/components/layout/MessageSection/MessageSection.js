@@ -5,6 +5,7 @@ import MessageTools from './SubComponents/MessageTools';
 import MessageInput from './SubComponents/MessageInput';
 import MessageConversation from './SubComponents/MessageConversation';
 import { sendMessage } from '../../../actions';
+import EmojiPicker from '../../common/EmojiPicker';
 
 class MessageSection extends Component {
   state = { recievedNewInput: false };
@@ -17,10 +18,26 @@ class MessageSection extends Component {
     this.setState({ recievedNewInput: false });
   }
   
+  renderIconPicker() {
+    return (
+      <EmojiPicker />
+    );
+  }
+  
   render() {
     const imageUrl = 'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
     let _id = this.props.friendMessages.messages[this.props.friendMessages.messages.length - 1]._id + 1;
     let message = { _id, user: { userId: 0, imageUrl }, timestamp: moment.now(), content: '' }
+    
+    const color = 'rgba(0, 0, 0, 0.3)';
+    const size = 'lg';
+    const iconArray = [
+      { iconName: 'file-image-o', size, color },
+      { iconName: 'smile-o', size, color, showComponentWhenClick: this.renderIconPicker() },
+      { iconName: 'microphone', size, color },
+      { iconName: 'camera', size, color }
+    ];
+    
     return (
       <div id="message-section" className="flex--column">
         <MessageConversation 
@@ -34,7 +51,7 @@ class MessageSection extends Component {
             this.props.sendMessage(message);
           }
         } />
-        <MessageTools />
+        <MessageTools iconArray={iconArray} />
       </div>
     );
   }

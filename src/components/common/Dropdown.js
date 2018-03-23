@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 class Dropdown extends Component {
     
-    state = { show: false }
+    state = { show: false, clickedTarget: null }
 
     componentDidMount() {
         window.addEventListener("click", this.onClickHandler.bind(this));   
@@ -17,7 +17,11 @@ class Dropdown extends Component {
         let container = ReactDOM.findDOMNode(this);
         
         if(container.contains(event.target)) {
-            if(this.state.show) {
+            if (!this.state.show) {
+                this.setState({ clickedTarget: event.target });
+            }
+            
+            if(this.state.show && this.state.clickedTarget === event.target) {
                 this.setState({ show: false });
             } else {
                 this.setState({ show: true });
@@ -30,9 +34,7 @@ class Dropdown extends Component {
     renerDropDown() {
         if(this.state.show) {
             return (
-                <div id="drop-down">
-                    Hello
-                </div> 
+                this.props.renderDropdownComponent
             );
         } else {
             return <div />;

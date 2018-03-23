@@ -111,8 +111,8 @@
   
   #emoji-picker-nested {
     position: absolute;
-    bottom: 20px;
-    left: 10px;
+    bottom: 30px;
+    left: 8px;
   }
   
   &:before {
@@ -121,8 +121,8 @@
       height: 10px;
       background-color: white;
       position: absolute;
-      left: 30px;
-      bottom: 15px;
+      left: 23px;
+      bottom: 25px;
       transform: rotate(45deg);
       border-right: 0.3px solid rgba(0, 0, 0, 0.3);
       border-bottom: 0.3px solid rgba(0, 0, 0, 0.3);

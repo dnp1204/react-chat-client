@@ -590,7 +590,6 @@ table {
   #message-bubble .message-bubble--content__margin-right {
     margin-right: 75px; }
   #message-bubble .message-bubble--timestamp {
-    z-index: 9999;
     background-color: black;
     color: white;
     width: fit-content;

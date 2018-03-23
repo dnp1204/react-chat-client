@@ -1,14 +1,15 @@
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MessageTools from './SubComponents/MessageTools';
-import MessageInput from './SubComponents/MessageInput';
-import MessageConversation from './SubComponents/MessageConversation';
+
 import { sendMessage } from '../../../actions';
+import MessageConversation from './SubComponents/MessageConversation';
+import MessageInput from './SubComponents/MessageInput';
+import MessageTools from './SubComponents/MessageTools';
 
 class MessageSection extends Component {
   
-  state = { recievedNewInput: false };
+  state = { recievedNewInput: false, emoji: '' };
   
   onNewMessageHandler() {
     this.setState({ recievedNewInput: true });
@@ -30,13 +31,15 @@ class MessageSection extends Component {
           shouldScroll={this.state.recievedNewInput}
           onScrollToBottomFinishHandler={() => this.onScrollToBottomFinishHandler()}/>
         <MessageInput 
+          emoji={this.state.emoji}
           onNewMessageHandler={() => this.onNewMessageHandler()} 
           sendMessage={(content) => {
+            this.setState({ emoji: '' });
             message.content = content;
             this.props.sendMessage(message);
           }
         } />
-        <MessageTools />
+        <MessageTools pickEmoji={(emoji) => this.setState({ emoji })} />
       </div>
     );
   }

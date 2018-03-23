@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import IconWithNextText from '../../../common/icon/IconWithNextText';
 import TextAndRightIcon from '../../../common/icon/TextAndRightIcon';
 
 class BaseComponent extends Component {

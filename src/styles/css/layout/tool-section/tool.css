@@ -1,3 +1,5 @@
+#tool .tool--header {
+  padding: 10px 0px; }
 #tool .tool--options .title, #tool .tool--photos .title {
   padding: 15px 10px;
   transition: all 200ms ease-in-out; }

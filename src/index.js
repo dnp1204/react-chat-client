@@ -7,6 +7,7 @@ import reducers from './reducers';
 import App from './components/App';
 import './styles/css/index.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import 'emoji-mart/css/emoji-mart.css'
 
 const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk)));
 

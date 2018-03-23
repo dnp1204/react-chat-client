@@ -70,4 +70,24 @@
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 0, 0, 0.3); }
 
+/* Emoji picker */
+#emoji-picker {
+  position: relative; }
+  #emoji-picker #emoji-picker-nested {
+    position: absolute;
+    bottom: 20px;
+    left: 10px; }
+  #emoji-picker:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    position: absolute;
+    left: 30px;
+    bottom: 15px;
+    transform: rotate(45deg);
+    border-right: 0.3px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 0.3px solid rgba(0, 0, 0, 0.3);
+    z-index: 999; }
+
 /*# sourceMappingURL=App.css.map */

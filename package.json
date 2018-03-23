@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "concurrently": "^3.5.1",
+    "emoji-mart": "^2.5.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",

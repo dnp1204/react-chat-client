@@ -7,6 +7,7 @@ import FriendContainer from './SubComponents/FriendContainer';
 import { selectFriend } from '../.././../actions';
 
 class FriendSection extends Component {
+  
   renderFriendList() {
     return _.map(this.props.friendList, friend => {
       const {

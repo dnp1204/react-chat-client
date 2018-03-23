@@ -483,7 +483,7 @@ table {
   position: absolute;
   border: 0.3px solid rgba(0, 0, 0, 0.2);
   border-radius: 2px;
-  right: 5px; }
+  z-index: 999; }
   #drop-down:before {
     content: '';
     width: 10px;
@@ -518,6 +518,8 @@ table {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.3); }
 
+#tool .tool--header {
+  padding: 10px 0px; }
 #tool .tool--options .title, #tool .tool--photos .title {
   padding: 15px 10px;
   transition: all 200ms ease-in-out; }
@@ -707,5 +709,25 @@ table {
 
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 0, 0, 0.3); }
+
+/* Emoji picker */
+#emoji-picker {
+  position: relative; }
+  #emoji-picker #emoji-picker-nested {
+    position: absolute;
+    bottom: 20px;
+    left: 10px; }
+  #emoji-picker:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    position: absolute;
+    left: 30px;
+    bottom: 15px;
+    transform: rotate(45deg);
+    border-right: 0.3px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 0.3px solid rgba(0, 0, 0, 0.3);
+    z-index: 999; }
 
 /*# sourceMappingURL=index.css.map */

@@ -25,7 +25,7 @@ class MessageInput extends Component {
       event.preventDefault();
 
       if (this.state.messageText.trim() !== '') {
-        const MAX_LENGTH_WORD = 50;
+        const MAX_LENGTH_WORD = 46;
         let contentArrayWithoutLongWord = [];
         
         for (const word of this.state.messageText.trim().split(' ')) {

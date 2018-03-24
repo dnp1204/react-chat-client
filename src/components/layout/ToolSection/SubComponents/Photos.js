@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import BaseComponent from './BaseComponent';
 
 class Photos extends Component {
@@ -7,7 +8,7 @@ class Photos extends Component {
   
   render() {
     return (
-      <BaseComponent usedBySubComponent="tool--photos">
+      <BaseComponent componentName="Photos" classNameToCustom="tool--photos">
         <div>Hello</div>
       </BaseComponent>
     );

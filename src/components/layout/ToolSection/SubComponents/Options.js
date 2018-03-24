@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+
 import IconWithNextText from '../../../common/icon/IconWithNextText';
 import BaseComponent from './BaseComponent';
 
 class Options extends Component {
-  
   renderAllIconForTool() {
     const iconTools = [
       {
@@ -15,7 +15,7 @@ class Options extends Component {
       { iconName: 'paint-brush', isCursorPointer: true, text: 'Change Color' },
       { iconName: 'smile-o', isCursorPointer: true, text: 'Change Emoji' }
     ];
-  
+
     return _.map(iconTools, icon => {
       const { iconName, isCursorPointer, text } = icon;
       return (
@@ -30,11 +30,15 @@ class Options extends Component {
     });
   }
 
-    render() {
-      return (
-        <BaseComponent usedBySubComponent="tool--options" isNeededBorderBottom={true}>
-          {this.renderAllIconForTool()}
-        </BaseComponent>
+  render() {
+    return (
+      <BaseComponent
+        componentName="Options"
+        classNameToCustom="tool--options"
+        isNeededBorderBottom={true}
+      >
+        {this.renderAllIconForTool()}
+      </BaseComponent>
     );
   }
 }

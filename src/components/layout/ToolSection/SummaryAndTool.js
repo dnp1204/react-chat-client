@@ -1,11 +1,27 @@
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import Icon from '../../common/icon/Icon';
+import { Color } from '../../utilities/constants';
 import FriendContainer from '../FriendSection/SubComponents/FriendContainer';
 import Options from './SubComponents/Options';
 import Photos from './SubComponents/Photos';
 
 class SummaryAndTool extends Component {
+  rednerRightComponentForToolHeader() {
+    return (
+      <div>
+        <Icon
+          iconName="cog"
+          color={Color.BLACK_OPACITY_03}
+          size="lg"
+          isCursorPointer
+        />
+      </div>
+    );
+  }
+
   render() {
     const {
       avatar,
@@ -27,6 +43,7 @@ class SummaryAndTool extends Component {
               </p>
             }
             isHover={false}
+            rightComponent={this.rednerRightComponentForToolHeader()}
           />
         </div>
         <Options />

@@ -516,7 +516,7 @@ table {
 
 .mouse-hover:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.3); }
+  background-color: rgba(0, 0, 0, 0.1); }
 
 #tool .tool--header {
   padding: 10px 0px; }

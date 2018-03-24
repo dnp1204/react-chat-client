@@ -1,11 +1,13 @@
 import React from 'react';
+
+import { Color } from '../utilities/constants';
 import Icon from './icon/Icon';
 
 const Search = ({ iconName, placeholder }) => {
   return (
     <div className="search">
       <div className="search--icon">
-        <Icon style={{ color: 'rgba(0, 0, 0, 0.3)' }} iconName={iconName} size="sm" />
+        <Icon color={Color.BLACK_OPACITY_03} iconName={iconName} size="sm" />
       </div>
       <input placeholder={placeholder} />
     </div>

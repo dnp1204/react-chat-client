@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import FriendSection from './layout/FriendSection/FriendSection';
-import SummaryAndTool from './layout/ToolSection/SummaryAndTool';
+import { connect } from 'react-redux';
+
+import { fetchSystemColor } from '../actions';
 import Header from './common/Header';
 import Icon from './common/icon/Icon';
 import MultipleIconRow from './common/icon/MultipleIconRow';
+import FriendSection from './layout/FriendSection/FriendSection';
 import MessageSection from './layout/MessageSection/MessageSection';
+import SummaryAndTool from './layout/ToolSection/SummaryAndTool';
 
 class App extends Component {
+  
+  componentDidMount() {
+    this.props.fetchSystemColor();
+  }
+  
   render() {
     const iconArray = [
       { iconName: 'phone' },
@@ -45,4 +53,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { fetchSystemColor })(App);

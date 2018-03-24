@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import EmojiPicker from '../../../common/EmojiPicker';
 import MultipleIconRow from '../../../common/icon/MultipleIconRow';
+import { Color } from '../../../utilities/constants';
 
 class MessageTools extends Component {
   renderIconPicker() {
@@ -9,7 +10,7 @@ class MessageTools extends Component {
   }
 
   render() {
-    const color = 'rgba(0, 0, 0, 0.3)';
+    const color = Color.BLACK_OPACITY_03;
     const size = 'lg';
     const iconArray = [
       { iconName: 'file-image-o', size, color },

@@ -1,15 +1,30 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import { Color } from '../../../utilities/constants';
 import Icon from './Icon';
 
-const TextAndRightIcon = ({ text, iconName, isCursorPointer, onIconClickHandler, iconClassName }) => {
+const TextAndRightIcon = ({
+  text,
+  iconName,
+  isCursorPointer,
+  onIconClickHandler,
+  iconClassName
+}) => {
   return (
     <div className="flex--row align__center justify--space__between">
       <p className="light-text">{text}</p>
-      <Icon optionClassName={iconClassName} onClickHandler={() => onIconClickHandler()} color='rgba(0, 0, 0, 0.4)' iconName={iconName} isCursorPointer={isCursorPointer} size='lg' />
+      <Icon
+        optionClassName={iconClassName}
+        onClickHandler={() => onIconClickHandler()}
+        color={Color.BLACK_OPACITY_04}
+        iconName={iconName}
+        isCursorPointer={isCursorPointer}
+        size="lg"
+      />
     </div>
   );
-}
+};
 
 TextAndRightIcon.propTypes = {
   text: PropTypes.string.isRequired,
@@ -17,11 +32,11 @@ TextAndRightIcon.propTypes = {
   iconClassName: PropTypes.string,
   isCursorPointer: PropTypes.bool,
   onIconClickHandler: PropTypes.func
-}
+};
 
 TextAndRightIcon.defaultProps = {
   onIconClickHandler: () => {},
-  iconClassName: ""
-}
+  iconClassName: ''
+};
 
 export default TextAndRightIcon;

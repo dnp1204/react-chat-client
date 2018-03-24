@@ -26,7 +26,8 @@ class MessageSection extends Component {
     
     return (
       <div id="message-section" className="flex--column">
-        <MessageConversation 
+        <MessageConversation
+          bubleColor={this.props.systemColor} 
           friendMessages={this.props.friendMessages} 
           shouldScroll={this.state.recievedNewInput}
           onScrollToBottomFinishHandler={() => this.onScrollToBottomFinishHandler()}/>
@@ -46,7 +47,7 @@ class MessageSection extends Component {
 }
 
 function mapStateToProps(state) {
-  return { friendMessages: state.friendMessages };
+  return { friendMessages: state.friendMessages, systemColor: state.systemColor };
 }
 
 export default connect(mapStateToProps, { sendMessage })(MessageSection);

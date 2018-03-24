@@ -1,10 +1,11 @@
 import React from 'react';
-import MessageBubble from './MessageBubble';
-import ScrollToBottom from '../../../../components/common/ScrollToBottom';
 
-const renderMessages = friendMessages => {
-  const blue = '#0584FF';
-  const gray = '#F1F0F0';
+import ScrollToBottom from '../../../../components/common/ScrollToBottom';
+import { Color } from '../../../utilities/constants';
+import MessageBubble from './MessageBubble';
+
+const renderMessages = (friendMessages, bubleColor) => {
+  const gray = Color.LIGHT_WHITE;
 
   const { messages } = friendMessages;
 
@@ -30,7 +31,7 @@ const renderMessages = friendMessages => {
       >
         <MessageBubble
           content={content}
-          color={userId === 0 ? blue : gray}
+          color={userId === 0 ? bubleColor : gray}
           textColor={userId === 0 ? 'white' : 'black'}
           float={userId === 0 ? 'float__right' : 'float__left'}
           imageUrl={imageUrl}
@@ -46,7 +47,8 @@ const renderMessages = friendMessages => {
 const MessageConversation = ({
   friendMessages,
   shouldScroll,
-  onScrollToBottomFinishHandler
+  onScrollToBottomFinishHandler,
+  bubleColor
 }) => {
   return (
     <ScrollToBottom
@@ -54,7 +56,7 @@ const MessageConversation = ({
       onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}
     >
       <div className="message-section--conversation">
-        {renderMessages(friendMessages)}
+        {renderMessages(friendMessages, bubleColor)}
       </div>
     </ScrollToBottom>
   );

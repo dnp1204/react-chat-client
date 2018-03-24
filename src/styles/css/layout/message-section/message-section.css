@@ -21,6 +21,7 @@
     color: rgba(0, 0, 0, 0.2);
     font-size: 15px; }
   #message-section .message-section--tool {
-    height: 30px; }
+    height: 30px;
+    padding-left: 0px; }
 
 /*# sourceMappingURL=message-section.css.map */

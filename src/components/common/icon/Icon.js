@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import { Color } from '../../../utilities/constants';
+
 class Icon extends Component {
   render() {
     const {
@@ -38,7 +40,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   size: '2x',
-  color: '#0084FF',
+  color: Color.BLUE,
   isCursorPointer: false,
   onClickHandler: () => {},
   optionClassName: ''

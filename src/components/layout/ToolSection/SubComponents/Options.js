@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import IconWithNextText from '../../../common/icon/IconWithNextText';
 import BaseComponent from './BaseComponent';
@@ -12,6 +13,7 @@ class Options extends Component {
         isCursorPointer: true,
         text: 'Search in Conversation'
       },
+      { iconName: 'pencil', isCursorPointer: true, text: 'Edit Nicknames' },
       { iconName: 'paint-brush', isCursorPointer: true, text: 'Change Color' },
       { iconName: 'smile-o', isCursorPointer: true, text: 'Change Emoji' }
     ];
@@ -21,6 +23,7 @@ class Options extends Component {
       return (
         <div key={iconName} className="element">
           <IconWithNextText
+            iconColor={this.props.systemColor}
             iconName={iconName}
             isCursorPointer={isCursorPointer}
             text={text}
@@ -43,4 +46,8 @@ class Options extends Component {
   }
 }
 
-export default Options;
+function mapStateToProps(state) {
+  return { systemColor: state.systemColor };
+}
+
+export default connect(mapStateToProps)(Options);

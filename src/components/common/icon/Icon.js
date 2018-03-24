@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dropdown from '../Dropdown';
+import React, { Component } from 'react';
 
 class Icon extends Component {
-  
   render() {
-    const { iconName, size, style, isCursorPointer, color, onClickHandler, optionClassName, showComponentWhenClick } = this.props;
+    const {
+      iconName,
+      size,
+      style,
+      isCursorPointer,
+      color,
+      onClickHandler,
+      optionClassName
+    } = this.props;
 
     return (
       <div id="icon" onClick={() => onClickHandler()}>
-        <Dropdown renderDropdownComponent={showComponentWhenClick}>
-          <i
-            style={{ ...style, color }}
-            className={`fa fa-${iconName} fa-${size} ${
-              isCursorPointer ? 'cursor-pointer' : ''
-            } ${optionClassName}`}
-            aria-hidden="true"
-          />
-        </Dropdown>
+        <i
+          style={{ ...style, color }}
+          className={`fa fa-${iconName} fa-${size} ${
+            isCursorPointer ? 'cursor-pointer' : ''
+          } ${optionClassName}`}
+          aria-hidden="true"
+        />
       </div>
     );
   }
@@ -37,7 +41,7 @@ Icon.defaultProps = {
   color: '#0084FF',
   isCursorPointer: false,
   onClickHandler: () => {},
-  optionClassName: ""
+  optionClassName: ''
 };
 
 export default Icon;

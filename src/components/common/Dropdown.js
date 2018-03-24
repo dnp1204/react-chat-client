@@ -14,15 +14,24 @@ class Dropdown extends Component {
   }
 
   onClickHandler(event) {
+    const { hideWhenClickOnDropDown } = this.props;
     let container = ReactDOM.findDOMNode(this);
 
     if (container.contains(event.target)) {
-      if (!this.state.show) {
+      if (!this.state.show && !hideWhenClickOnDropDown) {
         this.setState({ clickedTarget: event.target });
       }
 
-      if (this.state.show && this.state.clickedTarget === event.target) {
-        this.setState({ show: false });
+      if (this.state.show) {
+        if (hideWhenClickOnDropDown) {
+          this.setState({ show: false });
+        } else {
+          if (this.state.clickedTarget === event.target) {
+            this.setState({ show: false });
+          } else {
+            this.setState({ show: true });
+          }
+        }
       } else {
         this.setState({ show: true });
       }
@@ -31,7 +40,7 @@ class Dropdown extends Component {
     }
   }
 
-  renerDropDown() {
+  renderDropDown() {
     if (this.state.show) {
       return this.props.renderDropdownComponent;
     } else {
@@ -43,18 +52,20 @@ class Dropdown extends Component {
     return (
       <div>
         {this.props.children}
-        {this.renerDropDown()}
+        {this.renderDropDown()}
       </div>
     );
   }
 }
 
 Dropdown.propTypes = {
-  renderDropdownComponent: PropTypes.element
+  renderDropdownComponent: PropTypes.element,
+  hideWhenClickOnDropDown: PropTypes.bool
 };
 
 Dropdown.defaultProps = {
-  renderDropdownComponent: <div />
+  renderDropdownComponent: <div />,
+  hideWhenClickOnDropDown: true
 };
 
 export default Dropdown;

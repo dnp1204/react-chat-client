@@ -25,7 +25,7 @@ class MessageTools extends Component {
 
     return (
       <div className="message-section--tool">
-        <MultipleIconRow iconArray={iconArray} />
+        <MultipleIconRow iconArray={iconArray} hasDropdown />
       </div>
     );
   }

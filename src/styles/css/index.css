@@ -587,9 +587,9 @@ table {
     font-size: 15px;
     font-weight: 200; }
   #message-bubble .message-bubble--content__margin-left {
-    margin-left: 75px; }
+    margin-left: 90px; }
   #message-bubble .message-bubble--content__margin-right {
-    margin-right: 75px; }
+    margin-right: 90px; }
   #message-bubble .message-bubble--timestamp {
     background-color: black;
     color: white;
@@ -613,14 +613,12 @@ table {
   #message-bubble .message-bubble--content:hover + .message-bubble--timestamp {
     display: block; }
   #message-bubble .message-bubble--timestamp__left {
-    right: 0;
-    transform-origin: left; }
+    right: 0; }
     #message-bubble .message-bubble--timestamp__left:before {
       left: -4px;
       opacity: 1; }
   #message-bubble .message-bubble--timestamp__right {
-    left: 0;
-    transform-origin: 100% 50%; }
+    left: 0; }
     #message-bubble .message-bubble--timestamp__right:after {
       right: -4px;
       opacity: 1; }

@@ -1,0 +1,57 @@
+#recorder {
+    height: 177px;
+    width: 220px;
+    border-radius: 4px;
+    background-color: #fff;
+       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+                0 1px 10px rgba(0, 0, 0, 0.35);
+    position: absolute;
+    bottom: 32px;
+    left: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+   
+    button {
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        color: white;
+        background-color: red;
+        position: relative;
+    }
+    
+    .recording {
+        &:before {
+            content: "";
+            width: 25px;
+            height: 25px;
+            background-color: #fff;
+            position: absolute;
+            left: 22.5px;
+            top: 22.5px;
+       }
+    }
+    
+    &:before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      position: absolute;
+      left: 15px;
+      bottom: -5px;
+      transform: rotate(45deg);
+      border-right: 0.3px solid rgba(0, 0, 0, 0.3);
+      border-bottom: 0.3px solid rgba(0, 0, 0, 0.3);
+      z-index: 999;
+    }
+}

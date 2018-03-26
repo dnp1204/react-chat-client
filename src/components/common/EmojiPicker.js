@@ -20,6 +20,7 @@ const EmojiPicker = ({
           }}
           perLine={perLine}
           showPreview={showPreview}
+          style={{ paddingBottom: 8 }}
         />
       </div>
     </div>

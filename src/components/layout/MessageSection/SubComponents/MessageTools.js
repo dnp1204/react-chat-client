@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 
 import EmojiPicker from '../../../common/EmojiPicker';
 import MultipleIconRow from '../../../common/icon/MultipleIconRow';
-import { Color } from '../../../utilities/constants';
+import Recorder from  '../../../common/Recorder';
+import { Color } from '../../../utilities/constants.js';
 
 class MessageTools extends Component {
   renderIconPicker() {
     return <EmojiPicker pickEmoji={(emojiId) => this.props.pickEmoji(emojiId)} />;
+  }
+  
+  renderRecorder() {
+    return <Recorder />;
   }
 
   render() {
@@ -20,7 +25,7 @@ class MessageTools extends Component {
         color,
         showComponentWhenClick: this.renderIconPicker()
       },
-      { iconName: 'microphone', size, color },
+      { iconName: 'microphone', size, color, showComponentWhenClick: this.renderRecorder() },
       { iconName: 'camera', size, color }
     ];
 

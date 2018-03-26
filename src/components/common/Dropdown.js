@@ -50,7 +50,7 @@ class Dropdown extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         {this.props.children}
         {this.renderDropDown()}
       </div>

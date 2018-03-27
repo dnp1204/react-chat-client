@@ -1,19 +1,19 @@
 #tool {
   .tool--header {
-    padding: 10px 0px;  
-    
+    padding: 10px 0px;
+
     .user-setting {
       position: absolute;
       z-index: 1000;
       padding: 10px 20px;
       width: 100px;
-      right: 0;
+      right: -3px;
       top: 25px;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
-                0 1px 10px rgba(0, 0, 0, 0.35);
-                
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.35);
+      background-color: #fff;
+
       &:before {
-        content: "";
+        content: '';
         width: 10px;
         height: 10px;
         top: -5px;
@@ -27,8 +27,9 @@
       }
     }
   }
-  
-  .tool--options, .tool--photos {
+
+  .tool--options,
+  .tool--photos {
     .title {
       padding: 15px 10px;
       transition: all 200ms ease-in-out;
@@ -36,12 +37,12 @@
       p {
         font-size: 18px;
       }
-      
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.1);
       }
     }
-    
+
     .children {
       padding: 0px 10px;
     }
@@ -64,7 +65,7 @@
   0% {
     transform: rotate(0deg);
   }
-  
+
   100% {
     transform: rotate(90deg);
   }
@@ -78,9 +79,8 @@
   0% {
     transform: rotate(90deg);
   }
-  
+
   100% {
     transform: rotate(0deg);
   }
 }
-

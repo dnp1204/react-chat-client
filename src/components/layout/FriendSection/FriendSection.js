@@ -7,7 +7,6 @@ import FriendContainer from './SubComponents/FriendContainer';
 import { selectFriend } from '../.././../actions';
 
 class FriendSection extends Component {
-  
   renderFriendList() {
     return _.map(this.props.friendList, friend => {
       const {
@@ -21,13 +20,16 @@ class FriendSection extends Component {
 
       return (
         <FriendContainer
+          classNameForName={'hide-on-xs'}
           key={_id}
           avatar={avatar}
           firstName={firstName}
           lastName={lastName}
-          subTitleComponent={<p className="light-text">{lastMessage}</p>}
+          subTitleComponent={
+            <p className="light-text hide-on-sm">{lastMessage}</p>
+          }
           rightComponent={
-            <p className="light-text">
+            <p className="light-text hide-on-md">
               {moment(lastSendMessageDate).fromNow(true)}
             </p>
           }
@@ -41,7 +43,11 @@ class FriendSection extends Component {
   render() {
     return (
       <div>
-        <Search iconName="search" placeholder="Search Messenger" />
+        <Search
+          className="hide-on-sm"
+          iconName="search"
+          placeholder="Search Messenger"
+        />
         {this.renderFriendList()}
       </div>
     );

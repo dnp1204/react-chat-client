@@ -18,10 +18,10 @@
     width: fit-content;
     padding: 7px 5px;
     position: absolute;
-    display: none;
+    opacity: 0;
     top: 50%;
     transform: translateY(-50%);
-    transition: all 300ms ease-in-out; }
+    transition: all 200ms ease-in-out; }
     #message-bubble .message-bubble--timestamp:before, #message-bubble .message-bubble--timestamp:after {
       content: '';
       width: 8px;
@@ -33,7 +33,7 @@
       transition: all 200ms ease-in-out;
       opacity: 0; }
   #message-bubble .message-bubble--content:hover + .message-bubble--timestamp {
-    display: block; }
+    opacity: 1; }
   #message-bubble .message-bubble--timestamp__left {
     right: 0; }
     #message-bubble .message-bubble--timestamp__left:before {

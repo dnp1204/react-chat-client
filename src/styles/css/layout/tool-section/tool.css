@@ -5,11 +5,12 @@
     z-index: 1000;
     padding: 10px 20px;
     width: 100px;
-    right: 0;
+    right: -3px;
     top: 25px;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.35); }
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.35);
+    background-color: #fff; }
     #tool .tool--header .user-setting:before {
-      content: "";
+      content: '';
       width: 10px;
       height: 10px;
       top: -5px;
@@ -20,14 +21,18 @@
       border-left: 0.3px solid rgba(0, 0, 0, 0.3);
       border-top: 0.3px solid rgba(0, 0, 0, 0.3);
       z-index: 999; }
-#tool .tool--options .title, #tool .tool--photos .title {
+#tool .tool--options .title,
+#tool .tool--photos .title {
   padding: 15px 10px;
   transition: all 200ms ease-in-out; }
-  #tool .tool--options .title p, #tool .tool--photos .title p {
+  #tool .tool--options .title p,
+  #tool .tool--photos .title p {
     font-size: 18px; }
-  #tool .tool--options .title:hover, #tool .tool--photos .title:hover {
+  #tool .tool--options .title:hover,
+  #tool .tool--photos .title:hover {
     background-color: rgba(0, 0, 0, 0.1); }
-#tool .tool--options .children, #tool .tool--photos .children {
+#tool .tool--options .children,
+#tool .tool--photos .children {
   padding: 0px 10px; }
 #tool .tool--options .element {
   margin: 5px 0px;

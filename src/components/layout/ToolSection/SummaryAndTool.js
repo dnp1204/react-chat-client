@@ -12,17 +12,20 @@ import Dropdown from '../../common/Dropdown';
 class SummaryAndTool extends Component {
   renderDropDownComponent() {
     return (
-      <ul class="user-setting">
-        <li>Hide</li>
+      <ul className="user-setting">
+        <li className="cursor-pointer">Placeholder</li>
       </ul>
-    );  
+    );
   }
-  
+
   rednerRightComponentForToolHeader() {
     let dropdownComponent = this.renderDropDownComponent();
     return (
       <div>
-        <Dropdown hideWhenClickOnDropDown renderDropdownComponent={dropdownComponent}>
+        <Dropdown
+          hideWhenClickOnDropDown
+          renderDropdownComponent={dropdownComponent}
+        >
           <Icon
             iconName="cog"
             color={Color.BLACK_OPACITY_03}

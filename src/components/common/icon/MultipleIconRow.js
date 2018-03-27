@@ -55,9 +55,12 @@ const renderIconWithDropdown = ({
   );
 };
 
-const MultipleIconRow = ({ iconArray, hasDropdown }) => {
+const MultipleIconRow = ({ iconArray, hasDropdown, className }) => {
   return (
-    <div style={multipleIconRowStyle} className="multiple-icon-row">
+    <div
+      style={multipleIconRowStyle}
+      className={`multiple-icon-row ${className}`}
+    >
       {renderIconArray(hasDropdown, iconArray)}
     </div>
   );

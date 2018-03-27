@@ -11,19 +11,22 @@ const FriendContainer = ({
   onSelectFriend,
   isActive,
   isHover,
+  classNameForName
 }) => {
   return (
     <div
       onClick={() => onSelectFriend()}
-      className={`friend-container ${isActive ? 'active' : ''} ${isHover ? 'mouse-hover' : ''}`}
+      className={`friend-container ${isActive ? 'active' : ''} ${
+        isHover ? 'mouse-hover' : ''
+      }`}
     >
       <div className="friend-container--info">
         <CircleAvatar avatar={avatar} />
         <div className="friend-container--info__name">
-          <h4>
+          <h4 className={classNameForName}>
             {firstName} {lastName}
           </h4>
-          {subTitleComponent}
+          <div>{subTitleComponent}</div>
         </div>
       </div>
       <div className="friend-container--date">{rightComponent}</div>

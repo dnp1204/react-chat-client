@@ -64,8 +64,6 @@ class ResizeableColumn extends Component {
     }
     
     render() {
-        const { resizeBar } = this.props;
-        
         return (
             <div style={this.state.width !== 0 ? { width: this.state.width } : {}} id="resizeable-element">
                 <div className="flex--row">

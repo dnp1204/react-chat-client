@@ -1,6 +1,31 @@
 #tool {
   .tool--header {
     padding: 10px 0px;  
+    
+    .user-setting {
+      position: absolute;
+      z-index: 1000;
+      padding: 10px 20px;
+      width: 100px;
+      right: 0;
+      top: 25px;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+                0 1px 10px rgba(0, 0, 0, 0.35);
+                
+      &:before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        top: -5px;
+        right: 8px;
+        background-color: white;
+        position: absolute;
+        transform: rotate(45deg);
+        border-left: 0.3px solid rgba(0, 0, 0, 0.3);
+        border-top: 0.3px solid rgba(0, 0, 0, 0.3);
+        z-index: 999;
+      }
+    }
   }
   
   .tool--options, .tool--photos {

@@ -7,17 +7,29 @@ import { Color } from '../../../utilities/constants';
 import FriendContainer from '../FriendSection/SubComponents/FriendContainer';
 import Options from './SubComponents/Options';
 import Photos from './SubComponents/Photos';
+import Dropdown from '../../common/Dropdown';
 
 class SummaryAndTool extends Component {
+  renderDropDownComponent() {
+    return (
+      <ul class="user-setting">
+        <li>Hide</li>
+      </ul>
+    );  
+  }
+  
   rednerRightComponentForToolHeader() {
+    let dropdownComponent = this.renderDropDownComponent();
     return (
       <div>
-        <Icon
-          iconName="cog"
-          color={Color.BLACK_OPACITY_03}
-          size="lg"
-          isCursorPointer
-        />
+        <Dropdown hideWhenClickOnDropDown renderDropdownComponent={dropdownComponent}>
+          <Icon
+            iconName="cog"
+            color={Color.BLACK_OPACITY_03}
+            size="lg"
+            isCursorPointer
+          />
+        </Dropdown>
       </div>
     );
   }

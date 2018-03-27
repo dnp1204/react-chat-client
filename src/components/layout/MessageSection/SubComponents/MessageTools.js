@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import EmojiPicker from '../../../common/EmojiPicker';
 import MultipleIconRow from '../../../common/icon/MultipleIconRow';
 import Recorder from  '../../../common/Recorder';
-import { Color } from '../../../utilities/constants.js';
+import { Color } from '../../../../utilities/constants.js';
 
 class MessageTools extends Component {
   renderIconPicker() {

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Icon from '../../common/icon/Icon';
-import { Color } from '../../utilities/constants';
+import { Color } from '../../../utilities/constants';
 import FriendContainer from '../FriendSection/SubComponents/FriendContainer';
 import Options from './SubComponents/Options';
 import Photos from './SubComponents/Photos';

@@ -19,7 +19,7 @@ const MessageBubble = ({
   if (isShowFriendAvatarOnLastText && isFriendMessage) {
     marginLeftForContent = 0;
   } else if (!isFriendMessage) {
-    marginLeftForContent = 90;
+    marginLeftForContent = 85;
   }
 
   return (

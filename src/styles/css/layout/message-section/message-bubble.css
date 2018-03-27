@@ -9,9 +9,9 @@
     font-size: 15px;
     font-weight: 200; }
   #message-bubble .message-bubble--content__margin-left {
-    margin-left: 90px; }
+    margin-left: 85px; }
   #message-bubble .message-bubble--content__margin-right {
-    margin-right: 90px; }
+    margin-right: 85px; }
   #message-bubble .message-bubble--timestamp {
     background-color: black;
     color: white;

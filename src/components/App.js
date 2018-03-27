@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchSystemColor } from '../actions';
 import Header from './common/Header';
+import ResizeableColumn from './common/ResizeableColumn';
 import Icon from './common/icon/Icon';
 import MultipleIconRow from './common/icon/MultipleIconRow';
 import FriendSection from './layout/FriendSection/FriendSection';
@@ -25,12 +26,13 @@ class App extends Component {
     return (
       <div id="app">
         <div id="header-section">
-          <Header
-            leftComponent={<Icon isCursorPointer iconName="cog" />}
-            title="Messenger"
-            className={"border-right"}
-            rightComponent={<Icon isCursorPointer iconName="pencil-square-o" />}
-          />
+          <ResizeableColumn maxWidth={window.innerWidth * 3 / 4}>
+            <Header
+              leftComponent={<Icon isCursorPointer iconName="cog" />}
+              title="Messenger"
+              rightComponent={<Icon isCursorPointer iconName="pencil-square-o" />}
+            />
+          </ResizeableColumn>
           <Header
             title="Messenger"
             subTitle="Active on Messenger"

@@ -635,9 +635,9 @@ table {
     font-size: 15px;
     font-weight: 200; }
   #message-bubble .message-bubble--content__margin-left {
-    margin-left: 90px; }
+    margin-left: 85px; }
   #message-bubble .message-bubble--content__margin-right {
-    margin-right: 90px; }
+    margin-right: 85px; }
   #message-bubble .message-bubble--timestamp {
     background-color: black;
     color: white;
@@ -710,6 +710,9 @@ table {
 
 .border-right {
   border-right: 1px solid rgba(0, 0, 0, 0.2); }
+
+.border-left {
+  border-left: 1px solid rgba(0, 0, 0, 0.2); }
 
 .border-bottom {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }

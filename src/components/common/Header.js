@@ -10,7 +10,7 @@ const Header = ({
   classNameForTitle
 }) => {
   return (
-    <div className={`header border-right ${className}`}>
+    <div className={`header ${className}`}>
       <div className="header--left">{leftComponent}</div>
       <div className={`header--title ${classNameForTitle}`}>
         <h3>{title}</h3>

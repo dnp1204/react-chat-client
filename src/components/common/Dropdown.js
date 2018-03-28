@@ -41,7 +41,6 @@ class Dropdown extends Component {
   }
 
   renderDropDown() {
-    console.log(this.props.renderDropdownComponent);
     if (this.state.show) {
       return this.props.renderDropdownComponent;
     } else {

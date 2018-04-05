@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import TextAndRightIcon from '../../../common/icon/TextAndRightIcon';
+import TextAndRightIcon from '../../../components/elements/icon/TextAndRightIcon';
 
 class BaseComponent extends Component {
   state = { showChild: true };

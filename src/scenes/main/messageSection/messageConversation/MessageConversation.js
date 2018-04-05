@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ScrollToBottom from '../../../../components/common/ScrollToBottom';
-import { Color } from '../../../../utilities/constants';
-import MessageBubble from './MessageBubble';
+import ScrollToBottom from '../../../../components/elements/scrollToBottom/ScrollToBottom';
+import { Color } from '../../../../utils/constants';
+import MessageBubble from '../messageBubble/MessageBubble';
 
 const renderMessages = (friendMessages, bubleColor) => {
   const gray = Color.LIGHT_WHITE;

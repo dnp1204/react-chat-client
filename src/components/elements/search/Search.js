@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Color } from '../../utilities/constants';
-import Icon from './icon/Icon';
+import { Color } from '../../../utils/constants';
+import Icon from '../icon/Icon';
 
 const Search = ({ iconName, placeholder, className }) => {
   return (

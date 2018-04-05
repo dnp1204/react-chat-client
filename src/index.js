@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
-import App from './components/App';
+import App from './scenes/App';
 import './styles/css/index.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import 'emoji-mart/css/emoji-mart.css'

@@ -2,9 +2,9 @@ import _ from 'lodash';
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Search from '../../common/Search';
-import FriendContainer from './SubComponents/FriendContainer';
-import { selectFriend } from '../.././../actions';
+import Search from '../../../components/elements/search/Search';
+import FriendContainer from './friendContainer/FriendContainer';
+import { selectFriend } from '../../../actions';
 
 class FriendSection extends Component {
   renderFriendList() {

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchSystemColor } from '../actions';
-import Header from './common/Header';
-import Icon from './common/icon/Icon';
-import MultipleIconRow from './common/icon/MultipleIconRow';
-import FriendSection from './layout/FriendSection/FriendSection';
-import MessageSection from './layout/MessageSection/MessageSection';
-import SummaryAndTool from './layout/ToolSection/SummaryAndTool';
+import Header from '../components/elements/header/Header';
+import Icon from '../components/elements/icon/Icon';
+import MultipleIconRow from '../components/elements/icon/MultipleIconRow';
+import FriendSection from './main/friendSection/FriendSection';
+import MessageSection from './main/messageSection/MessageSection';
+import SummaryAndTool from './main/summaryAndToolSection/SummaryAndTool';
 
 class App extends Component {
   componentDidMount() {

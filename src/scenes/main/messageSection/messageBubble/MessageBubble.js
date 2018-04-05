@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { Component } from 'react';
 
-import CircleAvatar from '../../../common/CircleAvatar';
+import CircleAvatar from '../../../../components/elements/circleAvatar/CircleAvatar';
 
 class MessageBubble extends Component {
   state = { marginLeftForContent: 85 };

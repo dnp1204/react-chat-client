@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CircleAvatar from '../../../common/CircleAvatar';
+import CircleAvatar from '../../../../components/elements/circleAvatar/CircleAvatar';
 
 const FriendContainer = ({
   avatar,

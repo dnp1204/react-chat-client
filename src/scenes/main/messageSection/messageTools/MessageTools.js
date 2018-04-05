@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import EmojiPicker from '../../../common/EmojiPicker';
-import MultipleIconRow from '../../../common/icon/MultipleIconRow';
-import Recorder from  '../../../common/Recorder';
-import { Color } from '../../../../utilities/constants.js';
+import EmojiPicker from '../../../../components/elements/emojiPicker/EmojiPicker';
+import MultipleIconRow from '../../../../components/elements/icon/MultipleIconRow';
+import Recorder from  '../../../../components/elements/recorder/Recorder';
+import { Color } from '../../../../utils/constants.js';
 
 class MessageTools extends Component {
   renderIconPicker() {

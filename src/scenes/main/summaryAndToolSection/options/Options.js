@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import IconWithNextText from '../../../common/icon/IconWithNextText';
-import BaseComponent from './BaseComponent';
+import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
+import BaseComponent from '../BaseComponent';
 
 class Options extends Component {
   renderAllIconForTool() {

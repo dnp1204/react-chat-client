@@ -2,12 +2,12 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Icon from '../../common/icon/Icon';
-import { Color } from '../../../utilities/constants';
-import FriendContainer from '../FriendSection/SubComponents/FriendContainer';
-import Options from './SubComponents/Options';
-import Photos from './SubComponents/Photos';
-import Dropdown from '../../common/Dropdown';
+import Icon from '../../../components/elements/icon/Icon';
+import { Color } from '../../../utils/constants';
+import FriendContainer from '../friendSection/friendContainer/FriendContainer';
+import Options from './options/Options';
+import Photos from './photos/Photos';
+import Dropdown from '../../../components/elements/dropDown/Dropdown';
 
 class SummaryAndTool extends Component {
   renderDropDownComponent() {

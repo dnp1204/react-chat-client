@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import BaseComponent from './BaseComponent';
+import BaseComponent from '../BaseComponent';
 
 class Photos extends Component {
   state = { showChild: true };

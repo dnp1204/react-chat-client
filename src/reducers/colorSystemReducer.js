@@ -1,5 +1,5 @@
 import { CHANGE_SYSTEM_COLOR, FETCH_SYSTEM_COLOR } from '../actions/types';
-import { Color } from '../utilities/constants';
+import { Color } from '../utils/constants';
 
 const initialState = Color.BLUE;
 

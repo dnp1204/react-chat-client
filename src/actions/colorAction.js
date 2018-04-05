@@ -1,4 +1,4 @@
-import { Color } from '../utilities/constants';
+import { Color } from '../utils/constants';
 import { CHANGE_SYSTEM_COLOR, FETCH_SYSTEM_COLOR } from './types';
 
 export const fetchSystemColor = () => async dispatch => {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { Color } from '../../../utilities/constants';
+import { Color } from '../../../utils/constants';
 
 class Icon extends Component {
   render() {

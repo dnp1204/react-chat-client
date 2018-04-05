@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { sendMessage } from '../../../actions';
-import MessageConversation from './SubComponents/MessageConversation';
-import MessageInput from './SubComponents/MessageInput';
-import MessageTools from './SubComponents/MessageTools';
+import MessageConversation from './messageConversation/MessageConversation';
+import MessageInput from './messageInput/MessageInput';
+import MessageTools from './messageTools/MessageTools';
 
 class MessageSection extends Component {
   

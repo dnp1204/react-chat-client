@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Color } from '../../../utilities/constants';
+import { Color } from '../../../utils/constants';
 import Icon from './Icon';
 
 const TextAndRightIcon = ({

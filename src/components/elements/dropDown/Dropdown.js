@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import './Dropdown.scss';
 
 class Dropdown extends Component {
   state = { show: false, clickedTarget: null };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './FriendContainer.scss';
 import CircleAvatar from '../../../../components/elements/circleAvatar/CircleAvatar';
 
 const FriendContainer = ({

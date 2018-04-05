@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './SummaryAndTool.scss';
 import Icon from '../../../components/elements/icon/Icon';
 import { Color } from '../../../utils/constants';
 import FriendContainer from '../friendSection/friendContainer/FriendContainer';

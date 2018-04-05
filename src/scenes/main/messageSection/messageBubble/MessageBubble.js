@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { Component } from 'react';
+import './MessageBubble.scss';
 
 import CircleAvatar from '../../../../components/elements/circleAvatar/CircleAvatar';
 

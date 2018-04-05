@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Recorder.scss';
 
 class Recorder extends Component {
     

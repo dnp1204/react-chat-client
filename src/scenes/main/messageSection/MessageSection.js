@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './MessageSection.scss';
 import { sendMessage } from '../../../actions';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';

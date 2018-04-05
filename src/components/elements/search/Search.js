@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Color } from '../../../utils/constants';
 import Icon from '../icon/Icon';
+import './Search.scss';
 
 const Search = ({ iconName, placeholder, className }) => {
   return (

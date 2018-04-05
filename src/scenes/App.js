@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './App.scss';
 import { fetchSystemColor } from '../actions';
 import Header from '../components/elements/header/Header';
 import Icon from '../components/elements/icon/Icon';

@@ -8,6 +8,7 @@ import App from './scenes/App';
 import './styles/index.scss';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import 'emoji-mart/css/emoji-mart.css'
+import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk)));
 
@@ -16,3 +17,4 @@ ReactDOM.render(
     <App />
   </Provider>, document.getElementById('root')
 );
+registerServiceWorker();

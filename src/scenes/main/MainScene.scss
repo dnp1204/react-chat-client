@@ -1,4 +1,4 @@
-#app {
+#main {
   font-family: 'Lato', sans-serif;
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -161,7 +161,7 @@
     display: block;
   }
 
-  #app {
+  #main {
     grid-template-columns: 1fr 6fr;
 
     .section__right__content {

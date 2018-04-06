@@ -1,3 +1,5 @@
+export const FETCH_USER = 'fetch_user';
+
 export const FETCH_FRIEND_LIST = 'fetch_friend_list';
 
 export const SELECT_FRIEND = 'select_friend';
@@ -7,5 +9,7 @@ export const SEND_MESSAGE = 'send_message';
 
 export const SELECT_EMOJI = "select_emoji";
 
-export const FETCH_SYSTEM_COLOR = "fetch_system_color";
+export const FETCH_SYSTEM_SETTINGS = "fetch_system_settings";
 export const CHANGE_SYSTEM_COLOR = "change_system_color";
+export const CHANGE_SHOW_OPTIONS = "change_show_options";
+export const CHANGE_SHOW_PHOTOS = "change_show_photos";

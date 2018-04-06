@@ -48,7 +48,7 @@ class MessageSection extends Component {
 }
 
 function mapStateToProps(state) {
-  return { friendMessages: state.friendMessages, systemColor: state.systemColor };
+  return { friendMessages: state.friendMessages };
 }
 
 export default connect(mapStateToProps, { sendMessage })(MessageSection);

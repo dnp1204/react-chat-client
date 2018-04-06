@@ -9,6 +9,7 @@ import FriendContainer from '../friendSection/friendContainer/FriendContainer';
 import Options from './options/Options';
 import Photos from './photos/Photos';
 import Dropdown from '../../../components/elements/dropDown/Dropdown';
+import { changeShowOptions, changeShowPhotos } from '../../../actions';
 
 class SummaryAndTool extends Component {
   renderDropDownComponent() {
@@ -45,6 +46,8 @@ class SummaryAndTool extends Component {
       lastName,
       lastSendMessageDate
     } = this.props.selectedFriend;
+    
+    const { systemColor, showOptions, showPhotos } = this.props;
 
     return (
       <div id="tool">
@@ -62,8 +65,8 @@ class SummaryAndTool extends Component {
             rightComponent={this.rednerRightComponentForToolHeader()}
           />
         </div>
-        <Options />
-        <Photos />
+        <Options systemColor={systemColor} isShow={showOptions} onIconClickHandler={ show => this.props.changeShowOptions(show) } />
+        <Photos systemColor={systemColor} isShow={showPhotos} onIconClickHandler={ show => this.props.changeShowPhotos(show) } />
       </div>
     );
   }
@@ -73,4 +76,4 @@ function mapStateToProps(state) {
   return { selectedFriend: state.selectFriend };
 }
 
-export default connect(mapStateToProps)(SummaryAndTool);
+export default connect(mapStateToProps, { changeShowOptions, changeShowPhotos })(SummaryAndTool);

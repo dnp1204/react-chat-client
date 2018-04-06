@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './MainScene.scss';
-import { fetchSystemColor } from '../../actions';
+import { fetchSystemSettings } from '../../actions';
 import Header from '../../components/elements/header/Header';
 import Icon from '../../components/elements/icon/Icon';
 import MultipleIconRow from '../../components/elements/icon/MultipleIconRow';
@@ -12,14 +12,15 @@ import SummaryAndTool from './summaryAndToolSection/SummaryAndTool';
 
 class MainScene extends Component {
   componentDidMount() {
-    this.props.fetchSystemColor();
+    this.props.fetchSystemSettings();
   }
 
   render() {
+    const { systemColor, showOptions, showPhotos } = this.props.systemSettings;
     const iconArray = [
-      { iconName: 'phone' },
-      { iconName: 'video-camera' },
-      { iconName: 'info-circle' }
+      { iconName: 'phone', color: systemColor },
+      { iconName: 'video-camera', color: systemColor },
+      { iconName: 'info-circle', color: systemColor }
     ];
 
     return (
@@ -33,10 +34,11 @@ class MainScene extends Component {
                 optionClassName="hide-on-sm"
                 isCursorPointer
                 iconName="cog"
+                color={systemColor}
               />
             }
             title="Messenger"
-            rightComponent={<Icon isCursorPointer iconName="pencil-square-o" />}
+            rightComponent={<Icon isCursorPointer iconName="pencil-square-o" color={systemColor} />}
           />
           <div className="section__left__content">
             <FriendSection />
@@ -53,10 +55,10 @@ class MainScene extends Component {
           />
           <div className="section__right__content">
             <div className="message-section border-right">
-              <MessageSection />
+              <MessageSection systemColor={systemColor} />
             </div>
             <div className="hide-on-xs">
-              <SummaryAndTool />
+              <SummaryAndTool systemColor={systemColor} showOptions={showOptions} showPhotos={showPhotos} />
             </div>
           </div>
         </div>
@@ -65,4 +67,8 @@ class MainScene extends Component {
   }
 }
 
-export default connect(null, { fetchSystemColor })(MainScene);
+function mapStateToProps(state) {
+  return { systemSettings: state.systemSettings };
+}
+
+export default connect(mapStateToProps, { fetchSystemSettings })(MainScene);

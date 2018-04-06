@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
 import BaseComponent from '../BaseComponent';
@@ -34,8 +33,12 @@ class Options extends Component {
   }
 
   render() {
+    const { isShow, onIconClickHandler } = this.props;
+    
     return (
       <BaseComponent
+        onIconClickHandler={isShow => onIconClickHandler(isShow)}
+        showChild={isShow}
         componentName="Options"
         classNameToCustom="tool--options"
         isNeededBorderBottom={true}
@@ -46,8 +49,4 @@ class Options extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { systemColor: state.systemColor };
-}
-
-export default connect(mapStateToProps)(Options);
+export default Options;

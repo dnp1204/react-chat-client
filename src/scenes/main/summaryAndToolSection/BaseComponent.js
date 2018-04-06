@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import TextAndRightIcon from '../../../components/elements/icon/TextAndRightIcon';
 
 class BaseComponent extends Component {
-  state = { showChild: true };
-
   render() {
     const {
+      showChild,
+      onIconClickHandler,
       componentName,
       classNameToCustom,
       isNeededBorderBottom
@@ -25,17 +25,17 @@ class BaseComponent extends Component {
             iconName="chevron-down"
             isCursorPointer
             iconClassName={
-              this.state.showChild
+              showChild
                 ? 'move-down-90deg-animation'
                 : 'move-left-90deg-animation'
             }
             onIconClickHandler={() =>
-              this.setState({ showChild: !this.state.showChild })
+               onIconClickHandler(!showChild)
             }
           />
         </div>
         <div className="children">
-          {this.state.showChild ? this.props.children : <div />}
+          {showChild ? this.props.children : <div />}
         </div>
       </div>
     );
@@ -43,13 +43,17 @@ class BaseComponent extends Component {
 }
 
 BaseComponent.propTypes = {
+  showChild: PropTypes.bool,
+  onIconClickHandler: PropTypes.func,
   componentName: PropTypes.string.isRequired,
   classNameToCustom: PropTypes.string,
   isNeededBorderBottom: PropTypes.bool
 };
 
 BaseComponent.defaultProps = {
-  classNameToCustom: ''
+  classNameToCustom: '',
+  showChild: true,
+  onIconClickHandler: () => {}
 };
 
 export default BaseComponent;

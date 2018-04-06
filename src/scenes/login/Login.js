@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LinkWithIcon from '../../components/elements/icon/LinkWithIcon';
 import './Login.scss';
 
 class Login extends Component {
@@ -7,20 +8,8 @@ class Login extends Component {
             <div className={`app-login-page ${this.props.hidden}`}>
                 <div className="login-page-container">
                     <h1 className="logo">React Messenger</h1>
-                    <a
-                    href="/auth/google"
-                    className="btn btn-block btn-danger"
-                    id="google-login-link"
-                    >
-                        <i className="fa fa-google" /> Log in with Google
-                    </a>
-                    <a
-                    href="/auth/facebook"
-                    className="btn btn-block btn-primary"
-                    id="facebook-login-link"
-                    >
-                        <i className="fa fa-facebook" /> Log in with Facebook
-                    </a>
+                    <LinkWithIcon href="/auth/google" iconName="google" backgroundColor="red" text="Log in with Google" />
+                    <LinkWithIcon href="/auth/facebook" iconName="facebook" backgroundColor="red" text="Log in with Facebook" />
                     <div className="split-line-container">
                         <div className="split-line" />
                         <div className="between">OR</div>

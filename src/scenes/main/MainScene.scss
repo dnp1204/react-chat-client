@@ -52,26 +52,6 @@
   border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-// flex
-
-.flex--column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex--row {
-  display: flex;
-  flex-direction: row;
-}
-
-.align__center {
-  align-items: center;
-}
-
-.justify--space__between {
-  justify-content: space-between;
-}
-
 // float
 .float__left {
   float: left;

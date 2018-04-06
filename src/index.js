@@ -10,7 +10,19 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import 'emoji-mart/css/emoji-mart.css'
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk)));
+let middlewares = [];
+if (process.env.NODE_ENV === `development`) {
+  const { createLogger } = require(`redux-logger`);
+  
+  const reduxLogger = createLogger({
+    level: 'log',
+    collapsed: true
+  });
+  
+  middlewares.push(reduxLogger);
+}
+
+const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk, ...middlewares)));
 
 ReactDOM.render(
   <Provider store={store}>

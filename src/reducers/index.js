@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import authReducer from './authReducer';
 import systemSettingsReducer from './systemSettingsReducer';
 import friendListReducer from './friendListReducer';
 import messagesReducer from './messagesReducer';
@@ -9,5 +10,6 @@ export default combineReducers({
   friendList: friendListReducer,
   selectFriend: selectFriendReducer,
   friendMessages: messagesReducer,
-  systemSettings: systemSettingsReducer
+  systemSettings: systemSettingsReducer,
+  auth: authReducer
 });

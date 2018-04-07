@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 
 const customStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  },
   content: {
     top: '40%',
     left: '50%',
@@ -11,6 +14,8 @@ const customStyles = {
     transform: 'translate(-50%, -50%)'
   }
 };
+
+Modal.setAppElement('#root');
 
 class CustomModal extends Component {
   constructor() {
@@ -45,7 +50,7 @@ class CustomModal extends Component {
           onRequestClose={this.closeModal}
           style={customStyles}
         >
-          {this.props.children}
+          {this.props.renderModalContent(this.closeModal)}
         </Modal>
       </div>
     );

@@ -22,3 +22,10 @@ exports.Color = {
   HOT_PINK: '#ff5ca1',
   BLUE_BELL: '#a695c7'
 };
+
+exports.OptionTools = {
+  SEARCH_IN_CONVERSATION: 'Search in Conversation',
+  EDIT_NICK_NAME: 'Edit Nicknames',
+  CHANGE_COLOR: 'Change Color',
+  CHANGE_EMOJI: 'Change Emoji'
+};

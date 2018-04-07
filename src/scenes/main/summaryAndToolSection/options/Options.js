@@ -1,97 +1,74 @@
+import './Options.scss';
+
 import _ from 'lodash';
 import React, { Component } from 'react';
+import Loadable from 'react-loadable';
 
 import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
 import CustomModal from '../../../../components/hoc/modal/Modal';
+import { OptionTools } from '../../../../utils/constants';
 import BaseComponent from '../BaseComponent';
-import './Options.scss';
-import { Color } from '../../../../utils/constants';
+import ColorsPanel from './colorPanel/ColorsPanel';
 
 class Options extends Component {
-  renderColors(colors) {
-    return colors.map(color => {
-      return (
-        <div
-          key={color}
-          className={`color-element ${
-            this.props.systemColor === color ? 'active' : ''
-          }`}
-          style={{ backgroundColor: color }}
-        >
-          <div style={{ backgroundColor: 'white' }} />
-        </div>
-      );
-    });
-  }
-
-  renderColorsChoice(colorRows) {
-    return colorRows.map(row => {
-      return (
-        <div className="flex--row justify--space__between color-row">
-          {this.renderColors(row)}
-        </div>
-      );
-    });
-  }
-
-  renderChangeColorModalContent() {
-    const colorRow1 = [
-      Color.BLUE,
-      Color.PELOROUS,
-      Color.AMBER,
-      Color.CORAL_RED,
-      Color.CAN_CAN
-    ];
-    const colorRow2 = [];
-    const colorRow3 = [];
-    const color = [colorRow1, colorRow2, colorRow3];
-
-    return (
-      <div className="change-color-modal-content">
-        <h3>Pick a color for this conversation</h3>
-        <p>Every one in this conversation will see this</p>
-        <div className="change-color-modal-content--color-panel">
-          {this.renderColorsChoice(color)}
-        </div>
-      </div>
-    );
+  renderModalContent(toolName, hideModal) {
+    switch (toolName) {
+      case OptionTools.CHANGE_COLOR:
+        return (
+          <ColorsPanel
+            cancelButtonAction={hideModal}
+            systemColor={this.props.systemColor}
+          />
+        );
+      default:
+        return <div />;
+    }
   }
 
   renderAllIconForTool() {
+    const { systemColor } = this.props;
     const iconTools = [
       {
         iconName: 'search',
         isCursorPointer: true,
-        text: 'Search in Conversation'
+        text: OptionTools.SEARCH_IN_CONVERSATION
       },
-      { iconName: 'pencil', isCursorPointer: true, text: 'Edit Nicknames' },
+      {
+        iconName: 'pencil',
+        isCursorPointer: true,
+        text: OptionTools.EDIT_NICK_NAME
+      },
       {
         iconName: 'paint-brush',
         isCursorPointer: true,
-        text: 'Change Color',
-        renderModalContent: this.renderChangeColorModalContent()
+        text: OptionTools.CHANGE_COLOR
       },
-      { iconName: 'smile-o', isCursorPointer: true, text: 'Change Emoji' }
+      {
+        iconName: 'smile-o',
+        isCursorPointer: true,
+        text: OptionTools.CHANGE_EMOJI
+      }
     ];
 
     return _.map(iconTools, icon => {
-      const { iconName, isCursorPointer, text, renderModalContent } = icon;
+      const { iconName, isCursorPointer, text } = icon;
       return (
         <CustomModal
           key={iconName}
           render={onClickToShowModal => (
             <div onClick={() => onClickToShowModal()} className="element">
               <IconWithNextText
-                iconColor={this.props.systemColor}
+                iconColor={systemColor}
                 iconName={iconName}
                 isCursorPointer={isCursorPointer}
                 text={text}
               />
             </div>
           )}
-        >
-          {renderModalContent}
-        </CustomModal>
+          renderModalContent={hideModal =>
+            this.renderModalContent(text, hideModal)
+          }
+        />
       );
     });
   }

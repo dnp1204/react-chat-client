@@ -21,3 +21,8 @@
 .justify--space__between {
   justify-content: space-between;
 }
+
+html,
+body {
+  overflow: hidden;
+}

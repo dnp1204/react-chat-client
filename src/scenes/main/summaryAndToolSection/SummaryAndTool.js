@@ -46,7 +46,7 @@ class SummaryAndTool extends Component {
       lastName,
       lastSendMessageDate
     } = this.props.selectedFriend;
-    
+
     const { systemColor, showOptions, showPhotos } = this.props;
 
     return (
@@ -65,8 +65,16 @@ class SummaryAndTool extends Component {
             rightComponent={this.rednerRightComponentForToolHeader()}
           />
         </div>
-        <Options systemColor={systemColor} isShow={showOptions} onIconClickHandler={ show => this.props.changeShowOptions(show) } />
-        <Photos systemColor={systemColor} isShow={showPhotos} onIconClickHandler={ show => this.props.changeShowPhotos(show) } />
+        <Options
+          systemColor={systemColor}
+          isShow={showOptions}
+          onIconClickHandler={show => this.props.changeShowOptions(show)}
+        />
+        <Photos
+          systemColor={systemColor}
+          isShow={showPhotos}
+          onIconClickHandler={show => this.props.changeShowPhotos(show)}
+        />
       </div>
     );
   }
@@ -76,4 +84,7 @@ function mapStateToProps(state) {
   return { selectedFriend: state.selectFriend };
 }
 
-export default connect(mapStateToProps, { changeShowOptions, changeShowPhotos })(SummaryAndTool);
+export default connect(mapStateToProps, {
+  changeShowOptions,
+  changeShowPhotos
+})(SummaryAndTool);

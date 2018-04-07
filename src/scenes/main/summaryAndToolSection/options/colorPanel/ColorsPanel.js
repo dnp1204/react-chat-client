@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { changeSystemColor } from '../../../../../actions';
 import NoBorderButton from '../../../../../components/elements/button/noBorderButton/NoBorderButton';
 import { Color } from '../../../../../utils/constants';
+import BasePanel from '../BasePanel';
 
 class ColorsPanel extends PureComponent {
   renderColors(colors) {
@@ -64,18 +65,11 @@ class ColorsPanel extends PureComponent {
     const color = [colorRow1, colorRow2, colorRow3];
 
     return (
-      <div className="change-color-modal-content">
-        <h3>Pick a color for this conversation</h3>
-        <p>Every one in this conversation will see this</p>
+      <BasePanel cancelButtonAction={this.props.cancelButtonAction}>
         <div className="change-color-modal-content--color-panel">
           {this.renderColorsChoice(color)}
         </div>
-        <NoBorderButton
-          text="Cancel"
-          style={{ float: 'right' }}
-          buttonClickAction={() => this.props.cancelButtonAction()}
-        />
-      </div>
+      </BasePanel>
     );
   }
 }

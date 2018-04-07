@@ -1,8 +1,5 @@
-import './Options.scss';
-
 import _ from 'lodash';
 import React, { Component } from 'react';
-import Loadable from 'react-loadable';
 
 import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
 import CustomModal from '../../../../components/hoc/modal/Modal';
@@ -25,14 +22,34 @@ class Options extends Component {
     }
   }
 
-  renderAllIconForTool() {
+  renderToolIconWithoutModal() {
     const { systemColor } = this.props;
     const iconTools = [
       {
         iconName: 'search',
         isCursorPointer: true,
         text: OptionTools.SEARCH_IN_CONVERSATION
-      },
+      }
+    ];
+
+    return _.map(iconTools, icon => {
+      const { iconName, isCursorPointer, text } = icon;
+      return (
+        <div className="element">
+          <IconWithNextText
+            iconColor={systemColor}
+            iconName={iconName}
+            isCursorPointer={isCursorPointer}
+            text={text}
+          />
+        </div>
+      );
+    });
+  }
+
+  renderToolIconWithModal() {
+    const { systemColor } = this.props;
+    const iconTools = [
       {
         iconName: 'pencil',
         isCursorPointer: true,
@@ -84,7 +101,8 @@ class Options extends Component {
         classNameToCustom="tool--options"
         isNeededBorderBottom={true}
       >
-        {this.renderAllIconForTool()}
+        {this.renderToolIconWithoutModal()}
+        {this.renderToolIconWithModal()}
       </BaseComponent>
     );
   }

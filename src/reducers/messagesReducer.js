@@ -1,11 +1,12 @@
 import moment from 'moment';
 import { FETCH_MESSAGES, SEND_MESSAGE } from '../actions/types';
 
-const imageUrl = 'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
+const imageUrl =
+  'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
 
-const initialState = { friendId: 1, messages: []};
+const initialState = { friendId: 1, messages: [] };
 
-for (let index = 0; index < 20; index++) {
+for (let index = 0; index < 40; index++) {
   const message = {
     _id: index,
     user: {
@@ -14,7 +15,7 @@ for (let index = 0; index < 20; index++) {
     },
     timestamp: moment.now(),
     content: 'Cái mặt này ko có mấy vạch nhỏ anh'
-  }
+  };
 
   initialState.messages.push(message);
 }

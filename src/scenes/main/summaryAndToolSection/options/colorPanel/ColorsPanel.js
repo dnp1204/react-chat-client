@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { changeSystemColor } from '../../../../../actions';
-import NoBorderButton from '../../../../../components/elements/button/noBorderButton/NoBorderButton';
 import { Color } from '../../../../../utils/constants';
 import BasePanel from '../BasePanel';
 
@@ -66,7 +65,7 @@ class ColorsPanel extends PureComponent {
 
     return (
       <BasePanel cancelButtonAction={this.props.cancelButtonAction}>
-        <div className="change-color-modal-content--color-panel">
+        <div className="modal-content--main">
           {this.renderColorsChoice(color)}
         </div>
       </BasePanel>

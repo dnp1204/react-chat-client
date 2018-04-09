@@ -1,0 +1,20 @@
+.modal-content-container {
+
+  .modal-content--main {
+    .emoji-mart-bar {
+      display: none;
+    }
+    
+   .emoji-mart-search {
+      display: none;
+    }
+    
+    .emoji-mart-scroll {
+      border: none;
+      
+      .emoji-mart-category-label {
+        display: none;
+      } 
+    }
+  }
+}

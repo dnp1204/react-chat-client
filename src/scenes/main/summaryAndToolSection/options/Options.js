@@ -6,7 +6,6 @@ import CustomModal from '../../../../components/hoc/modal/Modal';
 import { OptionTools } from '../../../../utils/constants';
 import BaseComponent from '../BaseComponent';
 import ColorsPanel from './colorPanel/ColorsPanel';
-import EmojiPicker from '../../../../components/elements/emojiPicker/EmojiPicker';
 import EmojiPanel from './emojiPanel/EmojiPanel';
 
 class Options extends Component {

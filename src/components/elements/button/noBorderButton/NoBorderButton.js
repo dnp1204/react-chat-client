@@ -7,7 +7,8 @@ const NoBorderButton = ({ text, style, buttonClickAction }) => {
     border: 'none',
     color: Color.BLUE,
     outline: 'none',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    backgroundColor: '#fff'
   };
   return (
     <button

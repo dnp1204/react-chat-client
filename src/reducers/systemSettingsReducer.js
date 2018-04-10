@@ -11,7 +11,10 @@ const initialState = {
   showOptions: true,
   showPhotos: false,
   recentlyEmoji: [],
-  selectedEmoji: ''
+  selectedEmoji: {
+    id: '+1',
+    native: ''
+  }
 };
 
 export default function(state = initialState, action) {

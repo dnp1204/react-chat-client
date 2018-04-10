@@ -1,8 +1,11 @@
 import './EmojiPanel.scss';
 
 import React, { PureComponent } from 'react';
-import BasePanel from '../BasePanel';
+import { connect } from 'react-redux';
 import { Picker } from 'emoji-mart';
+
+import BasePanel from '../BasePanel';
+import { changeSelectedEmoji } from '../../../../../actions';
 
 class EmojiPanel extends PureComponent {
   render() {
@@ -14,7 +17,8 @@ class EmojiPanel extends PureComponent {
             sheetSize={64}
             emojiSize={26}
             onClick={(emoji, event) => {
-              console.log(emoji.native);
+              this.props.changeSelectedEmoji(emoji.id, emoji.native);
+              this.props.cancelButtonAction();
             }}
             perLine={7}
             showPreview={false}
@@ -37,4 +41,4 @@ class EmojiPanel extends PureComponent {
   }
 }
 
-export default EmojiPanel;
+export default connect(null, { changeSelectedEmoji })(EmojiPanel);

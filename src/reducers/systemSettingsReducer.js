@@ -2,6 +2,7 @@ import {
   CHANGE_SYSTEM_COLOR,
   CHANGE_SHOW_OPTIONS,
   CHANGE_SHOW_PHOTOS,
+  CHANGE_SYSTEM_EMOJI,
   FETCH_SYSTEM_SETTINGS
 } from '../actions/types';
 import { Color } from '../utils/constants';
@@ -27,6 +28,9 @@ export default function(state = initialState, action) {
       return { ...state, showOptions: action.payload };
     case CHANGE_SHOW_PHOTOS:
       return { ...state, showPhotos: action.payload };
+    case CHANGE_SYSTEM_EMOJI:
+      const { emojiId, emojiNative } = action.payload;
+      return { ...state, selectedEmoji: { id: emojiId, native: emojiNative } };
     default:
       return state;
   }

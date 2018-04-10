@@ -3,6 +3,7 @@ import {
   CHANGE_SYSTEM_COLOR,
   CHANGE_SHOW_OPTIONS,
   CHANGE_SHOW_PHOTOS,
+  CHANGE_SYSTEM_EMOJI,
   FETCH_SYSTEM_SETTINGS
 } from './types';
 
@@ -30,4 +31,8 @@ export const changeShowOptions = isShow => async dispatch => {
 
 export const changeShowPhotos = isShow => async dispatch => {
   dispatch({ type: CHANGE_SHOW_PHOTOS, payload: isShow });
+};
+
+export const changeSelectedEmoji = (emojiId, emojiNative) => async dispatch => {
+  dispatch({ type: CHANGE_SYSTEM_EMOJI, payload: { emojiId, emojiNative } });
 };

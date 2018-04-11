@@ -8,11 +8,19 @@
     flex-direction: column;
     border-right: 0.6px solid rgba(0, 0, 0, 0.3);
   }
-
+  
   .section__right__content {
     display: grid;
+    height: calc(100vh - 52px);
     grid-template-columns: 2fr 1fr;
-    height: 100%;
+  }
+
+  .section__right__content--two-columns {
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .section__right__content--one-columns {
+    grid-template-columns: 1fr;
   }
 
   .section__left__content {
@@ -175,3 +183,4 @@
     }
   }
 }
+

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './MainScene.scss';
-import { fetchSystemSettings } from '../../actions';
+import {
+  fetchSystemSettings,
+  changeShowSummaryAndToolSection
+} from '../../actions';
 import Header from '../../components/elements/header/Header';
 import Icon from '../../components/elements/icon/Icon';
 import MultipleIconRow from '../../components/elements/icon/MultipleIconRow';
@@ -16,12 +19,31 @@ class MainScene extends Component {
   }
 
   render() {
-    const { systemColor, showOptions, showPhotos } = this.props.systemSettings;
+    const {
+      systemColor,
+      showOptions,
+      showPhotos,
+      showSummaryAndToolSection
+    } = this.props.systemSettings;
     const iconArray = [
       { iconName: 'phone', color: systemColor },
       { iconName: 'video-camera', color: systemColor },
-      { iconName: 'info-circle', color: systemColor }
+      {
+        iconName: 'info-circle',
+        color: systemColor,
+        onClickHandler: () => {
+          this.props.changeShowSummaryAndToolSection(
+            !showSummaryAndToolSection
+          );
+        }
+      }
     ];
+
+    let toolStyle = {};
+    if (!showSummaryAndToolSection) {
+      console.log('hello');
+      toolStyle = { visibility: 'hidden' };
+    }
 
     return (
       <div id="main">
@@ -38,7 +60,13 @@ class MainScene extends Component {
               />
             }
             title="Messenger"
-            rightComponent={<Icon isCursorPointer iconName="pencil-square-o" color={systemColor} />}
+            rightComponent={
+              <Icon
+                isCursorPointer
+                iconName="pencil-square-o"
+                color={systemColor}
+              />
+            }
           />
           <div className="section__left__content">
             <FriendSection />
@@ -53,12 +81,22 @@ class MainScene extends Component {
               <MultipleIconRow className="hide-on-sm" iconArray={iconArray} />
             }
           />
-          <div className="section__right__content">
+          <div
+            className={`section__right__content ${
+              showSummaryAndToolSection
+                ? 'section__right__content--two-columns'
+                : 'section__right__content--one-columns'
+            }`}
+          >
             <div className="message-section border-right">
               <MessageSection systemColor={systemColor} />
             </div>
-            <div className="hide-on-xs">
-              <SummaryAndTool systemColor={systemColor} showOptions={showOptions} showPhotos={showPhotos} />
+            <div style={toolStyle} className="hide-on-xs">
+              <SummaryAndTool
+                systemColor={systemColor}
+                showOptions={showOptions}
+                showPhotos={showPhotos}
+              />
             </div>
           </div>
         </div>
@@ -71,4 +109,7 @@ function mapStateToProps(state) {
   return { systemSettings: state.systemSettings };
 }
 
-export default connect(mapStateToProps, { fetchSystemSettings })(MainScene);
+export default connect(mapStateToProps, {
+  fetchSystemSettings,
+  changeShowSummaryAndToolSection
+})(MainScene);

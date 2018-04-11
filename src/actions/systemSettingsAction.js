@@ -4,6 +4,7 @@ import {
   CHANGE_SHOW_OPTIONS,
   CHANGE_SHOW_PHOTOS,
   CHANGE_SYSTEM_EMOJI,
+  CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
   FETCH_SYSTEM_SETTINGS
 } from './types';
 
@@ -14,7 +15,8 @@ const initialState = {
   selectedEmoji: {
     id: '+1',
     native: '👍'
-  }
+  },
+  showSummaryAndToolSection: true
 };
 
 export const fetchSystemSettings = () => async dispatch => {
@@ -35,4 +37,8 @@ export const changeShowPhotos = isShow => async dispatch => {
 
 export const changeSelectedEmoji = (emojiId, emojiNative) => async dispatch => {
   dispatch({ type: CHANGE_SYSTEM_EMOJI, payload: { emojiId, emojiNative } });
+};
+
+export const changeShowSummaryAndToolSection = isShow => async dispatch => {
+  dispatch({ type: CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION, payload: isShow });
 };

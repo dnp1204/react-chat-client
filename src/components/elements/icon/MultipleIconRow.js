@@ -8,25 +8,36 @@ import Icon from './Icon';
 const multipleIconRowStyle = { display: 'flex', flexDirection: 'row' };
 const iconStyle = { marginLeft: 20 };
 
-const renderIconArray = (hasDropdown, iconArray) => {
+const renderIconArray = iconArray => {
   return _.map(iconArray, icon => {
-    if (hasDropdown) {
+    if (icon.componentIsDropdown) {
       return renderIconWithDropdown(icon);
     }
     return renderIcon(icon);
   });
 };
 
-const renderIcon = ({ iconName, size, style, color }) => {
+const renderIcon = ({
+  iconName,
+  size,
+  style,
+  color,
+  showComponentWhenClick,
+  onClickHandler
+}) => {
   return (
-    <Icon
-      key={iconName}
-      isCursorPointer
-      iconName={iconName}
-      size={size}
-      color={color}
-      style={Object.assign({}, style, iconStyle)}
-    />
+    <div>
+      <Icon
+        key={iconName}
+        isCursorPointer
+        iconName={iconName}
+        size={size}
+        color={color}
+        style={Object.assign({}, style, iconStyle)}
+        onClickHandler={onClickHandler ? onClickHandler : () => {}}
+      />
+      {showComponentWhenClick}
+    </div>
   );
 };
 
@@ -55,13 +66,13 @@ const renderIconWithDropdown = ({
   );
 };
 
-const MultipleIconRow = ({ iconArray, hasDropdown, className }) => {
+const MultipleIconRow = ({ iconArray, className }) => {
   return (
     <div
       style={multipleIconRowStyle}
       className={`multiple-icon-row ${className}`}
     >
-      {renderIconArray(hasDropdown, iconArray)}
+      {renderIconArray(iconArray)}
     </div>
   );
 };
@@ -70,12 +81,9 @@ MultipleIconRow.propTypes = {
   iconArray: PropTypes.array.isRequired,
   size: PropTypes.object,
   style: PropTypes.object,
-  color: PropTypes.string,
-  hasDropdown: PropTypes.bool
+  color: PropTypes.string
 };
 
-MultipleIconRow.defaultProps = {
-  hasDropdown: false
-};
+MultipleIconRow.defaultProps = {};
 
 export default MultipleIconRow;

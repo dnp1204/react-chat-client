@@ -15,29 +15,55 @@ class MessageTools extends Component {
     return <Recorder />;
   }
 
+  renderImagePicker() {
+    return (
+      <input
+        style={{ display: 'none' }}
+        type="file"
+        title="Add Files"
+        accept="image/*"
+        id="image-picker"
+      />
+    );
+  }
+
+  onImageIconClick() {
+    const element = document.getElementById('image-picker');
+    element.click();
+  }
+
   render() {
     const color = Color.BLACK_OPACITY_03;
     const size = 'lg';
     const iconArray = [
-      { iconName: 'file-image-o', size, color },
+      {
+        iconName: 'file-image-o',
+        size,
+        color,
+        showComponentWhenClick: this.renderImagePicker(),
+        componentIsDropdown: false,
+        onClickHandler: this.onImageIconClick.bind(this)
+      },
       {
         iconName: 'smile-o',
         size,
         color,
-        showComponentWhenClick: this.renderIconPicker()
+        showComponentWhenClick: this.renderIconPicker(),
+        componentIsDropdown: true
       },
       {
         iconName: 'microphone',
         size,
         color,
-        showComponentWhenClick: this.renderRecorder()
+        showComponentWhenClick: this.renderRecorder(),
+        componentIsDropdown: true
       },
-      { iconName: 'camera', size, color }
+      { iconName: 'camera', size, color, componentIsDropdown: false }
     ];
 
     return (
       <div className="message-section--tool flex--row align__center justify--space__between">
-        <MultipleIconRow iconArray={iconArray} hasDropdown />
+        <MultipleIconRow iconArray={iconArray} />
         <div className="cursor-pointer">
           <Emoji
             emoji={{ id: this.props.selectedEmojiId }}

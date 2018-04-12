@@ -6,7 +6,9 @@ import {
   CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
   FETCH_SYSTEM_SETTINGS
 } from '../actions/types';
-import { Color } from '../utils/constants';
+import { Color, EmojiId } from '../utils/constants';
+
+const emojiIdsForOptions = [EmojiId.GRIN];
 
 const initialState = {
   systemColor: Color.BLUE,
@@ -17,13 +19,14 @@ const initialState = {
     id: '+1',
     native: ''
   },
-  showSummaryAndToolSection: true
+  showSummaryAndToolSection: true,
+  emojiIdsForOptions
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_SYSTEM_SETTINGS:
-      return action.payload;
+      return { emojiIdsForOptions, ...action.payload };
     case CHANGE_SYSTEM_COLOR:
       return { ...state, systemColor: action.payload };
     case CHANGE_SHOW_OPTIONS:

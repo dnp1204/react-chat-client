@@ -9,6 +9,8 @@ import { changeSelectedEmoji } from '../../../../../actions';
 
 class EmojiPanel extends PureComponent {
   render() {
+    const { emojiIdsForOptions } = this.props.systemSettings;
+
     return (
       <BasePanel cancelButtonAction={this.props.cancelButtonAction}>
         <div className="modal-content--main">
@@ -22,6 +24,7 @@ class EmojiPanel extends PureComponent {
             }}
             perLine={7}
             showPreview={false}
+            recent={emojiIdsForOptions}
             exclude={[
               'recent',
               'search',
@@ -41,4 +44,8 @@ class EmojiPanel extends PureComponent {
   }
 }
 
-export default connect(null, { changeSelectedEmoji })(EmojiPanel);
+function mapStateToProps(state) {
+  return { systemSettings: state.systemSettings };
+}
+
+export default connect(mapStateToProps, { changeSelectedEmoji })(EmojiPanel);

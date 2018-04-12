@@ -29,3 +29,7 @@ exports.OptionTools = {
   CHANGE_COLOR: 'Change Color',
   CHANGE_EMOJI: 'Change Emoji'
 };
+
+exports.EmojiId = {
+  GRIN: 'grin'
+};

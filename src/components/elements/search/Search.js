@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Color } from '../../../utils/constants';
@@ -13,6 +14,16 @@ const Search = ({ iconName, placeholder, className }) => {
       <input placeholder={placeholder} />
     </div>
   );
+};
+
+Search.propTypes = {
+  iconName: PropTypes.string,
+  placeholder: PropTypes.string
+};
+
+Search.defaultProps = {
+  iconName: 'search',
+  placeholder: 'Search messages'
 };
 
 export default Search;

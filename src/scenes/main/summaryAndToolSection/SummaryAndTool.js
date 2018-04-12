@@ -47,7 +47,7 @@ class SummaryAndTool extends Component {
       lastSendMessageDate
     } = this.props.selectedFriend;
 
-    const { systemColor, showOptions, showPhotos } = this.props;
+    const { systemColor, showOptions, showPhotos, showSearch } = this.props;
 
     return (
       <div id="tool">
@@ -66,6 +66,7 @@ class SummaryAndTool extends Component {
           />
         </div>
         <Options
+          showSearch={showSearch}
           systemColor={systemColor}
           isShow={showOptions}
           onIconClickHandler={show => this.props.changeShowOptions(show)}

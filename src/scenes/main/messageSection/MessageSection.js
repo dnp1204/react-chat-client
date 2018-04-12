@@ -20,7 +20,7 @@ class MessageSection extends Component {
   }
 
   render() {
-    const { selectedEmoji } = this.props.systemSettings;
+    const { selectedEmoji, showSearch } = this.props.systemSettings;
     const imageUrl =
       'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
     let _id =
@@ -37,6 +37,7 @@ class MessageSection extends Component {
     return (
       <div id="message-section" className="flex--column">
         <MessageConversation
+          showSearch={showSearch}
           bubleColor={this.props.systemColor}
           friendMessages={this.props.friendMessages}
           shouldScroll={this.state.recievedNewInput}

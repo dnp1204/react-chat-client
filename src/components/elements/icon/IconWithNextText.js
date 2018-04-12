@@ -3,11 +3,18 @@ import React from 'react';
 
 import Icon from './Icon';
 
-const IconWithNextText = ({ iconName, iconColor, isCursorPointer, text }) => {
+const IconWithNextText = ({
+  iconName,
+  iconColor,
+  isCursorPointer,
+  text,
+  onClickHandler
+}) => {
   const textStyle = { marginLeft: 20 };
 
   return (
     <div
+      onClick={() => onClickHandler()}
       id="icon-with-next-text"
       className={`${
         isCursorPointer ? 'cursor-pointer' : ''
@@ -29,7 +36,12 @@ IconWithNextText.propTypes = {
   iconName: PropTypes.string,
   isCursorPointer: PropTypes.bool,
   text: PropTypes.string,
-  iconColor: PropTypes.string
+  iconColor: PropTypes.string,
+  onClickHandler: PropTypes.func
+};
+
+IconWithNextText.defaultProps = {
+  onClickHandler: () => {}
 };
 
 export default IconWithNextText;

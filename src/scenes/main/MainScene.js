@@ -23,6 +23,7 @@ class MainScene extends Component {
       systemColor,
       showOptions,
       showPhotos,
+      showSearch,
       showSummaryAndToolSection
     } = this.props.systemSettings;
     const iconArray = [
@@ -96,6 +97,7 @@ class MainScene extends Component {
                 systemColor={systemColor}
                 showOptions={showOptions}
                 showPhotos={showPhotos}
+                showSearch={showSearch}
               />
             </div>
           </div>

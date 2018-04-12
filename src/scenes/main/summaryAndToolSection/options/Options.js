@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
 import CustomModal from '../../../../components/hoc/modal/Modal';
@@ -7,6 +8,7 @@ import { OptionTools } from '../../../../utils/constants';
 import BaseComponent from '../BaseComponent';
 import ColorsPanel from './colorPanel/ColorsPanel';
 import EmojiPanel from './emojiPanel/EmojiPanel';
+import { changeShowSearchInput } from '../../../../actions';
 
 class Options extends Component {
   renderModalContent(toolName, hideModal) {
@@ -26,24 +28,28 @@ class Options extends Component {
   }
 
   renderToolIconWithoutModal() {
-    const { systemColor } = this.props;
+    const { systemColor, showSearch, changeShowSearchInput } = this.props;
     const iconTools = [
       {
         iconName: 'search',
         isCursorPointer: true,
-        text: OptionTools.SEARCH_IN_CONVERSATION
+        text: OptionTools.SEARCH_IN_CONVERSATION,
+        onClickHandler: () => {
+          changeShowSearchInput(!showSearch);
+        }
       }
     ];
 
     return _.map(iconTools, icon => {
-      const { iconName, isCursorPointer, text } = icon;
+      const { iconName, isCursorPointer, text, onClickHandler } = icon;
       return (
-        <div className="element">
+        <div key={iconName} className="element">
           <IconWithNextText
             iconColor={systemColor}
             iconName={iconName}
             isCursorPointer={isCursorPointer}
             text={text}
+            onClickHandler={onClickHandler}
           />
         </div>
       );
@@ -111,4 +117,4 @@ class Options extends Component {
   }
 }
 
-export default Options;
+export default connect(null, { changeShowSearchInput })(Options);

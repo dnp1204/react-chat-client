@@ -5,6 +5,7 @@ import {
   CHANGE_SHOW_PHOTOS,
   CHANGE_SYSTEM_EMOJI,
   CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
+  CHANGE_SHOW_SEARCH_INPUT,
   FETCH_SYSTEM_SETTINGS
 } from './types';
 
@@ -12,6 +13,7 @@ const initialState = {
   systemColor: Color.BLUE,
   showOptions: true,
   showPhotos: false,
+  showSearch: false,
   selectedEmoji: {
     id: '+1',
     native: '👍'
@@ -41,4 +43,8 @@ export const changeSelectedEmoji = (emojiId, emojiNative) => async dispatch => {
 
 export const changeShowSummaryAndToolSection = isShow => async dispatch => {
   dispatch({ type: CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION, payload: isShow });
+};
+
+export const changeShowSearchInput = isShow => async dispatch => {
+  dispatch({ type: CHANGE_SHOW_SEARCH_INPUT, payload: isShow });
 };

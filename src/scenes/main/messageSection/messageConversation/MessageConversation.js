@@ -3,6 +3,7 @@ import React from 'react';
 import ScrollToBottom from '../../../../components/elements/scrollToBottom/ScrollToBottom';
 import { Color } from '../../../../utils/constants';
 import MessageBubble from '../messageBubble/MessageBubble';
+import MessageSearch from '../messageSearch/MessageSearch';
 
 const renderMessages = (friendMessages, bubleColor) => {
   const gray = Color.LIGHT_WHITE;
@@ -48,13 +49,21 @@ const MessageConversation = ({
   friendMessages,
   shouldScroll,
   onScrollToBottomFinishHandler,
-  bubleColor
+  bubleColor,
+  showSearch
 }) => {
   return (
     <ScrollToBottom
       shouldScroll={shouldScroll}
       onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}
     >
+      {showSearch ? (
+        <div style={{ width: '100%', position: 'relative' }}>
+          <MessageSearch />
+        </div>
+      ) : (
+        <div />
+      )}
       <div className="message-section--conversation">
         {renderMessages(friendMessages, bubleColor)}
       </div>

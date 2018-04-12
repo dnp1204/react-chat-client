@@ -15,4 +15,5 @@ export const CHANGE_SHOW_OPTIONS = 'change_show_options';
 export const CHANGE_SHOW_PHOTOS = 'change_show_photos';
 export const CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION =
   'change_show_summary_and_tool_section';
+export const CHANGE_SHOW_SEARCH_INPUT = 'change_show_search_input';
 export const CHANGE_SYSTEM_EMOJI = 'change_system_emoji';

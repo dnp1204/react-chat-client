@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
-import ScrollToBottom from '../../../../components/elements/scrollToBottom/ScrollToBottom';
+import ScrollToBottom from '../../../../components/tools/scrollToBottom/ScrollToBottom';
+import Resize from '../../../../components/tools/resize/Resize';
 import { Color } from '../../../../utils/constants';
 import MessageBubble from '../messageBubble/MessageBubble';
 import MessageSearch from '../messageSearch/MessageSearch';
@@ -11,15 +12,6 @@ class MessageConversation extends PureComponent {
 
     this.state = { width: 0, marginLeftForContent: 85 };
     this.conversationElement = null;
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize.bind(this));
-    this.resize();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize.bind(this));
   }
 
   resize() {
@@ -131,15 +123,17 @@ class MessageConversation extends PureComponent {
         shouldScroll={shouldScroll}
         onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}
       >
-        {this.renderShowSearchInput()}
-        <div
-          ref={conversationElement =>
-            (this.conversationElement = conversationElement)
-          }
-          className="message-section--conversation"
-        >
-          {this.renderMessages()}
-        </div>
+        <Resize resize={this.resize.bind(this)}>
+          {this.renderShowSearchInput()}
+          <div
+            ref={conversationElement =>
+              (this.conversationElement = conversationElement)
+            }
+            className="message-section--conversation"
+          >
+            {this.renderMessages()}
+          </div>
+        </Resize>
       </ScrollToBottom>
     );
   }

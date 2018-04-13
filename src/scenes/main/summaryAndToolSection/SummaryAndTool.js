@@ -8,7 +8,7 @@ import { Color } from '../../../utils/constants';
 import FriendContainer from '../friendSection/friendContainer/FriendContainer';
 import Options from './options/Options';
 import Photos from './photos/Photos';
-import Dropdown from '../../../components/elements/dropDown/Dropdown';
+import Dropdown from '../../../components/tools/dropDown/Dropdown';
 import { changeShowOptions, changeShowPhotos } from '../../../actions';
 
 class SummaryAndTool extends Component {

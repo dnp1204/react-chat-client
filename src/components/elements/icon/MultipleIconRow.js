@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Dropdown from '../dropDown/Dropdown';
+import Dropdown from '../../tools/dropDown/Dropdown';
 import Icon from './Icon';
 
 const multipleIconRowStyle = { display: 'flex', flexDirection: 'row' };

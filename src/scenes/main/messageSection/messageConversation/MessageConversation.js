@@ -1,11 +1,33 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import ScrollToBottom from '../../../../components/elements/scrollToBottom/ScrollToBottom';
 import { Color } from '../../../../utils/constants';
 import MessageBubble from '../messageBubble/MessageBubble';
 import MessageSearch from '../messageSearch/MessageSearch';
 
-class MessageConversation extends Component {
+class MessageConversation extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = { width: 0 };
+    this.conversationElement = null;
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.setWidth.bind(this));
+    this.setWidth();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setWidth.bind(this));
+  }
+
+  setWidth() {
+    if (this.conversationElement) {
+      this.setState({ width: this.conversationElement.clientWidth });
+    }
+  }
+
   renderMessages = (friendMessages, bubleColor) => {
     const gray = Color.LIGHT_WHITE;
 
@@ -60,8 +82,17 @@ class MessageConversation extends Component {
         shouldScroll={shouldScroll}
         onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}
       >
-        {showSearch ? <MessageSearch /> : <div />}
-        <div className="message-section--conversation">
+        {showSearch ? (
+          <MessageSearch customWidth={this.state.width} />
+        ) : (
+          <div />
+        )}
+        <div
+          ref={conversationElement =>
+            (this.conversationElement = conversationElement)
+          }
+          className="message-section--conversation"
+        >
           {this.renderMessages(friendMessages, bubleColor)}
         </div>
       </ScrollToBottom>

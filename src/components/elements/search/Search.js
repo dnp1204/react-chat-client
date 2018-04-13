@@ -5,20 +5,21 @@ import { Color } from '../../../utils/constants';
 import Icon from '../icon/Icon';
 import './Search.scss';
 
-const Search = ({ iconName, placeholder, className }) => {
+const Search = ({ iconName, placeholder, className, textStyle }) => {
   return (
     <div className={`search ${className}`}>
       <div className="search--icon">
         <Icon color={Color.BLACK_OPACITY_03} iconName={iconName} size="sm" />
       </div>
-      <input placeholder={placeholder} />
+      <input style={Object.assign({}, textStyle)} placeholder={placeholder} />
     </div>
   );
 };
 
 Search.propTypes = {
   iconName: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  textStyle: PropTypes.object
 };
 
 Search.defaultProps = {

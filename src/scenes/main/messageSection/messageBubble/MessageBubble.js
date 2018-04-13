@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import React, { Component } from 'react';
 import './MessageBubble.scss';
@@ -5,77 +6,52 @@ import './MessageBubble.scss';
 import CircleAvatar from '../../../../components/elements/circleAvatar/CircleAvatar';
 
 class MessageBubble extends Component {
-  state = { marginLeftForContent: 85 };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize.bind(this));
-    this.resize();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize.bind(this));
-  }
-
-  resize() {
-    if (window.innerWidth <= 550) {
-      this.setState({ marginLeftForContent: 0 });
+  renderFriendAvatarOnLastMessage() {
+    const {
+      isShowAvatar,
+      imageUrl,
+      avatarSize,
+      avatarContainerStyle
+    } = this.props;
+    if (isShowAvatar) {
+      return (
+        <div style={avatarContainerStyle} className="message-bubble--avatar">
+          <CircleAvatar
+            avatar={imageUrl}
+            width={avatarSize}
+            height={avatarSize}
+          />
+        </div>
+      );
     } else {
-      this.setState({ marginLeftForContent: 85 });
+      return <div />;
     }
   }
 
   render() {
     const {
       content,
-      color,
-      imageUrl,
-      textColor,
       timestamp,
-      isFriendMessage,
-      isShowFriendAvatarOnLastText
+      timestampSide,
+      messageBubbleContentStyle
     } = this.props;
 
-    const imageSize = 30;
-    const marginRightForAvatar = 10;
-
-    let marginLeftForContent = imageSize + marginRightForAvatar;
-    if (isShowFriendAvatarOnLastText && isFriendMessage) {
-      marginLeftForContent = 0;
-    } else if (!isFriendMessage) {
-      marginLeftForContent = this.state.marginLeftForContent;
+    let timestampClassName = 'message-bubble--timestamp__left';
+    if (timestampSide === 'right') {
+      timestampClassName = 'message-bubble--timestamp__right';
     }
+
     return (
       <div id="message-bubble" className="flex--row align__center">
-        {isFriendMessage & isShowFriendAvatarOnLastText ? (
-          <div
-            style={{ marginRight: marginRightForAvatar }}
-            className="message-bubble--avatar"
-          >
-            <CircleAvatar avatar={imageUrl} width={30} height={30} />
-          </div>
-        ) : (
-          <div />
-        )}
+        {this.renderFriendAvatarOnLastMessage()}
         <div
-          style={{
-            backgroundColor: color,
-            color: textColor,
-            marginLeft: marginLeftForContent
-          }}
-          className={`message-bubble--content ${
-            isFriendMessage
-              ? 'message-bubble--content__margin-right'
-              : 'message-bubble--content__margin-left'
-          }`}
+          style={messageBubbleContentStyle}
+          className="message-bubble--content"
         >
           {content}
         </div>
         <div
-          className={`hide-on-xs message-bubble--timestamp ${
-            isFriendMessage
-              ? 'message-bubble--timestamp__left'
-              : 'message-bubble--timestamp__right'
-          }`}
+          className={`hide-on-xs message-bubble--timestamp ${timestampClassName}`}
         >
           {moment().calendar(timestamp, {
             sameDay: 'h:mm a',
@@ -87,5 +63,20 @@ class MessageBubble extends Component {
     );
   }
 }
+
+MessageBubble.propTypes = {
+  content: PropTypes.string,
+  timestamp: PropTypes.number,
+  timestampSide: PropTypes.string,
+  imageUrl: PropTypes.string,
+  messageBubbleContentStyle: PropTypes.object,
+  avatarContainerStyle: PropTypes.object,
+  avatarSize: PropTypes.number,
+  isShowAvatar: PropTypes.bool
+};
+
+MessageBubble.defaultPropTypes = {
+  timestampSide: 'left'
+};
 
 export default MessageBubble;

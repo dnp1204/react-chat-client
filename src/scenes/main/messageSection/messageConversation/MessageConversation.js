@@ -10,7 +10,12 @@ class MessageConversation extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { width: 0, marginLeftForContent: 85 };
+    this.state = {
+      width: 0,
+      marginLeftForContent: 85,
+      marginRightForContent: 85,
+      defaultOverflow: 'hidden'
+    };
     this.conversationElement = null;
   }
 
@@ -20,9 +25,17 @@ class MessageConversation extends PureComponent {
     }
 
     if (window.innerWidth <= 550) {
-      this.setState({ marginLeftForContent: 0 });
+      this.setState({
+        marginLeftForContent: 0,
+        marginRightForContent: 0,
+        defaultOverflow: 'auto'
+      });
     } else {
-      this.setState({ marginLeftForContent: 85 });
+      this.setState({
+        marginLeftForContent: 85,
+        marginRightForContent: 85,
+        defaultOverflow: 'hidden'
+      });
     }
   }
 
@@ -53,7 +66,7 @@ class MessageConversation extends PureComponent {
       backgroundColor: isCurrentUserMessage ? bubleColor : gray,
       color: isCurrentUserMessage ? 'white' : 'black',
       marginLeft: marginLeftForContent,
-      marginRight: isCurrentUserMessage ? 0 : '85px'
+      marginRight: isCurrentUserMessage ? 0 : this.state.marginRightForContent
     };
 
     return (
@@ -120,6 +133,8 @@ class MessageConversation extends PureComponent {
 
     return (
       <ScrollToBottom
+        defaultOverflow={this.state.defaultOverflow}
+        hoverOverflowY="overlay"
         shouldScroll={shouldScroll}
         onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}
       >

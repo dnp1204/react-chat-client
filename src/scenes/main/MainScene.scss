@@ -155,6 +155,10 @@
     .section__right__content {
       grid-template-columns: 1fr;
     }
+    
+    .section__left__content {
+      overflow-y: auto !important;
+    }
 
     .friend-section {
       .friend-container {

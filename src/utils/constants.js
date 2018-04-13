@@ -27,7 +27,8 @@ exports.OptionTools = {
   SEARCH_IN_CONVERSATION: 'Search in Conversation',
   EDIT_NICK_NAME: 'Edit Nicknames',
   CHANGE_COLOR: 'Change Color',
-  CHANGE_EMOJI: 'Change Emoji'
+  CHANGE_EMOJI: 'Change Emoji',
+  NOTIFICATIONS: 'Notifications'
 };
 
 exports.EmojiId = {

@@ -12,7 +12,8 @@ const FriendContainer = ({
   onSelectFriend,
   isActive,
   isHover,
-  classNameForName
+  classNameForName,
+  nameStyle
 }) => {
   return (
     <div
@@ -24,7 +25,7 @@ const FriendContainer = ({
       <div className="friend-container--info">
         <CircleAvatar avatar={avatar} />
         <div className="friend-container--info__name">
-          <h4 className={classNameForName}>
+          <h4 style={nameStyle} className={classNameForName}>
             {firstName} {lastName}
           </h4>
           <div>{subTitleComponent}</div>
@@ -43,7 +44,8 @@ FriendContainer.propTypes = {
   rightComponent: PropTypes.element,
   onSelectFriend: PropTypes.func,
   isActive: PropTypes.bool,
-  isHover: PropTypes.bool
+  isHover: PropTypes.bool,
+  nameStyle: PropTypes.object
 };
 
 FriendContainer.defaultProps = {

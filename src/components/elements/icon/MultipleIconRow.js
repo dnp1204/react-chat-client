@@ -26,9 +26,8 @@ const renderIcon = ({
   onClickHandler
 }) => {
   return (
-    <div>
+    <div key={iconName}>
       <Icon
-        key={iconName}
         isCursorPointer
         iconName={iconName}
         size={size}

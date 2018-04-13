@@ -20,7 +20,7 @@ class SummaryAndTool extends Component {
     );
   }
 
-  rednerRightComponentForToolHeader() {
+  renderRightComponentForToolHeader() {
     let dropdownComponent = this.renderDropDownComponent();
     return (
       <div>
@@ -53,6 +53,7 @@ class SummaryAndTool extends Component {
       <div id="tool">
         <div className="tool--section tool--header border-bottom">
           <FriendContainer
+            nameStyle={{ color: Color.DARK_BLUE }}
             avatar={avatar}
             firstName={firstName}
             lastName={lastName}
@@ -62,7 +63,7 @@ class SummaryAndTool extends Component {
               </p>
             }
             isHover={false}
-            rightComponent={this.rednerRightComponentForToolHeader()}
+            rightComponent={this.renderRightComponentForToolHeader()}
           />
         </div>
         <Options

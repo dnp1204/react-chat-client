@@ -3,6 +3,7 @@ exports.Color = {
   BLACK_OPACITY_03: 'rgba(0, 0, 0, 0.3)',
   BLACK_OPACITY_02: 'rgba(0, 0, 0, 0.2)',
   LIGHT_WHITE: '#F1F0F0',
+  DARK_BLUE: '#365899',
 
   BLUE: '#0584FF',
   PELOROUS: '#45BEC7',

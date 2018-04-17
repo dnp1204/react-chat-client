@@ -4,15 +4,21 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Picker } from 'emoji-mart';
 
-import BasePanel from '../BasePanel';
+import BasePanel from '../basePanel/BasePanel';
 import { changeSelectedEmoji } from '../../../../../actions';
 
 class EmojiPanel extends PureComponent {
   render() {
+    const title = 'Pick an emoji for this conversation';
+    const text = 'Everyone in this conversation will see this';
     const { emojiIdsForOptions } = this.props.systemSettings;
 
     return (
-      <BasePanel cancelButtonAction={this.props.cancelButtonAction}>
+      <BasePanel
+        title={title}
+        text={text}
+        cancelButtonAction={this.props.cancelButtonAction}
+      >
         <div className="modal-content--main">
           <Picker
             set="facebook"

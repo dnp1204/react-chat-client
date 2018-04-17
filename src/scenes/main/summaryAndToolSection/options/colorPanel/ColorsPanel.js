@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { changeSystemColor } from '../../../../../actions';
 import { Color } from '../../../../../utils/constants';
-import BasePanel from '../BasePanel';
+import BasePanel from '../basePanel/BasePanel';
 
 class ColorsPanel extends PureComponent {
   renderColors(colors) {
@@ -62,9 +62,15 @@ class ColorsPanel extends PureComponent {
       Color.BLUE_BELL
     ];
     const color = [colorRow1, colorRow2, colorRow3];
+    const title = 'Pick a color for this conversation';
+    const text = 'Every one in this conversation will see this';
 
     return (
-      <BasePanel cancelButtonAction={this.props.cancelButtonAction}>
+      <BasePanel
+        title={title}
+        text={text}
+        cancelButtonAction={this.props.cancelButtonAction}
+      >
         <div className="modal-content--main">
           {this.renderColorsChoice(color)}
         </div>

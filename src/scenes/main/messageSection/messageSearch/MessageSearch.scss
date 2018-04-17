@@ -1,17 +1,16 @@
 .message-section__search {
-    background-color: rgba(255, 255, 255, 0.8);
-    height: 40px;
+    background-color: rgb(255, 255, 255);
+    height: 50px;
     padding: 5px 10px;
-    position: absolute;
-    z-index: 999;
-    left: 0;
-    right: 0;
+    position: fixed;
+    z-index: 2;
+    box-sizing: border-box;
     
     .search-box-container {
-        flex: 0.9;
+        flex: 0.85;
         
         .search-box-container--search-box {
-            flex: 1;
+            flex: 0.97;
         }
     }
 }

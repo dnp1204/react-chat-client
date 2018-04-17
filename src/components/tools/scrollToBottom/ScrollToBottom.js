@@ -34,10 +34,11 @@ class ScrollToBottom extends Component {
   }
 
   render() {
+    const { defaultOverflow, hoverOverflowY } = this.props;
     return (
       <div
         style={{
-          overflowY: `${this.state.hover ? 'overlay' : 'hidden'}`,
+          overflowY: `${this.state.hover ? hoverOverflowY : defaultOverflow}`,
           margin: 0,
           padding: 0
         }}

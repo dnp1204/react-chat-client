@@ -73,6 +73,11 @@ class Options extends Component {
         iconName: 'smile-o',
         isCursorPointer: true,
         text: OptionTools.CHANGE_EMOJI
+      },
+      {
+        iconName: 'bell-o',
+        isCursorPointer: true,
+        text: OptionTools.NOTIFICATIONS
       }
     ];
 

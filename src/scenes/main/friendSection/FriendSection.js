@@ -45,8 +45,8 @@ class FriendSection extends Component {
       <div>
         <Search
           className="hide-on-sm"
-          iconName="search"
           placeholder="Search Messenger"
+          textStyle={{ textAlign: 'center', textIndent: 0 }}
         />
         {this.renderFriendList()}
       </div>

@@ -8,6 +8,7 @@ const flash = require('express-flash');
 const passport = require('passport');
 const lusca = require('lusca');
 const cookieSession = require('cookie-session');
+const cors = require('cors');
 
 const { appLogger } = require('./utils/logger');
 const config = require('./config');
@@ -16,6 +17,7 @@ const app = express();
 require('./services/passport');
 app.set('port', process.env.PORT || 5000);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(expressValidator());

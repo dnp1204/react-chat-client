@@ -1,25 +1,16 @@
 const winston = require('winston');
 const { File, Console } = winston.transports;
-const { combine, timestamp, prettyPrint, label } = winston.format;
+const { combine, timestamp, prettyPrint, label, colorize } = winston.format;
 
 const { env } = require('../utils/constants');
-
-const levels = {
-  ERROR: 'error',
-  WARN: 1,
-  INFO: 'info',
-  VERBOSE: 3,
-  DEBUG: 'debug',
-  SILLY: 5
-};
 
 const createLogger = labelText => {
   const logger = winston.createLogger({
     transports: [
-      new File({ filename: 'error.log', level: levels.ERROR }),
+      new File({ filename: 'error.log', level: 'error' }),
       new File({
         filename: 'combined.log',
-        level: levels.INFO
+        level: 'info'
       })
     ],
     exitOnError: false
@@ -35,6 +26,7 @@ const createLogger = labelText => {
   }
 
   logger.format = combine(
+    colorize(),
     label({ label: labelText }),
     timestamp(),
     prettyPrint()

@@ -1,39 +1,54 @@
 const winston = require('winston');
 const { File, Console } = winston.transports;
-const { combine, timestamp, prettyPrint, label, colorize } = winston.format;
+const {
+  combine,
+  timestamp,
+  prettyPrint,
+  label,
+  colorize,
+  printf
+} = winston.format;
 
 const createLogger = labelText => {
   const logger = winston.createLogger({
     transports: [
-      new File({ filename: 'error.log', level: 'error' }),
+      new File({ filename: 'error.log', level: 'error', maxsize: 100 * 1024 }),
       new File({
         filename: 'combined.log',
-        level: 'info'
+        level: 'info',
+        maxsize: 100 * 1024
       })
     ],
-    exitOnError: false
+    exitOnError: false,
+    format: combine(label({ label: labelText }), timestamp(), prettyPrint())
   });
 
   if (process.env.NODE_ENV !== 'production') {
     logger.add(
       new Console({
         level: 'debug',
-        handleExceptions: true
+        handleExceptions: true,
+        format: combine(
+          colorize(),
+          label({ label: labelText }),
+          timestamp(),
+          printf(
+            info =>
+              `${info.timestamp} [${info.label}] [${info.level}]: ${
+                info.message
+              }`
+          )
+        )
       })
     );
   }
 
-  logger.format = combine(
-    colorize(),
-    label({ label: labelText }),
-    timestamp(),
-    prettyPrint()
-  );
   return logger;
 };
 
 module.exports = {
   logger: createLogger,
   appLogger: createLogger('app'),
-  authLogger: createLogger('auth-module')
+  authLogger: createLogger('auth-module'),
+  chatLogger: createLogger('chat-module')
 };

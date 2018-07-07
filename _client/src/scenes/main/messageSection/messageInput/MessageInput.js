@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { socketEvent } from '../../../../utils/constants';
+
 class MessageInput extends Component {
   state = { messageText: '' };
 
@@ -27,7 +29,7 @@ class MessageInput extends Component {
       if (this.state.messageText.trim() !== '') {
         const MAX_LENGTH_WORD = 46;
         let contentArrayWithoutLongWord = [];
-        
+
         for (const word of this.state.messageText.trim().split(' ')) {
           if (word.length < MAX_LENGTH_WORD) {
             contentArrayWithoutLongWord.push(word);
@@ -38,6 +40,12 @@ class MessageInput extends Component {
           }
         }
 
+        this.props.socket.emit(
+          socketEvent.NEW_MESSAGE,
+          JSON.stringify({
+            message: contentArrayWithoutLongWord.join(' ')
+          })
+        );
         this.props.sendMessage(contentArrayWithoutLongWord.join(' '));
         this.props.onNewMessageHandler();
         this.setState({ messageText: '' });

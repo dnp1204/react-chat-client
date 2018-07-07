@@ -35,3 +35,8 @@ exports.OptionTools = {
 exports.EmojiId = {
   GRIN: 'grin'
 };
+
+exports.socketEvent = {
+  NEW_MESSAGE: 'new_message',
+  IN_MESSAGE: 'in_message'
+};

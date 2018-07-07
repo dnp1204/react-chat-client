@@ -1,15 +1,27 @@
+import './MessageSection.scss';
+
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 
-import './MessageSection.scss';
 import { sendMessage } from '../../../actions';
+import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';
 import MessageTools from './messageTools/MessageTools';
 
 class MessageSection extends Component {
-  state = { recievedNewInput: false, emoji: '' };
+  constructor(props) {
+    super(props);
+
+    this.state = { recievedNewInput: false, emoji: '' };
+
+    this.socket = io('http://localhost:5000');
+    this.socket.on(socketEvent.IN_MESSAGE, data => {
+      console.log(data);
+    });
+  }
 
   onNewMessageHandler() {
     this.setState({ recievedNewInput: true });
@@ -46,6 +58,7 @@ class MessageSection extends Component {
           }
         />
         <MessageInput
+          socket={this.socket}
           emoji={this.state.emoji}
           onNewMessageHandler={() => this.onNewMessageHandler()}
           sendMessage={content => {
@@ -75,4 +88,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { sendMessage })(MessageSection);
+export default connect(
+  mapStateToProps,
+  { sendMessage }
+)(MessageSection);

@@ -1,7 +1,23 @@
+const mongoose = require('mongoose');
+
+const config = require('./config');
 const { appLogger } = require('./utils/logger');
-const { server, app, io } = require('./app');
 const user = require('./user');
 const chat = require('./chat');
+
+mongoose.Promise = require('bluebird');
+mongoose.connect(
+  config.mongoURI,
+  err => {
+    if (err) {
+      appLogger.error(err);
+    } else {
+      appLogger.info(`Mongoose connect to ${config.mongoURI}`);
+    }
+  }
+);
+
+const { server, app, io } = require('./app');
 
 user(app);
 chat(io);

@@ -16,6 +16,7 @@
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
   },
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",

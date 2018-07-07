@@ -2,8 +2,6 @@ const winston = require('winston');
 const { File, Console } = winston.transports;
 const { combine, timestamp, prettyPrint, label, colorize } = winston.format;
 
-const { env } = require('../utils/constants');
-
 const createLogger = labelText => {
   const logger = winston.createLogger({
     transports: [
@@ -16,7 +14,7 @@ const createLogger = labelText => {
     exitOnError: false
   });
 
-  if (process.env.NODE_ENV !== env.PRODUCTION) {
+  if (process.env.NODE_ENV !== 'production') {
     logger.add(
       new Console({
         level: 'debug',
@@ -37,5 +35,5 @@ const createLogger = labelText => {
 module.exports = {
   logger: createLogger,
   appLogger: createLogger('app'),
-  authLogger: createLogger('auth')
+  authLogger: createLogger('auth-module')
 };

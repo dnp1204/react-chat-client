@@ -1,18 +1,13 @@
-const http = require('http');
-
-const { appLogger, logger } = require('./logger');
-const { PORT } = require('./utils/constants');
-const app = require('./app');
+const { appLogger } = require('./utils/logger');
+const { server, app, io } = require('./app');
 const authentication = require('./authentication');
 
-const server = http.createServer(app);
+authentication(app);
 
-app.use('/', authentication.routes());
-
-server.listen(app.get(PORT), err => {
+server.listen(app.get('port'), err => {
   if (err) {
     appLogger.error(err);
   } else {
-    appLogger.info(`Server is running on port: ${app.get(PORT)}`);
+    appLogger.info(`Server is running on port: ${app.get('port')}`);
   }
 });

@@ -1,15 +1,18 @@
+const http = require('http');
+const socket = require('socket.io');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
-const { appLogger } = require('../logger');
-const { env, PORT } = require('../utils/constants');
+const { appLogger } = require('./utils/logger');
 
 const app = express();
 
+app.set('port', process.env.PORT || 5000);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-if (process.env.NODE_ENV !== env.PRODUCTION) {
+if (process.env.NODE_ENV !== 'production') {
   app.use(
     morgan('combined', {
       stream: {
@@ -21,6 +24,11 @@ if (process.env.NODE_ENV !== env.PRODUCTION) {
   );
 }
 
-app.set(PORT, process.env.PORT || 5000);
+const server = http.createServer(app);
+const io = socket(server);
 
-module.exports = app;
+module.exports = {
+  server,
+  io,
+  app
+};

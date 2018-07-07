@@ -13,7 +13,7 @@ const { appLogger } = require('./utils/logger');
 const config = require('./config');
 
 const app = express();
-
+require('./services/passport');
 app.set('port', process.env.PORT || 5000);
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,6 +28,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(lusca.xssProtection(true));
 if (process.env.NODE_ENV !== 'production') {
   app.use(
     morgan('combined', {
@@ -39,7 +40,6 @@ if (process.env.NODE_ENV !== 'production') {
     })
   );
 }
-app.use(lusca.xssProtection(true));
 
 const server = http.createServer(app);
 const io = socket(server);

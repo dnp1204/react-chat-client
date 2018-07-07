@@ -5,6 +5,8 @@ const { appLogger } = require('./utils/logger');
 const user = require('./user');
 const chat = require('./chat');
 
+require('./services/passport');
+
 mongoose.Promise = require('bluebird');
 mongoose.connect(
   config.mongoURI,

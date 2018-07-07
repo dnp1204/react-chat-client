@@ -1,6 +1,5 @@
 const Promise = require('bluebird').Promise;
 
-const { userLogger } = require('../../utils/logger');
 const User = require('../models/User');
 
 const createUser = data => {
@@ -25,7 +24,19 @@ const findUserByEmail = email => {
   });
 };
 
+const findUserById = id => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const existingUser = await User.findById(id);
+      resolve(existingUser);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 module.exports = {
   createUser,
-  findUserByEmail
+  findUserByEmail,
+  findUserById
 };

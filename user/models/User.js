@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -29,10 +30,38 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual('fullName').get(function() {
-  return `${this.firstName} ${this.lastName}`;
+userSchema.pre('save', function(next) {
+  const user = this;
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
+      return next(err);
+    }
+
+    bcrypt.hash(user.password, salt, (err, hash) => {
+      if (err) {
+        return next(err);
+      }
+
+      user.password = hash;
+      next();
+    });
+  });
 });
 
-const userModal = mongoose.model('user', userSchema);
+userSchema.methods.comparePassword = function(candidatePassword, next) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) {
+      return next(err);
+    }
+    next(null, isMatch);
+  });
+};
 
-module.exports = userModal;
+userSchema.virtual('fullName').get(function() {
+  return `${this.firstName || ''} ${this.lastName || ''}`;
+});
+
+const User = mongoose.model('user', userSchema);
+
+module.exports = User;

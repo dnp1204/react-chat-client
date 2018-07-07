@@ -3,8 +3,13 @@ const controller = require('../controllers');
 
 module.exports = () => {
   let routes = {
+    get: {
+      '/getUser': controller.getUser,
+      '/signout': controller.signOut
+    },
     post: {
-      '/signUp': controller.signUp
+      '/signup': controller.signUp,
+      '/signin': controller.signIn
     }
   };
 

@@ -3,8 +3,8 @@ const controller = require('../controllers');
 
 module.exports = () => {
   let routes = {
-    get: {
-      '/': controller.authController
+    post: {
+      '/signUp': controller.signUp
     }
   };
 

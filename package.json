@@ -1,7 +1,7 @@
 {
   "name": "react-chat-client",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "https://github.com/dnp1204/react-chat-client.git",
   "author": "Doanh Pham <doanhpham1995@gmail.com>",
   "license": "MIT",
@@ -10,8 +10,8 @@
     "npm": "5.6.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
+    "start": "node server.js",
+    "server": "nodemon server.js",
     "client": "npm run start --prefix _client",
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
   },
@@ -22,7 +22,10 @@
     "concurrently": "^3.6.0",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
+    "express-flash": "^0.0.2",
+    "express-validator": "^5.2.0",
     "lodash": "^4.17.10",
+    "lusca": "^1.6.0",
     "mongoose": "^5.2.1",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.5",

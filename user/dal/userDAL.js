@@ -9,12 +9,23 @@ const createUser = data => {
       const user = await User.create(data);
       resolve(user);
     } catch (err) {
-      userLogger.error(err);
+      reject(err);
+    }
+  });
+};
+
+const findUserByEmail = email => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const existingUser = await User.findOne({ email });
+      resolve(existingUser);
+    } catch (err) {
       reject(err);
     }
   });
 };
 
 module.exports = {
-  createUser
+  createUser,
+  findUserByEmail
 };

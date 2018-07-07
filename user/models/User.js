@@ -23,7 +23,7 @@ const userSchema = new Schema(
     active: { type: Boolean, default: false }
   },
   {
-    timestamps: { createdAt: true, updatedAt: true },
+    timestamps: true,
     toObject: { virtuals: true },
     toJSON: { virtuals: true }
   }

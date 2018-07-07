@@ -12,9 +12,13 @@ const {
 const createLogger = labelText => {
   const logger = winston.createLogger({
     transports: [
-      new File({ filename: 'error.log', level: 'error', maxsize: 100 * 1024 }),
       new File({
-        filename: 'combined.log',
+        filename: 'log/error.log',
+        level: 'error',
+        maxsize: 100 * 1024
+      }),
+      new File({
+        filename: 'log/combined.log',
         level: 'info',
         maxsize: 100 * 1024
       })

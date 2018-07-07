@@ -53,6 +53,6 @@ const createLogger = labelText => {
 module.exports = {
   logger: createLogger,
   appLogger: createLogger('app'),
-  authLogger: createLogger('auth-module'),
+  userLogger: createLogger('user-module'),
   chatLogger: createLogger('chat-module')
 };

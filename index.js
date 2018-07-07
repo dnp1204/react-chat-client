@@ -1,9 +1,9 @@
 const { appLogger } = require('./utils/logger');
 const { server, app, io } = require('./app');
-const authentication = require('./authentication');
+const user = require('./user');
 const chat = require('./chat');
 
-authentication(app);
+user(app);
 chat(io);
 
 // io.of('/').on('connection', socket => {});

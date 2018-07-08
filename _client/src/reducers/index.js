@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 import authReducer from './authReducer';
-import systemSettingsReducer from './systemSettingsReducer';
 import friendListReducer from './friendListReducer';
 import messagesReducer from './messagesReducer';
 import selectFriendReducer from './selectFriendReducer';
+import systemSettingsReducer from './systemSettingsReducer';
 
 export default combineReducers({
+  auth: authReducer,
+  form: formReducer,
   friendList: friendListReducer,
-  selectFriend: selectFriendReducer,
   friendMessages: messagesReducer,
-  systemSettings: systemSettingsReducer,
-  auth: authReducer
+  selectFriend: selectFriendReducer,
+  systemSettings: systemSettingsReducer
 });

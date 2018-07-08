@@ -22,6 +22,17 @@ const { server, app, io } = require('./app');
 user(app);
 chat(io);
 
+app.use((err, req, res, next) => {
+  if (err) {
+    const { status, message, logger, logMessage } = err;
+    if (logger && typeof logger === 'function') {
+      logger(logMessage);
+    }
+    res.status(status).send({ message });
+  }
+  next();
+});
+
 // io.of('/').on('connection', socket => {});
 
 server.listen(app.get('port'), err => {

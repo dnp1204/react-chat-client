@@ -1,6 +1,7 @@
 const passport = require('passport');
 const { createUser, findUserByEmail } = require('../services/userService');
 const { userLogger } = require('../../utils/logger');
+const helper = require('../../utils/helper');
 
 const signUp = async (req, res, next) => {
   const { email, password } = req.body;
@@ -18,15 +19,22 @@ const signUp = async (req, res, next) => {
 
   const errors = req.validationErrors();
   if (errors) {
-    userLogger.error(JSON.stringify(errors));
-    return res.status(422).json(errors);
+    return next(
+      helper.createError('Invalid input', 400, userLogger.info, 'Invalid input')
+    );
   }
 
   try {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
-      userLogger.debug(`User with email ${email} is already exists`);
-      return res.status(422).send({ error: 'Email is in use' });
+      return next(
+        helper.createError(
+          'Email is in use',
+          422,
+          userLogger.debug,
+          `User with email ${email} is already exists`
+        )
+      );
     }
 
     try {
@@ -51,43 +59,64 @@ const logIn = (req, res, next) => {
 
   const errors = req.validationErrors();
   if (errors) {
-    userLogger.error(JSON.stringify(errors));
-    return res.status(422).json(errors);
+    return next(
+      helper.createError(
+        'Invalid input',
+        400,
+        userLogger.debug,
+        'Invalid input'
+      )
+    );
   }
 
   passport.authenticate('local', (err, user, info) => {
     if (err) {
-      userLogger.error(err);
-      return next(err);
+      return next(
+        helper.createError(
+          err.message,
+          err.status,
+          userLogger.error,
+          err.message
+        )
+      );
     }
 
     if (!user) {
-      userLogger.debug(JSON.stringify(info));
-      return res.redirect('/login');
+      return next(
+        helper.createError(info.message, 404, userLogger.debug, info.message)
+      );
     }
 
     req.logIn(user, err => {
       if (err) {
-        userLogger.error(err);
-        return next(err);
+        return next(
+          helper.createError(err.message, 404, userLogger.debug, err.message)
+        );
       }
 
       userLogger.debug(JSON.stringify(info));
-      res.send({ message: 'Success! You are signed in' });
+      res
+        .status(200)
+        .send({ message: 'Success! You are signed in', redirectUrl: '/' });
     });
   })(req, res, next);
 };
 
-const getUser = (req, res) => {
-  userLogger.debug(`Get user`);
-  res.json(req.user);
+const getUser = (req, res, next) => {
+  if (req.user) {
+    userLogger.debug(`Get user id ${req.user._id}`);
+    res.JSON(req.user);
+  } else {
+    next(helper.createError('You have not logged in', 400));
+  }
 };
 
 const signOut = (req, res) => {
   userLogger.debug(`User sign out`);
   req.logout();
-
-  res.redirect('/login');
+  res
+    .status(200)
+    .send({ message: 'Success! You are logged out', redirectUrl: '/login' });
 };
 
 module.exports = {

@@ -1,12 +1,39 @@
 import './Login.scss';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
 
+import { login } from '../../actions';
 import LinkWithIcon from '../../components/elements/icon/LinkWithIcon';
+import { email, required } from '../../utils/fieldValidation';
 
 class Login extends Component {
+  renderField = ({ input, placeholder, type, meta: { touched, error } }) => {
+    return (
+      <div>
+        {touched && (error && <span className="form-has-error">{error}</span>)}
+        <input
+          {...input}
+          className={`form-control ${
+            touched && error ? 'form-error-control' : ''
+          }`}
+          placeholder={placeholder}
+          type={type}
+        />
+      </div>
+    );
+  };
+
+  handleSubmit = value => {
+    console.log(value);
+    this.props.login(value, this.props.reset);
+  };
+
   render() {
+    const { handleSubmit, submitting } = this.props;
+
     return (
       <div className="app-login-page">
         <div className="login-page-container">
@@ -25,14 +52,39 @@ class Login extends Component {
             <div className="between">OR</div>
             <div className="split-line" />
           </div>
-          <div className="form-group">
-            <input className="form-control" placeholder="Email" />
-            <input className="form-control" placeholder="Password" />
-          </div>
+          <form
+            className="form-group"
+            onSubmit={handleSubmit(this.handleSubmit)}
+          >
+            <Field
+              name="email"
+              type="text"
+              component={this.renderField}
+              placeholder="Email"
+              validate={[required, email]}
+            />
+            <Field
+              name="password"
+              type="text"
+              component={this.renderField}
+              placeholder="Password"
+              validate={[required]}
+            />
+          </form>
           <div className="button-container">
-            <button className="btn btn-block btn-primary">Log In</button>
+            <button
+              type="submit"
+              onClick={handleSubmit(this.handleSubmit)}
+              disabled={submitting}
+              className="btn btn-block btn-primary"
+            >
+              Log In
+            </button>
             <Link to="/signup">
-              <button className="btn btn-block btn-default">
+              <button
+                disabled={submitting}
+                className="btn btn-block btn-default"
+              >
                 Create New Account
               </button>
             </Link>
@@ -43,4 +95,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default reduxForm({ form: 'loginForm' })(
+  connect(
+    null,
+    { login }
+  )(Login)
+);

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { fetchUser } from '../actions';
 import AuthGuard from '../components/hoc/AuthGuard';
 import Login from './login/Login';
 import MainScene from './main/MainScene';
@@ -40,7 +38,4 @@ class App extends Component {
   }
 }
 
-export default connect(
-  null,
-  { fetchUser }
-)(App);
+export default App;

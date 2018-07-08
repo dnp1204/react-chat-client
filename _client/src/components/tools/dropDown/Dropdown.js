@@ -7,14 +7,14 @@ class Dropdown extends Component {
   state = { show: false, clickedTarget: null };
 
   componentDidMount() {
-    window.addEventListener('click', this.onClickHandler.bind(this));
+    window.addEventListener('click', this.onClickHandler);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.onClickHandler.bind(this));
+    window.removeEventListener('click', this.onClickHandler);
   }
 
-  onClickHandler(event) {
+  onClickHandler = event => {
     const { hideWhenClickOnDropDown } = this.props;
     let container = ReactDOM.findDOMNode(this);
 
@@ -39,7 +39,7 @@ class Dropdown extends Component {
     } else {
       this.setState({ show: false });
     }
-  }
+  };
 
   renderDropDown() {
     if (this.state.show) {

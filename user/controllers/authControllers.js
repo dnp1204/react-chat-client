@@ -79,12 +79,8 @@ const logIn = (req, res, next) => {
 };
 
 const getUser = (req, res) => {
-  if (req.user) {
-    userLogger.debug(`Get user`);
-    return res.json(req.user);
-  }
-
-  res.redirect('/');
+  userLogger.debug(`Get user`);
+  return res.json(req.user);
 };
 
 const signOut = (req, res) => {

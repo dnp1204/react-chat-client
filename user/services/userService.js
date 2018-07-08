@@ -38,6 +38,8 @@ const findUserById = id => {
 const getAllFriends = id => {
   return new Promise(async (resolve, reject) => {
     try {
+      const user = await User.findById(id).populate('friends');
+      resolve(user.friends);
     } catch (err) {
       reject(err);
     }

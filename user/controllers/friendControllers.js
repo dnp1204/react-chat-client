@@ -1,7 +1,11 @@
 const userService = require('../services/userService');
 const { userLogger } = require('../../utils/logger');
 
-const getAllFriends = (req, res, next) => {};
+const getAllFriends = async (req, res, next) => {
+  const userFriends = await userService.getAllFriends(req.user._id);
+  userLogger.debug(`Get all friends of user ${JSON.stringify(userFriends)}`);
+  res.send({ friends: userFriends });
+};
 
 const addFriend = async (req, res, next) => {
   const { id } = req.params;

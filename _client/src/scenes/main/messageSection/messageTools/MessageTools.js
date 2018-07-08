@@ -37,28 +37,37 @@ class MessageTools extends Component {
     const size = 'lg';
     const iconArray = [
       {
-        iconName: 'file-image-o',
+        iconName: 'file-image',
         size,
         color,
         showComponentWhenClick: this.renderImagePicker(),
         componentIsDropdown: false,
-        onClickHandler: this.onImageIconClick.bind(this)
+        onClickHandler: this.onImageIconClick.bind(this),
+        type: 'regular'
       },
       {
-        iconName: 'smile-o',
+        iconName: 'smile',
         size,
         color,
         showComponentWhenClick: this.renderIconPicker(),
-        componentIsDropdown: true
+        componentIsDropdown: true,
+        iconType: 'regular'
       },
       {
         iconName: 'microphone',
         size,
         color,
         showComponentWhenClick: this.renderRecorder(),
-        componentIsDropdown: true
+        componentIsDropdown: true,
+        iconType: 'solid'
       },
-      { iconName: 'camera', size, color, componentIsDropdown: false }
+      {
+        iconName: 'camera',
+        size,
+        color,
+        componentIsDropdown: false,
+        iconType: 'solid'
+      }
     ];
 
     return (

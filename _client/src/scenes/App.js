@@ -9,31 +9,32 @@ import SignUp from './signUp/SignUp';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <AuthGuard
-                needAuth
-                redirectTo="/login"
-                render={() => <MainScene />}
-              />
-            )}
-          />
-          <Route
-            path="/login"
-            render={() => <AuthGuard redirectTo="/" render={() => <Login />} />}
-          />
-          <Route
-            path="/signup"
-            render={() => (
-              <AuthGuard redirectTo="/" render={() => <SignUp />} />
-            )}
-          />
-        </div>
-      </BrowserRouter>
+      <MainScene />
+      // <BrowserRouter>
+      //   <div>
+      //     <Route
+      //       exact
+      //       path="/"
+      //       render={() => (
+      //         <AuthGuard
+      //           needAuth
+      //           redirectTo="/login"
+      //           render={() => <MainScene />}
+      //         />
+      //       )}
+      //     />
+      //     <Route
+      //       path="/login"
+      //       render={() => <AuthGuard redirectTo="/" render={() => <Login />} />}
+      //     />
+      //     <Route
+      //       path="/signup"
+      //       render={() => (
+      //         <AuthGuard redirectTo="/" render={() => <SignUp />} />
+      //       )}
+      //     />
+      //   </div>
+      // </BrowserRouter>
     );
   }
 }

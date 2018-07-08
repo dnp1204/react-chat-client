@@ -5,15 +5,9 @@ import './Login.scss';
 class Login extends Component {
   render() {
     return (
-      <div className={`app-login-page ${this.props.hidden}`}>
+      <div className="app-login-page">
         <div className="login-page-container">
           <h1 className="logo">React Messenger</h1>
-          <LinkWithIcon
-            href="/auth/google"
-            iconName="google"
-            backgroundColor="red"
-            text="Log in with Google"
-          />
           <LinkWithIcon
             href="/auth/facebook"
             iconName="facebook"
@@ -27,15 +21,9 @@ class Login extends Component {
           </div>
           <div className="form-group">
             <input className="form-control" placeholder="Email" />
-            <input className="form-control" placeholder="First Name" />
-            <input className="form-control" placeholder="Last Name" />
             <input className="form-control" placeholder="Password" />
-            <input
-              className="form-control"
-              placeholder="Confirmation Password"
-            />
           </div>
-          <button className="btn btn-block btn-primary">Sign Up</button>
+          <button className="btn btn-block btn-primary">Log In</button>
         </div>
       </div>
     );

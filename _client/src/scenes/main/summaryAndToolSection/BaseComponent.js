@@ -22,16 +22,15 @@ class BaseComponent extends Component {
         <div className="title">
           <TextAndRightIcon
             text={componentName}
-            iconName="chevron-down"
+            iconName="angle-down"
+            iconType="solid"
             isCursorPointer
             iconClassName={
               showChild
                 ? 'move-down-90deg-animation'
                 : 'move-left-90deg-animation'
             }
-            onIconClickHandler={() =>
-               onIconClickHandler(!showChild)
-            }
+            onIconClickHandler={() => onIconClickHandler(!showChild)}
           />
         </div>
         <div className="children">

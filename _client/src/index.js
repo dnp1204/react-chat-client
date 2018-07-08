@@ -1,4 +1,4 @@
-import '../node_modules/font-awesome/css/font-awesome.min.css';
+import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 import './styles/index.scss';
 import 'emoji-mart/css/emoji-mart.css';
 

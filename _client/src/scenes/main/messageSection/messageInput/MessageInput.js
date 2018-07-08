@@ -40,12 +40,6 @@ class MessageInput extends Component {
           }
         }
 
-        this.props.socket.emit(
-          socketEvent.NEW_MESSAGE,
-          JSON.stringify({
-            message: contentArrayWithoutLongWord.join(' ')
-          })
-        );
         this.props.sendMessage(contentArrayWithoutLongWord.join(' '));
         this.props.onNewMessageHandler();
         this.setState({ messageText: '' });

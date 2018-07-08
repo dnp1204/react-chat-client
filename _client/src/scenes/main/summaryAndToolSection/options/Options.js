@@ -32,6 +32,7 @@ class Options extends Component {
     const iconTools = [
       {
         iconName: 'search',
+        iconType: 'solid',
         isCursorPointer: true,
         text: OptionTools.SEARCH_IN_CONVERSATION,
         onClickHandler: () => {
@@ -41,12 +42,19 @@ class Options extends Component {
     ];
 
     return _.map(iconTools, icon => {
-      const { iconName, isCursorPointer, text, onClickHandler } = icon;
+      const {
+        iconName,
+        iconType,
+        isCursorPointer,
+        text,
+        onClickHandler
+      } = icon;
       return (
         <div key={iconName} className="element">
           <IconWithNextText
             iconColor={systemColor}
             iconName={iconName}
+            iconType={iconType}
             isCursorPointer={isCursorPointer}
             text={text}
             onClickHandler={onClickHandler}
@@ -60,29 +68,33 @@ class Options extends Component {
     const { systemColor } = this.props;
     const iconTools = [
       {
-        iconName: 'pencil',
+        iconName: 'pencil-alt',
+        iconType: 'solid',
         isCursorPointer: true,
         text: OptionTools.EDIT_NICK_NAME
       },
       {
         iconName: 'paint-brush',
+        iconType: 'solid',
         isCursorPointer: true,
         text: OptionTools.CHANGE_COLOR
       },
       {
-        iconName: 'smile-o',
+        iconName: 'smile',
+        iconType: 'regular',
         isCursorPointer: true,
         text: OptionTools.CHANGE_EMOJI
       },
       {
-        iconName: 'bell-o',
+        iconName: 'bell',
+        iconType: 'regular',
         isCursorPointer: true,
         text: OptionTools.NOTIFICATIONS
       }
     ];
 
     return _.map(iconTools, icon => {
-      const { iconName, isCursorPointer, text } = icon;
+      const { iconName, iconType, isCursorPointer, text } = icon;
       return (
         <CustomModal
           key={iconName}
@@ -91,6 +103,7 @@ class Options extends Component {
               <IconWithNextText
                 iconColor={systemColor}
                 iconName={iconName}
+                iconType={iconType}
                 isCursorPointer={isCursorPointer}
                 text={text}
               />
@@ -122,4 +135,7 @@ class Options extends Component {
   }
 }
 
-export default connect(null, { changeShowSearchInput })(Options);
+export default connect(
+  null,
+  { changeShowSearchInput }
+)(Options);

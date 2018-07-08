@@ -33,6 +33,7 @@ class SummaryAndTool extends Component {
             color={Color.BLACK_OPACITY_03}
             size="lg"
             isCursorPointer
+            iconType="solid"
           />
         </Dropdown>
       </div>
@@ -86,7 +87,10 @@ function mapStateToProps(state) {
   return { selectedFriend: state.selectFriend };
 }
 
-export default connect(mapStateToProps, {
-  changeShowOptions,
-  changeShowPhotos
-})(SummaryAndTool);
+export default connect(
+  mapStateToProps,
+  {
+    changeShowOptions,
+    changeShowPhotos
+  }
+)(SummaryAndTool);

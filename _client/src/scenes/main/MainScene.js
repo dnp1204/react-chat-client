@@ -27,10 +27,11 @@ class MainScene extends Component {
       showSummaryAndToolSection
     } = this.props.systemSettings;
     const iconArray = [
-      { iconName: 'phone', color: systemColor },
-      { iconName: 'video-camera', color: systemColor },
+      // { iconName: 'phone', iconType: 'solid', color: systemColor },
+      { iconName: 'video', iconType: 'solid', color: systemColor },
       {
         iconName: 'info-circle',
+        iconType: 'solid',
         color: systemColor,
         onClickHandler: () => {
           this.props.changeShowSummaryAndToolSection(
@@ -56,6 +57,7 @@ class MainScene extends Component {
                 optionClassName="hide-on-sm"
                 isCursorPointer
                 iconName="cog"
+                iconType="solid"
                 color={systemColor}
               />
             }
@@ -63,7 +65,8 @@ class MainScene extends Component {
             rightComponent={
               <Icon
                 isCursorPointer
-                iconName="pencil-square-o"
+                iconName="edit"
+                iconType="regular"
                 color={systemColor}
               />
             }

@@ -1,7 +1,9 @@
 #message-section {
   height: calc(100vh - 59px);
 
-  .message-section--conversation, .message-section--input, .message-section--tool {
+  .message-section--conversation,
+  .message-section--input,
+  .message-section--tool {
     padding: 0px 20px 0px 10px;
   }
 
@@ -24,19 +26,21 @@
       outline: none;
     }
 
-    ::-webkit-input-placeholder { 
+    ::-webkit-input-placeholder {
       color: rgba(0, 0, 0, 0.2);
       font-size: 15px;
     }
 
-    ::-moz-placeholder { 
+    ::-moz-placeholder {
       color: rgba(0, 0, 0, 0.2);
       font-size: 15px;
     }
   }
-  
+
   .message-section--tool {
     height: 30px;
     padding-left: 0px;
+    margin-bottom: 5px;
+    margin-top: 6px;
   }
 }

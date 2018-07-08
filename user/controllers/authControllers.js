@@ -80,7 +80,7 @@ const logIn = (req, res, next) => {
 
 const getUser = (req, res) => {
   userLogger.debug(`Get user`);
-  return res.json(req.user);
+  res.json(req.user);
 };
 
 const signOut = (req, res) => {

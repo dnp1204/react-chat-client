@@ -1,5 +1,5 @@
 const passport = require('passport');
-const { createUser, findUserByEmail } = require('../dal/userDAL');
+const { createUser, findUserByEmail } = require('../services/userService');
 const { userLogger } = require('../../utils/logger');
 
 const signUp = async (req, res, next) => {
@@ -30,9 +30,10 @@ const signUp = async (req, res, next) => {
     }
 
     try {
-      const newUser = await createUser({ email, password });
+      await createUser(req.body);
       userLogger.debug(`Create new user with email ${email}`);
-      res.send({ success: true });
+
+      res.redirect('/');
     } catch (err) {
       userLogger.error(err);
       next(err);
@@ -43,7 +44,7 @@ const signUp = async (req, res, next) => {
   }
 };
 
-const signIn = (req, res, next) => {
+const logIn = (req, res, next) => {
   req.assert('email', 'You must provide valid email').isEmail();
   req.assert('password', 'You must provide valid password').len({ min: 6 });
   req.sanitize('email').normalizeEmail();
@@ -62,7 +63,7 @@ const signIn = (req, res, next) => {
 
     if (!user) {
       userLogger.debug(JSON.stringify(info));
-      return res.redirect('/signin');
+      return res.redirect('/login');
     }
 
     req.logIn(user, err => {
@@ -79,6 +80,7 @@ const signIn = (req, res, next) => {
 
 const getUser = (req, res) => {
   if (req.user) {
+    userLogger.debug(`Get user`);
     return res.json(req.user);
   }
 
@@ -86,13 +88,15 @@ const getUser = (req, res) => {
 };
 
 const signOut = (req, res) => {
+  userLogger.debug(`User sign out`);
   req.logout();
-  res.json(req.user);
+
+  res.redirect('/login');
 };
 
 module.exports = {
   getUser,
-  signIn,
+  logIn,
   signOut,
   signUp
 };

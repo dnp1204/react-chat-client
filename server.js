@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
-const config = require('./config');
 const { appLogger } = require('./utils/logger');
-const user = require('./user');
 const chat = require('./chat');
-
-require('./services/passport');
+const config = require('./config');
+const user = require('./user');
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(

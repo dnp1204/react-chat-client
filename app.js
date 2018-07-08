@@ -14,7 +14,6 @@ const { appLogger } = require('./utils/logger');
 const config = require('./config');
 
 const app = express();
-require('./services/passport');
 app.set('port', process.env.PORT || 5000);
 
 app.use(cors());

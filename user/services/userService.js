@@ -35,8 +35,33 @@ const findUserById = id => {
   });
 };
 
+const getAllFriends = id => {
+  return new Promise(async (resolve, reject) => {
+    try {
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+const addFriend = (userId, friendId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const promise = await Promise.all([
+        User.findByIdAndUpdate(userId, { $push: { friends: friendId } }),
+        User.findByIdAndUpdate(friendId, { $push: { friends: userId } })
+      ]);
+      resolve(promise[1]);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 module.exports = {
+  addFriend,
   createUser,
   findUserByEmail,
-  findUserById
+  findUserById,
+  getAllFriends
 };

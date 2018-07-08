@@ -1,5 +1,5 @@
 const routeHelper = require('../../utils/routesHelper');
-const controller = require('../controllers');
+const controller = require('../controllers/authControllers');
 
 module.exports = () => {
   let routes = {
@@ -9,7 +9,7 @@ module.exports = () => {
     },
     post: {
       '/signup': controller.signUp,
-      '/signin': controller.signIn
+      '/login': controller.logIn
     }
   };
 

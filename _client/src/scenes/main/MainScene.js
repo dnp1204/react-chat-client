@@ -42,7 +42,6 @@ class MainScene extends Component {
 
     let toolStyle = {};
     if (!showSummaryAndToolSection) {
-      console.log('hello');
       toolStyle = { visibility: 'hidden' };
     }
 
@@ -111,7 +110,10 @@ function mapStateToProps(state) {
   return { systemSettings: state.systemSettings };
 }
 
-export default connect(mapStateToProps, {
-  fetchSystemSettings,
-  changeShowSummaryAndToolSection
-})(MainScene);
+export default connect(
+  mapStateToProps,
+  {
+    fetchSystemSettings,
+    changeShowSummaryAndToolSection
+  }
+)(MainScene);

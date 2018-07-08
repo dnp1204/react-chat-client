@@ -25,6 +25,7 @@ export default function(state = initialState, action) {
     case SEND_MESSAGE:
       return { ...state, messages: [...state.messages, action.payload] };
     case FETCH_MESSAGES:
+      return state;
     default:
       return state;
   }

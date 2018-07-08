@@ -19,6 +19,8 @@ class MainScene extends Component {
   }
 
   render() {
+    const { fullName } = this.props.user;
+
     const {
       systemColor,
       showOptions,
@@ -78,7 +80,7 @@ class MainScene extends Component {
         <div className="section section__right">
           <Header
             className="second-header"
-            title="Messenger"
+            title={fullName}
             subTitle="Active on Messenger"
             rightComponent={
               <MultipleIconRow className="hide-on-sm" iconArray={iconArray} />
@@ -110,7 +112,7 @@ class MainScene extends Component {
 }
 
 function mapStateToProps(state) {
-  return { systemSettings: state.systemSettings };
+  return { user: state.auth, systemSettings: state.systemSettings };
 }
 
 export default connect(

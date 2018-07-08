@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { socketEvent } from '../../../../utils/constants';
+// import { socketEvent } from '../../../../utils/constants';
 
 class MessageInput extends Component {
   state = { messageText: '' };

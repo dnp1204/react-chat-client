@@ -28,7 +28,10 @@ class Login extends Component {
 
   handleSubmit = value => {
     console.log(value);
-    this.props.login(value, this.props.reset);
+    this.props.login(value, url => {
+      this.props.reset();
+      this.props.history.push(url);
+    });
   };
 
   render() {

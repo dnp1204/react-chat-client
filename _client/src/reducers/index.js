@@ -6,6 +6,7 @@ import friendListReducer from './friendListReducer';
 import messagesReducer from './messagesReducer';
 import selectFriendReducer from './selectFriendReducer';
 import systemSettingsReducer from './systemSettingsReducer';
+import uiReducer from './uiReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   friendList: friendListReducer,
   friendMessages: messagesReducer,
   selectFriend: selectFriendReducer,
-  systemSettings: systemSettingsReducer
+  systemSettings: systemSettingsReducer,
+  ui: uiReducer
 });

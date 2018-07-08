@@ -1,30 +1,36 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { fetchUser } from '../../actions';
-
 class AuthGuard extends React.PureComponent {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
   render() {
-    const { needAuth, auth, redirectTo, render } = this.props;
+    const { needAuth, isAuthenticated, redirectTo, render } = this.props;
 
     if (needAuth) {
-      return auth ? render() : <Redirect to={{ pathname: redirectTo }} />;
+      return isAuthenticated ? (
+        render()
+      ) : (
+        <Redirect to={{ pathname: redirectTo }} />
+      );
     } else {
-      return !auth ? render() : <Redirect to={{ pathname: redirectTo }} />;
+      return !isAuthenticated ? (
+        render()
+      ) : (
+        <Redirect to={{ pathname: redirectTo }} />
+      );
     }
   }
 }
 
-function mapStateToProps(state) {
-  return { auth: state.auth };
-}
+AuthGuard.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  needAuth: PropTypes.bool,
+  redirectTo: PropTypes.string,
+  render: PropTypes.func.isRequired
+};
 
-export default connect(
-  mapStateToProps,
-  { fetchUser }
-)(AuthGuard);
+AuthGuard.defaultProps = {
+  redirectTo: '/login'
+};
+
+export default AuthGuard;

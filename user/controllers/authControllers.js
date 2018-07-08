@@ -105,9 +105,9 @@ const logIn = (req, res, next) => {
 const getUser = (req, res, next) => {
   if (req.user) {
     userLogger.debug(`Get user id ${req.user._id}`);
-    res.JSON(req.user);
+    res.json(req.user);
   } else {
-    next(helper.createError('You have not logged in', 400));
+    res.send(null);
   }
 };
 

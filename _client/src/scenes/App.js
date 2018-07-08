@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import AuthGuard from '../components/hoc/AuthGuard';
+// import AuthGuard from '../components/hoc/AuthGuard';
 import Login from './login/Login';
 import MainScene from './main/MainScene';
 import SignUp from './signUp/SignUp';
@@ -9,7 +9,13 @@ import SignUp from './signUp/SignUp';
 class App extends Component {
   render() {
     return (
-      <MainScene />
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" component={MainScene} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
+        </div>
+      </BrowserRouter>
       // <BrowserRouter>
       //   <div>
       //     <Route

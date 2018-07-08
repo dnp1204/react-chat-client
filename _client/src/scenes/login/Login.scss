@@ -1,30 +1,24 @@
 @import 'src/styles/variables.scss';
 
-.hidden {
-  display: none;
-}
-
 .app-login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: $bg-color;
 
   .login-page-container {
     width: 40%;
     background-color: #fff;
-    padding: 10px 70px 50px 70px;
+    height: fit-content;
+    padding: 60px;
+    box-shadow: 3px 5px 10px 0px #ccc;
 
-    h1 {
+    .headline {
       text-align: center;
-    }
-
-    input {
-      height: 45px;
-      margin-bottom: 5px;
-      background-color: $bg-color;
-      border: 0.2px solid $border-color !important;
-      outline: none !important;
+      font-family: 'Lobster', cursive;
+      font-size: 55px;
+      margin-bottom: 45px;
     }
 
     .split-line-container {
@@ -44,6 +38,20 @@
         flex-shrink: 1;
         height: 1px;
         background-color: #000;
+      }
+    }
+
+    .form-group {
+      margin: 20px 0px;
+    }
+
+    .button-container {
+      button {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

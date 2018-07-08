@@ -1,5 +1,15 @@
 $border-color: rgba(0, 0, 0, 0.3);
+$border-error-color: #e97f89;
 $bg-color: #f6f6f6;
 
 $primary: #318dee;
+$darken-primary: darken(
+  $color: $primary,
+  $amount: 7
+);
+$default: #fff;
+$darken-default: darken(
+  $color: $default,
+  $amount: 7
+);
 $danger: #ec3345;

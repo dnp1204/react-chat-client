@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { fetchUser } from '../actions';
+import { fetchUser, fetchFriendList } from '../actions';
 import AuthGuard from '../components/hoc/AuthGuard';
 import Loading from '../components/tools/spinner/Loading';
 import Login from './login/Login';
@@ -12,6 +12,12 @@ import SignUp from './signUp/SignUp';
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.auth && this.props.auth) {
+      this.props.fetchFriendList();
+    }
   }
 
   render() {
@@ -66,10 +72,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth, ui: state.ui };
+  return { auth: state.auth, friendList: state.friendList, ui: state.ui };
 }
 
 export default connect(
   mapStateToProps,
-  { fetchUser }
+  { fetchUser, fetchFriendList }
 )(App);

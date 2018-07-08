@@ -18,8 +18,18 @@ class MessageSearch extends Component {
         className="message-section__search flex--row align__center justify--space__between border-bottom"
       >
         <div className="align__center justify--space__between search-box-container flex--row">
-          <Icon isCursorPointer iconName="angle-up" style={iconStyle} />
-          <Icon isCursorPointer iconName="angle-down" style={iconStyle} />
+          <Icon
+            isCursorPointer
+            iconName="angle-up"
+            iconType="solid"
+            style={iconStyle}
+          />
+          <Icon
+            isCursorPointer
+            iconName="angle-down"
+            iconType="solid"
+            style={iconStyle}
+          />
           <Search className="search-box-container--search-box" />
         </div>
         <NoBorderButton
@@ -31,4 +41,7 @@ class MessageSearch extends Component {
   }
 }
 
-export default connect(null, { changeShowSearchInput })(MessageSearch);
+export default connect(
+  null,
+  { changeShowSearchInput }
+)(MessageSearch);

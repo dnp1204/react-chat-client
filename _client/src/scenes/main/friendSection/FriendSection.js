@@ -10,8 +10,8 @@ class FriendSection extends Component {
   renderFriendList() {
     return _.map(this.props.friendList, friend => {
       const {
-        _id,
-        avatar,
+        id,
+        avatarUrl,
         firstName,
         lastName,
         lastMessage,
@@ -21,8 +21,8 @@ class FriendSection extends Component {
       return (
         <FriendContainer
           classNameForName={'hide-on-xs'}
-          key={_id}
-          avatar={avatar}
+          key={id}
+          avatar={avatarUrl}
           firstName={firstName}
           lastName={lastName}
           subTitleComponent={
@@ -34,7 +34,7 @@ class FriendSection extends Component {
             </p>
           }
           onSelectFriend={() => this.props.selectFriend(friend)}
-          isActive={this.props.selectedFriend._id === _id}
+          isActive={this.props.selectedFriend.id === id}
         />
       );
     });
@@ -58,4 +58,7 @@ function mapStateToProps(state) {
   return { friendList: state.friendList, selectedFriend: state.selectFriend };
 }
 
-export default connect(mapStateToProps, { selectFriend })(FriendSection);
+export default connect(
+  mapStateToProps,
+  { selectFriend }
+)(FriendSection);

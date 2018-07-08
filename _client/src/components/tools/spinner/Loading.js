@@ -1,12 +1,12 @@
 import './Loading.scss';
 import React from 'react';
-import { RotateLoader } from 'react-spinners';
+import { FadeLoader } from 'react-spinners';
 
 const Loading = () => {
   return (
     <div className="spinner-container">
       <div className="spinner">
-        <RotateLoader color={'#A5A2A6'} />
+        <FadeLoader color={'#318dee'} />
       </div>
     </div>
   );

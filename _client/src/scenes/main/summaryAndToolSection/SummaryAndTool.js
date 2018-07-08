@@ -42,7 +42,7 @@ class SummaryAndTool extends Component {
 
   render() {
     const {
-      avatar,
+      avatarUrl,
       firstName,
       lastName,
       lastSendMessageDate
@@ -55,7 +55,7 @@ class SummaryAndTool extends Component {
         <div className="tool--section tool--header border-bottom">
           <FriendContainer
             nameStyle={{ color: Color.DARK_BLUE }}
-            avatar={avatar}
+            avatar={avatarUrl}
             firstName={firstName}
             lastName={lastName}
             subTitleComponent={

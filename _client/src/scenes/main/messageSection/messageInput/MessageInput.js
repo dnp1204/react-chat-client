@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// import { socketEvent } from '../../../../utils/constants';
+import { socketEvent } from '../../../../utils/constants';
 
 class MessageInput extends Component {
   state = { messageText: '' };
@@ -23,6 +23,8 @@ class MessageInput extends Component {
   }
 
   onKeyPressHandler(event) {
+    const { socket } = this.props;
+
     if (event.key === 'Enter') {
       event.preventDefault();
 
@@ -40,6 +42,10 @@ class MessageInput extends Component {
           }
         }
 
+        socket.emit(socketEvent.NEW_MESSAGE, {
+          socketId: socket.id,
+          message: contentArrayWithoutLongWord.join(' ')
+        });
         this.props.sendMessage(contentArrayWithoutLongWord.join(' '));
         this.props.onNewMessageHandler();
         this.setState({ messageText: '' });

@@ -5,12 +5,12 @@ export const login = (data, callback) => async dispatch => {
   dispatch({ type: LOADING, payload: true });
 
   try {
-    let request = await axios.post(`/api/login`, data);
-    const redirectUrl = request.data.redirectUrl;
+    await axios.post(`/api/login`, data);
 
     try {
-      request = await axios.get(`/api/getUser`);
-      callback(redirectUrl);
+      const request = await axios.get(`/api/getUser`);
+      dispatch({ type: FETCH_USER, payload: request.data });
+      callback();
     } catch (err) {
       console.log(err);
     } finally {

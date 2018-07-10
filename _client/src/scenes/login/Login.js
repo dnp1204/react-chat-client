@@ -10,6 +10,20 @@ import LinkWithIcon from '../../components/elements/icon/LinkWithIcon';
 import { email, required } from '../../utils/fieldValidation';
 
 class Login extends Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = event => {
+    if (event.keyCode === 13) {
+      this.props.dispatch(this.props.handleSubmit(this.handleSubmit));
+    }
+  };
+
   renderField = ({ input, placeholder, type, meta: { touched, error } }) => {
     return (
       <div>
@@ -27,11 +41,7 @@ class Login extends Component {
   };
 
   handleSubmit = value => {
-    console.log(value);
-    this.props.login(value, url => {
-      this.props.reset();
-      this.props.history.push(url);
-    });
+    this.props.login(value, this.props.reset);
   };
 
   render() {

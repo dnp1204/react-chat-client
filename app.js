@@ -12,6 +12,10 @@ const cors = require('cors');
 
 const { appLogger } = require('./utils/logger');
 const config = require('./config');
+const session = new cookieSession({
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  keys: [config.cookieKey]
+});
 
 const app = express();
 app.set('port', process.env.PORT || 5000);
@@ -20,12 +24,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use(
-  new cookieSession({
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    keys: [config.cookieKey]
-  })
-);
+app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -48,5 +47,6 @@ const io = socket(server);
 module.exports = {
   server,
   io,
-  app
+  app,
+  session
 };

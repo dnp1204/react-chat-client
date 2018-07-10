@@ -17,10 +17,10 @@ mongoose.connect(
   }
 );
 
-const { server, app, io } = require('./app');
+const { server, app, io, session } = require('./app');
 
 user(app);
-chat(io);
+chat(io, session);
 
 app.use((err, req, res, next) => {
   if (err) {

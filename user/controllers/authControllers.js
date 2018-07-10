@@ -94,6 +94,7 @@ const logIn = (req, res, next) => {
         );
       }
 
+      req.session.user = user;
       userLogger.debug(JSON.stringify(info));
       res
         .status(200)

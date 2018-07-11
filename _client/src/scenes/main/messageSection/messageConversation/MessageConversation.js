@@ -138,11 +138,12 @@ class MessageConversation extends PureComponent {
 
   render() {
     const { shouldScroll, onScrollToBottomFinishHandler } = this.props;
+    const isFirefox = typeof InstallTrigger !== 'undefined';
 
     return (
       <ScrollToBottom
         defaultOverflow={this.state.defaultOverflow}
-        hoverOverflowY="overlay"
+        hoverOverflowY={isFirefox ? 'scroll' : 'overlay'}
         shouldScroll={shouldScroll}
         onScrollToBottomFinishHandler={() => onScrollToBottomFinishHandler()}
       >

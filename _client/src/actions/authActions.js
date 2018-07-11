@@ -3,11 +3,16 @@ import axios from 'axios';
 
 const getUserAndConversations = async dispatch => {
   try {
-    const request = await axios.get(`/api/getUser`);
+    let request = await axios.get(`/api/getUser`);
     dispatch({ type: FETCH_USER, payload: request.data });
+    const { conversations } = request.data;
+    if (conversations.length > 0) {
+      const id = conversations[0].id;
+      request = await axios.get(`/api/conversation/${id}`);
+    }
     dispatch({
       type: FETCH_CONVERSATION_LIST,
-      payload: request.data.conversations
+      payload: { conversations, selectedConversation: request.data }
     });
   } catch (err) {
   } finally {

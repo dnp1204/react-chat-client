@@ -4,18 +4,23 @@ import {
   NEW_MESSAGE
 } from '../actions/types';
 
+const user = {
+  avatarUrl: '',
+  id: '',
+  firstName: '',
+  lastName: ''
+};
+
 const conversation = {
   _id: '',
   updatedAt: '',
-  users: [
+  users: [user],
+  contents: [
     {
-      avatarUrl: '',
       id: '',
-      firstName: '',
-      lastName: ''
+      sendByUser: user
     }
-  ],
-  contents: []
+  ]
 };
 
 const initialState = {
@@ -26,10 +31,9 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_CONVERSATION_LIST:
-      const conversations = action.payload;
       return {
-        selectedConversation: conversations[0] || conversation,
-        conversations
+        selectedConversation: action.payload.selectedConversation,
+        conversations: action.payload.conversations
       };
     case SELECT_CONVERSATION:
       return { ...state, selectedConversation: action.payload };

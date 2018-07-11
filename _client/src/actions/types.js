@@ -2,6 +2,7 @@ export const FETCH_USER = 'fetch_user';
 
 export const FETCH_CONVERSATION_LIST = 'fetch_conversation_list';
 export const SELECT_CONVERSATION = 'select_conversation';
+export const NEW_MESSAGE = 'new_message';
 
 export const FETCH_MESSAGES = 'fetch_messages';
 export const SEND_MESSAGE = 'send_message';

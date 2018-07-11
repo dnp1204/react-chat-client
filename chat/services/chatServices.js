@@ -40,10 +40,14 @@ const addNewMessage = async (userId, conversationId, content) => {
   return new Promise(async (resolve, reject) => {
     try {
       const message = await Message.create({ sendByUser: userId, content });
-      await Conversation.findByIdAndUpdate(conversationId, {
-        $push: { contents: message._id }
-      });
-      resolve(message);
+      const promise = await Promise.all([
+        Message.populate(message, { path: 'sendByUser' }),
+        Conversation.findByIdAndUpdate(conversationId, {
+          $push: { contents: message._id }
+        })
+      ]);
+
+      resolve(promise[0]);
     } catch (err) {
       reject(err);
     }

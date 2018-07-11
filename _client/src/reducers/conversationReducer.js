@@ -1,4 +1,8 @@
-import { FETCH_CONVERSATION_LIST, SELECT_CONVERSATION } from '../actions/types';
+import {
+  FETCH_CONVERSATION_LIST,
+  SELECT_CONVERSATION,
+  NEW_MESSAGE
+} from '../actions/types';
 
 const conversation = {
   _id: '',
@@ -29,6 +33,10 @@ export default function(state = initialState, action) {
       };
     case SELECT_CONVERSATION:
       return { ...state, selectedConversation: action.payload };
+    case NEW_MESSAGE:
+      const selectedConversation = state.selectedConversation;
+      selectedConversation.contents.push(action.payload);
+      return { ...state, selectedConversation };
     default:
       return state;
   }

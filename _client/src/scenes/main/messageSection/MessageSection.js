@@ -1,11 +1,11 @@
 import './MessageSection.scss';
 
-import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 
 import { socketEvent } from '../../../utils/constants';
+import { receiveMessage } from '../../../actions';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';
 import MessageTools from './messageTools/MessageTools';
@@ -38,7 +38,8 @@ class MessageSection extends Component {
     this.socket.emit('join', this.props.conversations.selectedConversation.id);
 
     this.socket.on(socketEvent.IN_MESSAGE, data => {
-      console.log(data);
+      this.props.receiveMessage(data);
+      this.setState({ recievedNewInput: true });
     });
   }
 
@@ -93,4 +94,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(MessageSection);
+export default connect(
+  mapStateToProps,
+  { receiveMessage }
+)(MessageSection);

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
-import ScrollToBottom from '../../../../components/tools/scrollToBottom/ScrollToBottom';
 import Resize from '../../../../components/tools/resize/Resize';
+import ScrollToBottom from '../../../../components/tools/scrollToBottom/ScrollToBottom';
 import { Color } from '../../../../utils/constants';
 import MessageBubble from '../messageBubble/MessageBubble';
 import MessageSearch from '../messageSearch/MessageSearch';

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SELECT_CONVERSATION, LOADING } from './types';
+import { SELECT_CONVERSATION, NEW_MESSAGE, LOADING } from './types';
 
 export const selectConversation = conversationId => async dispatch => {
   // dispatch({ type: LOADING, payload: true });
@@ -11,4 +11,8 @@ export const selectConversation = conversationId => async dispatch => {
   } finally {
     dispatch({ type: LOADING, payload: false });
   }
+};
+
+export const receiveMessage = message => {
+  return { type: NEW_MESSAGE, payload: message };
 };

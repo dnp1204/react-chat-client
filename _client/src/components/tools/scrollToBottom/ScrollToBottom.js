@@ -4,35 +4,42 @@ class ScrollToBottom extends Component {
   state = { hover: false };
 
   componentDidMount() {
-    let el = document.getElementById('__scroll-to-bottom-component');
-    let scrollHeight = el.scrollHeight;
-    el.scroll(scrollHeight, scrollHeight);
+    this.scrollToBottom();
   }
 
   componentDidUpdate() {
     if (this.props.shouldScroll) {
       this.scrollToBottom();
     }
+
+    if (this.props.scrollSmooth) {
+      this.scrollToBottomSmooth();
+    }
   }
 
   scrollToBottom() {
     let el = document.getElementById('__scroll-to-bottom-component');
-    // let scrollTop = el.scrollTop;
     let scrollHeight = el.scrollHeight;
-    // let clientHeight = el.clientHeight;
     el.scroll(scrollHeight, scrollHeight);
     this.props.onScrollToBottomFinishHandler();
+  }
 
-    // if (scrollTop + clientHeight < scrollHeight) {
-    //   let scrollInterval = setInterval(() => {
-    //     el.scroll(scrollTop, scrollTop + 10);
-    //     scrollTop += 10;
-    //     if (scrollTop + clientHeight > scrollHeight) {
-    //       clearInterval(scrollInterval);
-    //       this.props.onScrollToBottomFinishHandler();
-    //     }
-    //   }, 5);
-    // }
+  scrollToBottomSmooth() {
+    let el = document.getElementById('__scroll-to-bottom-component');
+    let scrollTop = el.scrollTop;
+    let scrollHeight = el.scrollHeight;
+    let clientHeight = el.clientHeight;
+
+    if (scrollTop + clientHeight < scrollHeight) {
+      let scrollInterval = setInterval(() => {
+        el.scroll(scrollTop, scrollTop + 30);
+        scrollTop += 30;
+        if (scrollTop + clientHeight > scrollHeight) {
+          clearInterval(scrollInterval);
+          this.props.onScrollToBottomFinishHandler();
+        }
+      }, 5);
+    }
   }
 
   render() {

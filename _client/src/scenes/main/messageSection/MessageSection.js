@@ -14,7 +14,7 @@ class MessageSection extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { recievedNewInput: false, emoji: '' };
+    this.state = { recievedNewInput: false, forceScroll: false, emoji: '' };
     this.socket = io('http://localhost:5000', {
       transports: ['websocket']
     });
@@ -38,7 +38,7 @@ class MessageSection extends Component {
         'join',
         this.props.conversations.selectedConversation.id
       );
-      this.setState({ recievedNewInput: true });
+      this.setState({ forceScroll: true });
     }
   }
 
@@ -47,7 +47,7 @@ class MessageSection extends Component {
   }
 
   onScrollToBottomFinishHandler() {
-    this.setState({ recievedNewInput: false });
+    this.setState({ recievedNewInput: false, forceScroll: false });
   }
 
   render() {
@@ -61,7 +61,8 @@ class MessageSection extends Component {
           showSearch={showSearch}
           bubleColor={this.props.systemColor}
           conversation={selectedConversation}
-          shouldScroll={this.state.recievedNewInput}
+          shouldScroll={this.state.forceScroll}
+          scrollSmooth={this.state.recievedNewInput}
           onScrollToBottomFinishHandler={() =>
             this.onScrollToBottomFinishHandler()
           }

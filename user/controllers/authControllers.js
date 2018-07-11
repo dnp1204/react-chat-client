@@ -40,8 +40,9 @@ const signUp = async (req, res, next) => {
     try {
       await createUser(req.body);
       userLogger.debug(`Create new user with email ${email}`);
-
-      res.redirect('/');
+      res
+        .status(200)
+        .send({ message: 'Create a new user sucesfully', redirectUrl: '/' });
     } catch (err) {
       userLogger.error(err);
       next(err);

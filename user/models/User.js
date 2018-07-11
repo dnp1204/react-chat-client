@@ -21,7 +21,8 @@ const userSchema = new Schema(
         'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg'
     },
     friends: [{ type: Schema.Types.ObjectId, ref: 'user' }],
-    active: { type: Boolean, default: false }
+    active: { type: Boolean, default: false },
+    conversations: [{ type: Schema.Types.ObjectId, ref: 'conversation' }]
   },
   {
     timestamps: true,

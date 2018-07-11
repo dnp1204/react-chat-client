@@ -1,6 +1,7 @@
 const Promise = require('bluebird').Promise;
 
 const User = require('../models/User');
+const Conversation = require('../../chat/models/Conversation');
 
 const createUser = data => {
   return new Promise(async (resolve, reject) => {
@@ -48,10 +49,21 @@ const getAllFriends = id => {
 
 const addFriend = (userId, friendId) => {
   return new Promise(async (resolve, reject) => {
+    const conversation = new Conversation();
+    conversation.users.push(userId, friendId);
+    try {
+      await conversation.save();
+    } catch (err) {
+      reject(err);
+    }
     try {
       const promise = await Promise.all([
-        User.findByIdAndUpdate(userId, { $push: { friends: friendId } }),
-        User.findByIdAndUpdate(friendId, { $push: { friends: userId } })
+        User.findByIdAndUpdate(userId, {
+          $push: { friends: friendId, conversations: conversation._id }
+        }),
+        User.findByIdAndUpdate(friendId, {
+          $push: { friends: userId, conversations: conversation._id }
+        })
       ]);
       resolve(promise[1]);
     } catch (err) {

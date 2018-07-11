@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { FETCH_FRIEND_LIST, SELECT_FRIEND } from './types';
+import { FETCH_FRIEND_LIST, SELECT_FRIEND, LOADING } from './types';
 
 export const fetchFriendList = () => async dispatch => {
+  dispatch({ type: LOADING, payload: true });
+
   try {
     const request = await axios.get('/api/friends');
     const { friends } = request.data;
@@ -10,5 +12,9 @@ export const fetchFriendList = () => async dispatch => {
     if (friends.length > 0) {
       dispatch({ type: SELECT_FRIEND, payload: friends[0] });
     }
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  } finally {
+    dispatch({ type: LOADING, payload: false });
+  }
 };

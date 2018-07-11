@@ -6,9 +6,9 @@ export const login = (data, callback) => async dispatch => {
 
   try {
     await axios.post(`/api/login`, data);
-
     try {
       const request = await axios.get(`/api/getUser`);
+      console.log(request.data);
       dispatch({ type: FETCH_USER, payload: request.data });
       callback();
     } catch (err) {

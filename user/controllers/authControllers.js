@@ -1,5 +1,9 @@
 const passport = require('passport');
-const { createUser, findUserByEmail } = require('../services/userService');
+const {
+  createUser,
+  findUserByEmail,
+  findUserById
+} = require('../services/userService');
 const { userLogger } = require('../../utils/logger');
 const helper = require('../../utils/helper');
 
@@ -104,7 +108,7 @@ const logIn = (req, res, next) => {
   })(req, res, next);
 };
 
-const getUser = (req, res, next) => {
+const getCurrentUser = (req, res) => {
   if (req.user) {
     userLogger.debug(`Get user id ${req.user._id}`);
     res.json(req.user);
@@ -121,7 +125,19 @@ const signOut = (req, res) => {
     .send({ message: 'Success! You are logged out', redirectUrl: '/login' });
 };
 
+const getUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await findUserById(id);
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
+  getCurrentUser,
   getUser,
   logIn,
   signOut,

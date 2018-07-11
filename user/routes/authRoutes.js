@@ -4,7 +4,8 @@ const controller = require('../controllers/authControllers');
 module.exports = () => {
   let routes = {
     get: {
-      '/getUser': controller.getUser,
+      '/getUser': controller.getCurrentUser,
+      '/user/:id': controller.getUser,
       '/signout': controller.signOut
     },
     post: {

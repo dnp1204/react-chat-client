@@ -12,7 +12,7 @@ module.exports = (app, io, session) => {
     );
 
     socket.on('join', roomId => {
-      console.log(roomId);
+      chatLogger.info(`user joins room id ${roomId}`);
       socket.join(roomId);
     });
 
@@ -35,7 +35,6 @@ module.exports = (app, io, session) => {
             content
           );
           io.in(conversationId).emit(socketEvent.IN_MESSAGE, message);
-          // socket.to(conversationId).emit(socketEvent.IN_MESSAGE, data);
         } catch (err) {
           chatLogger.debug(err.message);
         }

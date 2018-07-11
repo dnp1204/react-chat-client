@@ -43,7 +43,6 @@ class MessageInput extends Component {
         }
 
         const message = {
-          socketId: socket.id,
           conversationId,
           content: contentArrayWithoutLongWord.join(' ')
         };

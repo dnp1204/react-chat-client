@@ -15,9 +15,17 @@ class MessageSection extends Component {
     super(props);
 
     this.state = { recievedNewInput: false, emoji: '' };
-
     this.socket = io('http://localhost:5000', {
       transports: ['websocket']
+    });
+  }
+
+  componentDidMount() {
+    this.socket.emit('join', this.props.conversations.selectedConversation.id);
+
+    this.socket.on(socketEvent.IN_MESSAGE, data => {
+      this.props.receiveMessage(data);
+      this.setState({ recievedNewInput: true });
     });
   }
 
@@ -32,15 +40,6 @@ class MessageSection extends Component {
       );
       this.setState({ recievedNewInput: true });
     }
-  }
-
-  componentDidMount() {
-    this.socket.emit('join', this.props.conversations.selectedConversation.id);
-
-    this.socket.on(socketEvent.IN_MESSAGE, data => {
-      this.props.receiveMessage(data);
-      this.setState({ recievedNewInput: true });
-    });
   }
 
   onNewMessageHandler() {
@@ -72,14 +71,10 @@ class MessageSection extends Component {
           emoji={this.state.emoji}
           conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
-          sendMessage={content => {
-            console.log(content);
-          }}
         />
         <MessageTools
           pickEmoji={emoji => this.setState({ emoji })}
           selectedEmojiId={selectedEmoji.id}
-          onClickSelectedEmoji={() => {}}
         />
       </div>
     );

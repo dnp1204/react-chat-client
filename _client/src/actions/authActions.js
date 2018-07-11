@@ -1,4 +1,4 @@
-import { FETCH_USER, LOADING } from './types';
+import { FETCH_USER, LOADING, FETCH_CONVERSATION_LIST } from './types';
 import axios from 'axios';
 
 export const login = (data, callback) => async dispatch => {
@@ -8,8 +8,11 @@ export const login = (data, callback) => async dispatch => {
     await axios.post(`/api/login`, data);
     try {
       const request = await axios.get(`/api/getUser`);
-      console.log(request.data);
       dispatch({ type: FETCH_USER, payload: request.data });
+      dispatch({
+        type: FETCH_CONVERSATION_LIST,
+        payload: request.data.conversations
+      });
       callback();
     } catch (err) {
       console.log(err);
@@ -29,6 +32,10 @@ export const fetchUser = () => async dispatch => {
   try {
     const request = await axios.get(`/api/getUser`);
     dispatch({ type: FETCH_USER, payload: request.data });
+    dispatch({
+      type: FETCH_CONVERSATION_LIST,
+      payload: request.data.conversations
+    });
   } catch (err) {
   } finally {
     dispatch({ type: LOADING, payload: false });

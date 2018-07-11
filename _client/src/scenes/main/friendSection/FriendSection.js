@@ -4,19 +4,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from '../../../components/elements/search/Search';
 import FriendContainer from './friendContainer/FriendContainer';
-import { selectFriend } from '../../../actions';
+import { selectConversation } from '../../../actions';
 
 class FriendSection extends Component {
   renderFriendList() {
-    return _.map(this.props.friendList, friend => {
-      const {
-        id,
-        avatarUrl,
-        firstName,
-        lastName,
-        lastMessage,
-        lastSendMessageDate
-      } = friend;
+    const { conversations, selectedConversation } = this.props.conversations;
+
+    return _.map(conversations, conversation => {
+      const { id, users, updatedAt, contents } = conversation;
+      const { avatarUrl, firstName, lastName } = users[0];
 
       return (
         <FriendContainer
@@ -26,15 +22,15 @@ class FriendSection extends Component {
           firstName={firstName}
           lastName={lastName}
           subTitleComponent={
-            <p className="light-text hide-on-sm">{lastMessage}</p>
+            <p className="light-text hide-on-sm">{contents[0] || ''}</p>
           }
           rightComponent={
             <p className="light-text hide-on-md">
-              {moment(lastSendMessageDate).fromNow(true)}
+              {moment(updatedAt).fromNow(true)}
             </p>
           }
-          onSelectFriend={() => this.props.selectFriend(friend)}
-          isActive={this.props.selectedFriend.id === id}
+          onSelectFriend={() => this.props.selectConversation(id)}
+          isActive={selectedConversation.id === id}
         />
       );
     });
@@ -55,10 +51,12 @@ class FriendSection extends Component {
 }
 
 function mapStateToProps(state) {
-  return { friendList: state.friendList, selectedFriend: state.selectFriend };
+  return {
+    conversations: state.conversations
+  };
 }
 
 export default connect(
   mapStateToProps,
-  { selectFriend }
+  { selectConversation }
 )(FriendSection);

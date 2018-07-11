@@ -1,15 +1,16 @@
+import './SummaryAndTool.scss';
+
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './SummaryAndTool.scss';
+import { changeShowOptions, changeShowPhotos } from '../../../actions';
 import Icon from '../../../components/elements/icon/Icon';
+import Dropdown from '../../../components/tools/dropDown/Dropdown';
 import { Color } from '../../../utils/constants';
 import FriendContainer from '../friendSection/friendContainer/FriendContainer';
 import Options from './options/Options';
 import Photos from './photos/Photos';
-import Dropdown from '../../../components/tools/dropDown/Dropdown';
-import { changeShowOptions, changeShowPhotos } from '../../../actions';
 
 class SummaryAndTool extends Component {
   renderDropDownComponent() {
@@ -41,12 +42,9 @@ class SummaryAndTool extends Component {
   }
 
   render() {
-    const {
-      avatarUrl,
-      firstName,
-      lastName,
-      lastSendMessageDate
-    } = this.props.selectedFriend;
+    const { selectedConversation } = this.props.conversations;
+    const { users, updatedAt } = selectedConversation;
+    const { avatarUrl, firstName, lastName } = users[0];
 
     const { systemColor, showOptions, showPhotos, showSearch } = this.props;
 
@@ -59,9 +57,7 @@ class SummaryAndTool extends Component {
             firstName={firstName}
             lastName={lastName}
             subTitleComponent={
-              <p className="light-text">
-                {moment(lastSendMessageDate).fromNow(true)}
-              </p>
+              <p className="light-text">{moment(updatedAt).fromNow(true)}</p>
             }
             isHover={false}
             rightComponent={this.renderRightComponentForToolHeader()}
@@ -84,7 +80,7 @@ class SummaryAndTool extends Component {
 }
 
 function mapStateToProps(state) {
-  return { selectedFriend: state.selectFriend };
+  return { conversations: state.conversations };
 }
 
 export default connect(

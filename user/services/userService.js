@@ -25,10 +25,33 @@ const findUserByEmail = email => {
   });
 };
 
-const findUserById = id => {
+const findUserById = (id, deepPopulate = false) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const existingUser = await User.findById(id);
+      let existingUser;
+      if (deepPopulate) {
+        existingUser = await User.findById(id).populate({
+          path: 'conversations',
+          options: {
+            sort: { updatedAt: 1 },
+            limit: 10
+          },
+          populate: [
+            {
+              path: 'users'
+            },
+            {
+              path: 'contents',
+              options: {
+                sort: { createdAt: 1 },
+                limit: 20
+              }
+            }
+          ]
+        });
+      } else {
+        existingUser = await User.findById(id);
+      }
       resolve(existingUser);
     } catch (err) {
       reject(err);

@@ -20,11 +20,14 @@ mongoose.connect(
 const { server, app, io, session } = require('./app');
 
 user(app);
-chat(io, session);
+chat(app, io, session);
 
 app.use((err, req, res, next) => {
   if (err) {
-    const { status, message, logger, logMessage } = err;
+    let { status, message, logger, logMessage } = err;
+    if (!status) {
+      status = 500;
+    }
     if (logger && typeof logger === 'function') {
       logger(logMessage);
     }

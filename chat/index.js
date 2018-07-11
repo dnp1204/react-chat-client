@@ -1,7 +1,10 @@
 const { chatLogger } = require('../utils/logger');
 const { socketEvent } = require('../utils/constants');
+const routes = require('./routes');
 
-module.exports = (io, session) => {
+module.exports = (app, io, session) => {
+  app.use('/api/', routes());
+
   io.of('/').on('connection', socket => {
     const cookieString = socket.request.headers.cookie;
     const req = {
@@ -11,7 +14,7 @@ module.exports = (io, session) => {
     const res = { getHeader: () => {}, setHeader: () => {} };
 
     session(req, res, () => {
-      console.log(req.session);
+      // console.log(req.session);
     });
 
     chatLogger.info(

@@ -22,7 +22,9 @@ class FriendSection extends Component {
           firstName={firstName}
           lastName={lastName}
           subTitleComponent={
-            <p className="light-text hide-on-sm">{contents[0] || ''}</p>
+            <p className="light-text hide-on-sm">
+              {contents.length > 0 ? contents[0] : ''}
+            </p>
           }
           rightComponent={
             <p className="light-text hide-on-md">

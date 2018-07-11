@@ -49,7 +49,6 @@ class MessageInput extends Component {
         };
         socket.emit(socketEvent.NEW_MESSAGE, message);
 
-        this.props.sendMessage(contentArrayWithoutLongWord.join(' '));
         this.props.onNewMessageHandler();
         this.setState({ messageText: '' });
       }

@@ -33,7 +33,7 @@ const findUserById = (id, deepPopulate = false) => {
         existingUser = await User.findById(id).populate({
           path: 'conversations',
           options: {
-            sort: { updatedAt: 1 },
+            sort: { updatedAt: -1 },
             limit: 10
           },
           populate: [
@@ -43,8 +43,10 @@ const findUserById = (id, deepPopulate = false) => {
             {
               path: 'contents',
               options: {
-                sort: { createdAt: 1 },
-                limit: 20
+                sort: { createdAt: 1 }
+              },
+              populate: {
+                path: 'sendByUser'
               }
             }
           ]

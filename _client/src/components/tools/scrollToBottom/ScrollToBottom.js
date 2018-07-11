@@ -17,20 +17,22 @@ class ScrollToBottom extends Component {
 
   scrollToBottom() {
     let el = document.getElementById('__scroll-to-bottom-component');
-    let scrollTop = el.scrollTop;
+    // let scrollTop = el.scrollTop;
     let scrollHeight = el.scrollHeight;
-    let clientHeight = el.clientHeight;
+    // let clientHeight = el.clientHeight;
+    el.scroll(scrollHeight, scrollHeight);
+    this.props.onScrollToBottomFinishHandler();
 
-    if (scrollTop + clientHeight < scrollHeight) {
-      let scrollInterval = setInterval(() => {
-        el.scroll(scrollTop, scrollTop + 10);
-        scrollTop += 10;
-        if (scrollTop + clientHeight > scrollHeight) {
-          clearInterval(scrollInterval);
-          this.props.onScrollToBottomFinishHandler();
-        }
-      }, 5);
-    }
+    // if (scrollTop + clientHeight < scrollHeight) {
+    //   let scrollInterval = setInterval(() => {
+    //     el.scroll(scrollTop, scrollTop + 10);
+    //     scrollTop += 10;
+    //     if (scrollTop + clientHeight > scrollHeight) {
+    //       clearInterval(scrollInterval);
+    //       this.props.onScrollToBottomFinishHandler();
+    //     }
+    //   }, 5);
+    // }
   }
 
   render() {
@@ -39,6 +41,7 @@ class ScrollToBottom extends Component {
       <div
         style={{
           overflowY: `${this.state.hover ? hoverOverflowY : defaultOverflow}`,
+          height: 'inherit',
           margin: 0,
           padding: 0
         }}

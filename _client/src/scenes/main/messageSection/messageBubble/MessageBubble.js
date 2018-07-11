@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
-import moment from 'moment';
-import React, { Component } from 'react';
 import './MessageBubble.scss';
+
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import CircleAvatar from '../../../../components/elements/circleAvatar/CircleAvatar';
 
@@ -66,7 +67,7 @@ class MessageBubble extends Component {
 
 MessageBubble.propTypes = {
   content: PropTypes.string,
-  timestamp: PropTypes.number,
+  timestamp: PropTypes.string,
   timestampSide: PropTypes.string,
   imageUrl: PropTypes.string,
   messageBubbleContentStyle: PropTypes.object,

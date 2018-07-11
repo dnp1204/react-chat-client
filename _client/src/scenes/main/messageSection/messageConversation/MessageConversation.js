@@ -47,8 +47,8 @@ class MessageConversation extends PureComponent {
   ) {
     const { bubleColor } = this.props;
     const {
-      user: { imageUrl },
-      timestamp,
+      sendByUser: { avatarUrl },
+      createdAt,
       content
     } = message;
     const isShowFriendAvatarOnLastText =
@@ -78,8 +78,8 @@ class MessageConversation extends PureComponent {
         avatarSize={avatarSize}
         avatarContainerStyle={avatarContainerStyle}
         content={content}
-        imageUrl={imageUrl}
-        timestamp={timestamp}
+        imageUrl={avatarUrl}
+        timestamp={createdAt}
         isShowAvatar={isShowFriendAvatarOnLastText}
         timestampSide={isCurrentUserMessage ? 'right' : 'left'}
         messageBubbleContentStyle={messageBubbleContentStyle}
@@ -89,21 +89,19 @@ class MessageConversation extends PureComponent {
 
   renderMessages() {
     const {
-      friendMessages: { messages },
-      conversations: { contents }
+      conversation: { contents },
+      userId
     } = this.props;
     let marginBottom;
 
-    return messages.map((message, index) => {
-      const {
-        _id,
-        user: { userId }
-      } = message;
-      const isCurrentUserMessage = userId === 0;
+    return contents.map((message, index) => {
+      const { id, sendByUser } = message;
+      const isCurrentUserMessage = sendByUser.id === userId;
       const float = isCurrentUserMessage ? 'float__right' : 'float__left';
 
-      if (index + 1 < messages.length) {
-        marginBottom = userId === messages[index + 1].user.userId ? 3 : 20;
+      if (index + 1 < contents.length) {
+        marginBottom =
+          sendByUser.id === contents[index + 1].sendByUser.id ? 3 : 20;
         index += 1;
       } else {
         marginBottom = 20;
@@ -113,7 +111,7 @@ class MessageConversation extends PureComponent {
 
       return (
         <div
-          key={_id}
+          key={id}
           style={{ marginBottom }}
           className={`message-section--conversation__element ${float}`}
         >

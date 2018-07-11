@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 
-import { sendMessage } from '../../../actions';
 import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';
@@ -24,13 +23,14 @@ class MessageSection extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevProps.conversations.selectedConversation.id !=
+      prevProps.conversations.selectedConversation.id !==
       this.props.conversations.selectedConversation.id
     ) {
       this.socket.emit(
         'join',
         this.props.conversations.selectedConversation.id
       );
+      this.setState({ recievedNewInput: true });
     }
   }
 
@@ -53,26 +53,14 @@ class MessageSection extends Component {
   render() {
     const { selectedEmoji, showSearch } = this.props.systemSettings;
     const { selectedConversation } = this.props.conversations;
-    const imageUrl =
-      'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
-    let _id =
-      this.props.friendMessages.messages[
-        this.props.friendMessages.messages.length - 1
-      ]._id + 1;
-    let message = {
-      _id,
-      user: { userId: 0, imageUrl },
-      timestamp: moment.now(),
-      content: ''
-    };
 
     return (
       <div id="message-section" className="flex--column">
         <MessageConversation
+          userId={this.props.auth.id}
           showSearch={showSearch}
           bubleColor={this.props.systemColor}
-          friendMessages={this.props.friendMessages}
-          conversations={selectedConversation}
+          conversation={selectedConversation}
           shouldScroll={this.state.recievedNewInput}
           onScrollToBottomFinishHandler={() =>
             this.onScrollToBottomFinishHandler()
@@ -84,19 +72,13 @@ class MessageSection extends Component {
           conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
           sendMessage={content => {
-            this.setState({ emoji: '' });
-            message.content = content;
-            this.props.sendMessage(message);
+            console.log(content);
           }}
         />
         <MessageTools
           pickEmoji={emoji => this.setState({ emoji })}
           selectedEmojiId={selectedEmoji.id}
-          onClickSelectedEmoji={() => {
-            message.content = selectedEmoji.native;
-            this.props.sendMessage(message);
-            this.onNewMessageHandler();
-          }}
+          onClickSelectedEmoji={() => {}}
         />
       </div>
     );
@@ -105,13 +87,10 @@ class MessageSection extends Component {
 
 function mapStateToProps(state) {
   return {
-    friendMessages: state.friendMessages,
+    auth: state.auth,
     conversations: state.conversations,
     systemSettings: state.systemSettings
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { sendMessage }
-)(MessageSection);
+export default connect(mapStateToProps)(MessageSection);

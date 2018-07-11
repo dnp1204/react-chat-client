@@ -36,7 +36,11 @@ export default function(state = initialState, action) {
     case NEW_MESSAGE:
       const selectedConversation = state.selectedConversation;
       selectedConversation.contents.push(action.payload);
-      return { ...state, selectedConversation };
+      const filteredConversations = state.conversations.filter(conversation => {
+        return conversation.id !== selectedConversation.id;
+      });
+      filteredConversations.unshift(selectedConversation);
+      return { conversations: filteredConversations, selectedConversation };
     default:
       return state;
   }

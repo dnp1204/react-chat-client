@@ -46,7 +46,11 @@ class MessageConversation extends PureComponent {
     showFriendAvatarOnLastMessage
   ) {
     const { bubleColor } = this.props;
-    const { user: { imageUrl }, timestamp, content } = message;
+    const {
+      user: { imageUrl },
+      timestamp,
+      content
+    } = message;
     const isShowFriendAvatarOnLastText =
       showFriendAvatarOnLastMessage && !isCurrentUserMessage;
 
@@ -84,11 +88,17 @@ class MessageConversation extends PureComponent {
   }
 
   renderMessages() {
-    const { friendMessages: { messages } } = this.props;
+    const {
+      friendMessages: { messages },
+      conversations: { contents }
+    } = this.props;
     let marginBottom;
 
     return messages.map((message, index) => {
-      const { _id, user: { userId } } = message;
+      const {
+        _id,
+        user: { userId }
+      } = message;
       const isCurrentUserMessage = userId === 0;
       const float = isCurrentUserMessage ? 'float__right' : 'float__left';
 

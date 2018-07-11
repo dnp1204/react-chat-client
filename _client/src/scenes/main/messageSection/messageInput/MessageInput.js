@@ -23,7 +23,7 @@ class MessageInput extends Component {
   }
 
   onKeyPressHandler(event) {
-    const { socket } = this.props;
+    const { socket, conversationId } = this.props;
 
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -42,10 +42,13 @@ class MessageInput extends Component {
           }
         }
 
-        socket.emit(socketEvent.NEW_MESSAGE, {
+        const message = {
           socketId: socket.id,
-          message: contentArrayWithoutLongWord.join(' ')
-        });
+          conversationId,
+          content: contentArrayWithoutLongWord.join(' ')
+        };
+        socket.emit(socketEvent.NEW_MESSAGE, message);
+
         this.props.sendMessage(contentArrayWithoutLongWord.join(' '));
         this.props.onNewMessageHandler();
         this.setState({ messageText: '' });

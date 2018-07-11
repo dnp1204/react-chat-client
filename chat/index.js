@@ -1,11 +1,21 @@
 const { chatLogger } = require('../utils/logger');
 const { socketEvent } = require('../utils/constants');
+const chatService = require('./services/chatServices');
 const routes = require('./routes');
 
 module.exports = (app, io, session) => {
   app.use('/api/', routes());
 
   io.of('/').on('connection', socket => {
+    chatLogger.info(
+      `socket.io in chat module on connection with id ${socket.id}`
+    );
+
+    socket.on('join', roomId => {
+      console.log(roomId);
+      socket.join(roomId);
+    });
+
     const cookieString = socket.request.headers.cookie;
     const req = {
       connection: { encrypted: false },
@@ -14,16 +24,21 @@ module.exports = (app, io, session) => {
     const res = { getHeader: () => {}, setHeader: () => {} };
 
     session(req, res, () => {
-      // console.log(req.session);
-    });
+      const userId = req.session.passport.user;
 
-    chatLogger.info(
-      `socket.io in chat module on connection with id ${socket.id}`
-    );
-
-    socket.on(socketEvent.NEW_MESSAGE, data => {
-      chatLogger.debug(data);
-      socket.broadcast.emit(socketEvent.IN_MESSAGE, data);
+      socket.on(socketEvent.NEW_MESSAGE, async data => {
+        const { conversationId, content } = data;
+        try {
+          const message = await chatService.addNewMessage(
+            userId,
+            conversationId,
+            content
+          );
+          socket.to(conversationId).emit(socketEvent.IN_MESSAGE, message);
+        } catch (err) {
+          chatLogger.debug(err.message);
+        }
+      });
     });
   });
 };

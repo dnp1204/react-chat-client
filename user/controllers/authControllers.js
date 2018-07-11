@@ -99,7 +99,6 @@ const logIn = (req, res, next) => {
         );
       }
 
-      req.session.user = user;
       userLogger.debug(JSON.stringify(info));
       res
         .status(200)
@@ -120,9 +119,7 @@ const getCurrentUser = (req, res) => {
 const signOut = (req, res) => {
   userLogger.debug(`User sign out`);
   req.logout();
-  res
-    .status(200)
-    .send({ message: 'Success! You are logged out', redirectUrl: '/login' });
+  res.redirect('/');
 };
 
 const getUser = async (req, res, next) => {

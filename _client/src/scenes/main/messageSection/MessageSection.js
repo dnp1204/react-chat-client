@@ -17,7 +17,26 @@ class MessageSection extends Component {
 
     this.state = { recievedNewInput: false, emoji: '' };
 
-    this.socket = io('http://localhost:5000');
+    this.socket = io('http://localhost:5000', {
+      transports: ['websocket']
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.conversations.selectedConversation.id !=
+      this.props.conversations.selectedConversation.id
+    ) {
+      this.socket.emit(
+        'join',
+        this.props.conversations.selectedConversation.id
+      );
+    }
+  }
+
+  componentDidMount() {
+    this.socket.emit('join', this.props.conversations.selectedConversation.id);
+
     this.socket.on(socketEvent.IN_MESSAGE, data => {
       console.log(data);
     });
@@ -33,6 +52,7 @@ class MessageSection extends Component {
 
   render() {
     const { selectedEmoji, showSearch } = this.props.systemSettings;
+    const { selectedConversation } = this.props.conversations;
     const imageUrl =
       'https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg';
     let _id =
@@ -52,6 +72,7 @@ class MessageSection extends Component {
           showSearch={showSearch}
           bubleColor={this.props.systemColor}
           friendMessages={this.props.friendMessages}
+          conversations={selectedConversation}
           shouldScroll={this.state.recievedNewInput}
           onScrollToBottomFinishHandler={() =>
             this.onScrollToBottomFinishHandler()
@@ -60,6 +81,7 @@ class MessageSection extends Component {
         <MessageInput
           socket={this.socket}
           emoji={this.state.emoji}
+          conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
           sendMessage={content => {
             this.setState({ emoji: '' });

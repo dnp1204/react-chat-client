@@ -10,7 +10,8 @@ const conversation = {
       firstName: '',
       lastName: ''
     }
-  ]
+  ],
+  contents: []
 };
 
 const initialState = {

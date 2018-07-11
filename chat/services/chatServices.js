@@ -34,7 +34,22 @@ const removeCurrentUserInConversationFriends = (conversation, id) => {
   return conversation;
 };
 
+const addNewMessage = async (userId, conversationId, content) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const message = await Message.create({ sendByUser: userId, content });
+      await Conversation.findByIdAndUpdate(conversationId, {
+        $push: { contents: message._id }
+      });
+      resolve(message);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 module.exports = {
+  addNewMessage,
   getConversation,
   removeCurrentUserInConversationFriends
 };

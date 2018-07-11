@@ -5,8 +5,11 @@ const { Schema } = mongoose;
 const messageSchema = new Schema(
   {
     sendByUser: { type: Schema.Types.ObjectId, ref: 'user' },
-    userAvatar: String,
-    type: { type: String, enum: ['text', 'image', 'video', 'file'] },
+    type: {
+      type: String,
+      enum: ['text', 'image', 'video', 'file'],
+      default: 'text'
+    },
     content: String
   },
   {

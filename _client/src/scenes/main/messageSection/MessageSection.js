@@ -84,6 +84,7 @@ class MessageSection extends Component {
 function mapStateToProps(state) {
   return {
     friendMessages: state.friendMessages,
+    conversations: state.conversations,
     systemSettings: state.systemSettings
   };
 }

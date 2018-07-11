@@ -36,6 +36,7 @@ export default function(state = initialState, action) {
     case NEW_MESSAGE:
       const selectedConversation = state.selectedConversation;
       selectedConversation.contents.push(action.payload);
+      selectedConversation.updatedAt = action.payload.createdAt;
       const filteredConversations = state.conversations.filter(conversation => {
         return conversation.id !== selectedConversation.id;
       });

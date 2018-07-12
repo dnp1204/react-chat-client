@@ -9,6 +9,7 @@ const handleError = require('./middlewares/handleError');
 mongoose.Promise = require('bluebird');
 mongoose.connect(
   config.mongoURI,
+  { useNewUrlParser: true },
   err => {
     if (err) {
       appLogger.error(err);

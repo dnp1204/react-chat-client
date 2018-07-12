@@ -4,6 +4,7 @@ const { appLogger } = require('./utils/logger');
 const chat = require('./chat');
 const config = require('./config');
 const user = require('./user');
+const handleError = require('./middlewares/handleError');
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(
@@ -22,19 +23,7 @@ const { server, app, io, session } = require('./app');
 user(app);
 chat(app, io, session);
 
-app.use((err, req, res, next) => {
-  if (err) {
-    let { status, message, logger, logMessage } = err;
-    if (!status) {
-      status = 500;
-    }
-    if (logger && typeof logger === 'function') {
-      logger(logMessage);
-    }
-    res.status(status).send({ message });
-  }
-  next();
-});
+app.use(handleError);
 
 // io.of('/').on('connection', socket => {});
 

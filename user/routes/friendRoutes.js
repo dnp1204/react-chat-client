@@ -1,13 +1,14 @@
 const routeHelper = require('../../utils/routesHelper');
 const controller = require('../controllers/friendControllers');
+const requiredAuth = require('../../middlewares/requiredAuth');
 
 module.exports = () => {
   let routes = {
     get: {
-      '/friends': controller.getAllFriends
+      '/friends': [requiredAuth, controller.getAllFriends]
     },
     post: {
-      '/friends/:id': controller.addFriend
+      '/friends/:id': [requiredAuth, controller.addFriend]
     }
   };
 

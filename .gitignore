@@ -15,9 +15,6 @@
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
-# Icon
-
 # Thumbnails
 ._*
 
@@ -291,19 +288,11 @@ gradle-app.setting
 ### ReactNative.macOS Stack ###
 # General
 
-# Icon must end with two \r
-Icon
-
-
 # Thumbnails
 
 # Files that might appear in the root of a volume
 
 # Directories potentially created on remote AFP share
-
-### Tower ###
-# Tower.app - http://www.git-tower.com/
-Icon.png
 
 ### VisualStudioCode ###
 .vscode/*

@@ -22,7 +22,9 @@ const userSchema = new Schema(
     },
     friends: [{ type: Schema.Types.ObjectId, ref: 'user' }],
     active: { type: Boolean, default: false },
-    conversations: [{ type: Schema.Types.ObjectId, ref: 'conversation' }]
+    conversations: [{ type: Schema.Types.ObjectId, ref: 'conversation' }],
+    isOnline: Boolean,
+    lastTimeOnline: { type: Date, default: Date.now() }
   },
   {
     timestamps: true,

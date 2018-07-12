@@ -59,6 +59,17 @@ const findUserById = (id, deepPopulate = false) => {
   });
 };
 
+const findByIdAndUpdateUser = (id, data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const user = await User.findByIdAndUpdate(id, data);
+      resolve(user);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 const getAllFriends = id => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -100,5 +111,6 @@ module.exports = {
   createUser,
   findUserByEmail,
   findUserById,
+  findByIdAndUpdateUser,
   getAllFriends
 };

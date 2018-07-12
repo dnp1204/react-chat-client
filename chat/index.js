@@ -1,6 +1,7 @@
 const { chatLogger } = require('../utils/logger');
 const { socketEvent } = require('../utils/constants');
 const chatService = require('./services/chatServices');
+const userService = require('../user/services/userService');
 const routes = require('./routes');
 
 module.exports = (app, io, session) => {
@@ -23,8 +24,13 @@ module.exports = (app, io, session) => {
     };
     const res = { getHeader: () => {}, setHeader: () => {} };
 
-    session(req, res, () => {
+    session(req, res, async () => {
       const userId = req.session.passport.user;
+      const user = await userService.findByIdAndUpdateUser(userId, {
+        isOnline: true
+      });
+
+      socket.emit(socketEvent.ONLINE, user);
 
       socket.on(socketEvent.NEW_MESSAGE, async data => {
         const { conversationId, content } = data;
@@ -41,6 +47,14 @@ module.exports = (app, io, session) => {
         } catch (err) {
           chatLogger.debug(err.message);
         }
+      });
+
+      socket.on(socketEvent.DISCONNECT, async () => {
+        const user = userService.findByIdAndUpdateUser(userId, {
+          isOnline: false,
+          lastTimeOnline: Date.now()
+        });
+        socket.broadcast.emit(socketEvent.LEAVE, user);
       });
     });
   });

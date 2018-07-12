@@ -36,9 +36,18 @@ const findUserById = (id, deepPopulate = false) => {
             sort: { updatedAt: -1 },
             limit: 15
           },
-          populate: {
-            path: 'users'
-          }
+          populate: [
+            {
+              path: 'users'
+            },
+            {
+              path: 'contents',
+              options: {
+                sort: { createdAt: -1 },
+                limit: 1
+              }
+            }
+          ]
         });
       } else {
         existingUser = await User.findById(id);

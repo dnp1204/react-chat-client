@@ -41,10 +41,12 @@ export default function(state = initialState, action) {
       const selectedConversation = state.selectedConversation;
       selectedConversation.contents.push(action.payload);
       selectedConversation.updatedAt = action.payload.createdAt;
+
       const filteredConversations = state.conversations.filter(conversation => {
         return conversation.id !== selectedConversation.id;
       });
       filteredConversations.unshift(selectedConversation);
+
       return { conversations: filteredConversations, selectedConversation };
     default:
       return state;

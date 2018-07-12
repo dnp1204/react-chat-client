@@ -14,6 +14,17 @@ class FriendSection extends Component {
       const { id, users, updatedAt, contents } = conversation;
       const { avatarUrl, firstName, lastName } = users[0];
 
+      let lastMessage = '';
+      if (contents.length > 0) {
+        const lastContent = contents[contents.length - 1];
+        lastMessage = `${
+          this.props.auth.id ===
+          (lastContent.sendByUser.id || lastContent.sendByUser)
+            ? 'You: '
+            : ''
+        }${lastContent.content}`;
+      }
+
       return (
         <FriendContainer
           classNameForName={'hide-on-xs'}
@@ -22,9 +33,7 @@ class FriendSection extends Component {
           firstName={firstName}
           lastName={lastName}
           subTitleComponent={
-            <p className="light-text hide-on-sm">
-              {contents.length > 0 ? contents[contents.length - 1].content : ''}
-            </p>
+            <p className="light-text hide-on-sm">{lastMessage}</p>
           }
           rightComponent={
             <p className="light-text hide-on-md">
@@ -54,7 +63,8 @@ class FriendSection extends Component {
 
 function mapStateToProps(state) {
   return {
-    conversations: state.conversations
+    conversations: state.conversations,
+    auth: state.auth
   };
 }
 

@@ -14,7 +14,7 @@ mongoose.connect(
     if (err) {
       appLogger.error(err);
     } else {
-      appLogger.info(`Mongoose connect to ${config.mongoURI}`);
+      appLogger.debug(`Mongoose connect to ${config.mongoURI}`);
     }
   }
 );

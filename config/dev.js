@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: 'mongodb://localhost/react-chat',
+  mongoURI: 'mongodb://localhost:27017/react-chat',
   cookieKey: 'dkjlfalsdfalsdjfl;ajsdl;fajsdlf;asd'
 };

@@ -13,6 +13,6 @@ export const selectConversation = conversationId => async dispatch => {
   }
 };
 
-export const receiveMessage = message => {
-  return { type: NEW_MESSAGE, payload: message };
+export const receiveMessage = data => {
+  return { type: NEW_MESSAGE, payload: data };
 };

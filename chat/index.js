@@ -34,7 +34,10 @@ module.exports = (app, io, session) => {
             conversationId,
             content
           );
-          io.in(conversationId).emit(socketEvent.IN_MESSAGE, message);
+          io.in(conversationId).emit(socketEvent.IN_MESSAGE, {
+            conversationId,
+            message
+          });
         } catch (err) {
           chatLogger.debug(err.message);
         }

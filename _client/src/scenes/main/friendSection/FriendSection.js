@@ -25,6 +25,8 @@ class FriendSection extends Component {
         }${lastContent.content}`;
       }
 
+      console.log(lastMessage);
+
       return (
         <FriendContainer
           classNameForName={'hide-on-xs'}

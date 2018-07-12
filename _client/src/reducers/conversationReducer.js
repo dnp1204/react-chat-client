@@ -38,16 +38,34 @@ export default function(state = initialState, action) {
     case SELECT_CONVERSATION:
       return { ...state, selectedConversation: action.payload };
     case NEW_MESSAGE:
-      const selectedConversation = state.selectedConversation;
-      selectedConversation.contents.push(action.payload);
-      selectedConversation.updatedAt = action.payload.createdAt;
+      const { conversationId, message } = action.payload;
+      let updatedConversation, filteredConversations;
 
-      const filteredConversations = state.conversations.filter(conversation => {
-        return conversation.id !== selectedConversation.id;
-      });
-      filteredConversations.unshift(selectedConversation);
+      if (conversationId === state.selectedConversation.id) {
+        updatedConversation = state.selectedConversation;
+        updatedConversation.contents.push(message);
+        updatedConversation.updatedAt = message.createdAt;
 
-      return { conversations: filteredConversations, selectedConversation };
+        filteredConversations = state.conversations.filter(conversation => {
+          return conversation.id !== conversationId;
+        });
+        filteredConversations.unshift(updatedConversation);
+
+        return {
+          conversations: filteredConversations,
+          selectedConversation: updatedConversation
+        };
+      }
+
+      filteredConversations = state.conversations;
+      for (let conversation of filteredConversations) {
+        if (conversation.id === conversationId) {
+          conversation.contents.unshift(message);
+          break;
+        }
+      }
+
+      return { ...state, conversations: filteredConversations };
     default:
       return state;
   }

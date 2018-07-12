@@ -21,7 +21,10 @@ class MessageSection extends Component {
   }
 
   componentDidMount() {
-    this.socket.emit('join', this.props.conversations.selectedConversation.id);
+    const { conversations } = this.props.conversations;
+    conversations.forEach(conversation => {
+      this.socket.emit('join', conversation.id);
+    });
 
     this.socket.on(socketEvent.IN_MESSAGE, data => {
       this.props.receiveMessage(data);
@@ -34,10 +37,6 @@ class MessageSection extends Component {
       prevProps.conversations.selectedConversation.id !==
       this.props.conversations.selectedConversation.id
     ) {
-      this.socket.emit(
-        'join',
-        this.props.conversations.selectedConversation.id
-      );
       this.setState({ forceScroll: true });
     }
   }

@@ -7,6 +7,16 @@ const getAllFriends = async (req, res, next) => {
   res.send({ friends: userFriends });
 };
 
+const getFriend = async(req, res, next) => {
+  const { id } = req.params;
+  try {
+    const friend = await userService.findUserById(id);
+    res.json(friend);
+  } catch(err) {
+    next(err);
+  }
+}
+
 const addFriend = async (req, res, next) => {
   const { id } = req.params;
   for (let friendId of req.user.friends) {
@@ -30,5 +40,6 @@ const addFriend = async (req, res, next) => {
 
 module.exports = {
   addFriend,
-  getAllFriends
+  getAllFriends,
+  getFriend
 };

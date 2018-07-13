@@ -1,5 +1,6 @@
 import './MessageSection.scss';
 
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
@@ -30,9 +31,30 @@ class MessageSection extends Component {
       this.props.receiveMessage(data);
       this.setState({ recievedNewInput: true });
     });
+
+    this.socket.on(socketEvent.ONLINE, data => {
+      console.log(data);
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const diff = _.differenceWith(
+      prevProps.conversations.conversations,
+      this.props.conversations.conversations,
+      (con1, con2) => {
+        return con1.id === con2.id;
+      }
+    );
+
+    // console.log(diff);
+    if (diff.length > 0) {
+      console.log('yes');
+      const { conversations } = this.props.conversations;
+      conversations.forEach(conversation => {
+        this.socket.emit('join', conversation.id);
+      });
+    }
+
     if (
       prevProps.conversations.selectedConversation.id !==
       this.props.conversations.selectedConversation.id

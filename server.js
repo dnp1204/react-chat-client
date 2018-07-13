@@ -28,6 +28,7 @@ app.use(handleError);
 
 // io.of('/').on('connection', socket => {});
 
+console.log(app.get('port'));
 server.listen(app.get('port'), err => {
   if (err) {
     appLogger.error(err);

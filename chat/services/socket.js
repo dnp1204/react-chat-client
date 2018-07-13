@@ -8,7 +8,7 @@ const onConnect = async (socket, userId) => {
   const user = await userService.findByIdAndUpdateUser(userId, {
     isOnline: true
   });
-  socket.emit(socketEvent.ONLINE, user);
+  socket.broadcast.emit(socketEvent.ONLINE, user);
 };
 
 const onJoin = socket => {

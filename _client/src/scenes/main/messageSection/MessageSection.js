@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import io from 'socket.io-client';
 
 import { socketEvent } from '../../../utils/constants';
-import { receiveMessage } from '../../../actions';
+import {
+  receiveMessage,
+  friendGoOffline,
+  friendGoOnline
+} from '../../../actions';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';
 import MessageTools from './messageTools/MessageTools';
@@ -33,7 +37,11 @@ class MessageSection extends Component {
     });
 
     this.socket.on(socketEvent.ONLINE, data => {
-      console.log(data);
+      this.props.friendGoOnline(data);
+    });
+
+    this.socket.on(socketEvent.LEAVE, data => {
+      this.props.friendGoOffline(data);
     });
   }
 
@@ -113,5 +121,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { receiveMessage }
+  { receiveMessage, friendGoOffline, friendGoOnline }
 )(MessageSection);

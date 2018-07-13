@@ -5,9 +5,10 @@ const userService = require('../../user/services/userService');
 
 const onConnect = async (socket, userId) => {
   chatLogger.debug(`socket is on connection`);
-  const user = await userService.findByIdAndUpdateUser(userId, {
+  await userService.findByIdAndUpdateUser(userId, {
     isOnline: true
   });
+  const user = await userService.findUserById(userId);
   user.conversations.forEach(conversation => {
     socket.to(conversation._id).emit(socketEvent.ONLINE, user);
   });
@@ -44,11 +45,14 @@ const onNewMessage = (io, socket, userId) => {
 const onDisconnect = (socket, userId) => {
   socket.on(socketEvent.DISCONNECT, async () => {
     chatLogger.debug(`user with id ${userId} disconnect`);
-    const user = userService.findByIdAndUpdateUser(userId, {
+    await userService.findByIdAndUpdateUser(userId, {
       isOnline: false,
       lastTimeOnline: Date.now()
     });
-    socket.broadcast.emit(socketEvent.LEAVE, user);
+    const user = await userService.findUserById(userId);
+    user.conversations.forEach(conversation => {
+      socket.to(conversation._id).emit(socketEvent.LEAVE, user);
+    });
   });
 };
 

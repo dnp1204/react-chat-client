@@ -42,11 +42,26 @@ class SummaryAndTool extends Component {
   }
 
   render() {
-    const { selectedConversation } = this.props.conversations;
-    const { users, updatedAt } = selectedConversation;
-    const { avatarUrl, firstName, lastName } = users[0];
-
     const { systemColor, showOptions, showPhotos, showSearch } = this.props;
+    const { selectedConversation } = this.props.conversations;
+    const { users } = selectedConversation;
+    const {
+      avatarUrl,
+      firstName,
+      lastName,
+      isOnline,
+      lastTimeOnline
+    } = users[0];
+
+    moment.updateLocale('en', {
+      relativeTime: {
+        ss: '%d seconds',
+        mm: '%d minutes',
+        hh: '%d hours',
+        dd: '%d days',
+        MM: '%d months'
+      }
+    });
 
     return (
       <div id="tool">
@@ -57,7 +72,11 @@ class SummaryAndTool extends Component {
             firstName={firstName}
             lastName={lastName}
             subTitleComponent={
-              <p className="light-text">{moment(updatedAt).fromNow(true)}</p>
+              <p className="light-text">
+                {isOnline
+                  ? 'Active Now'
+                  : `Active ${moment(lastTimeOnline).fromNow()}`}
+              </p>
             }
             isHover={false}
             rightComponent={this.renderRightComponentForToolHeader()}

@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { SELECT_CONVERSATION, NEW_MESSAGE, LOADING } from './types';
+import {
+  SELECT_CONVERSATION,
+  NEW_MESSAGE,
+  FRIEND_ONLINE,
+  FRIEND_OFFLINE,
+  LOADING
+} from './types';
 
 export const selectConversation = conversationId => async dispatch => {
   // dispatch({ type: LOADING, payload: true });
@@ -15,4 +21,12 @@ export const selectConversation = conversationId => async dispatch => {
 
 export const receiveMessage = data => {
   return { type: NEW_MESSAGE, payload: data };
+};
+
+export const friendGoOnline = data => {
+  return { type: FRIEND_ONLINE, payload: data };
+};
+
+export const friendGoOffline = data => {
+  return { type: FRIEND_OFFLINE, payload: data };
 };

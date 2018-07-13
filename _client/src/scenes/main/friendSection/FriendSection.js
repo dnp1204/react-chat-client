@@ -37,7 +37,12 @@ class FriendSection extends Component {
           }
           rightComponent={
             <p className="light-text hide-on-md">
-              {moment(updatedAt).fromNow(true)}
+              {moment(updatedAt).calendar(null, {
+                sameDay: 'h:mm a',
+                lastWeek: 'ddd',
+                thisYear: 'MMM D',
+                sameElse: 'M/D/YYYY'
+              })}
             </p>
           }
           onSelectFriend={() => this.props.selectConversation(id)}

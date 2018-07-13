@@ -9,14 +9,14 @@ const onConnect = async (socket, userId) => {
     isOnline: true
   });
   socket.emit(socketEvent.ONLINE, user);
-}
+};
 
-const onJoin = (socket) => {
+const onJoin = socket => {
   socket.on('join', conversationId => {
-    chatLogger.info(`user joins conversation id ${conversationId}`);
+    chatLogger.debug(`user joins conversation id ${conversationId}`);
     socket.join(conversationId);
   });
-}
+};
 
 const onNewMessage = (io, socket, userId) => {
   socket.on(socketEvent.NEW_MESSAGE, async data => {
@@ -28,7 +28,7 @@ const onNewMessage = (io, socket, userId) => {
         conversationId,
         content
       );
-      
+
       io.in(conversationId).emit(socketEvent.IN_MESSAGE, {
         conversationId,
         message
@@ -37,18 +37,18 @@ const onNewMessage = (io, socket, userId) => {
       chatLogger.debug(err.message);
     }
   });
-}
+};
 
 const onDisconnect = (socket, userId) => {
   socket.on(socketEvent.DISCONNECT, async () => {
-    chatLogger.debug(`user disconnect`);
+    chatLogger.debug(`user with id ${userId} disconnect`);
     const user = userService.findByIdAndUpdateUser(userId, {
       isOnline: false,
       lastTimeOnline: Date.now()
     });
     socket.broadcast.emit(socketEvent.LEAVE, user);
   });
-}
+};
 
 module.exports = (io, session) => {
   io.of('/').on('connection', socket => {
@@ -61,14 +61,14 @@ module.exports = (io, session) => {
 
     session(req, res, async () => {
       const userId = req.session.passport.user;
-      
+
       onConnect(socket, userId);
-      
+
       onJoin(socket);
 
       onNewMessage(io, socket, userId);
-      
+
       onDisconnect(socket, userId);
     });
   });
-}
+};

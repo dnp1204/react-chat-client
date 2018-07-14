@@ -68,35 +68,7 @@
 }
 
 /* Responsive */
-@media only screen and (max-width: 1000px) {
-  .hide-on-md {
-    display: none;
-  }
-
-  .show-on-md {
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .hide-on-sm {
-    display: none !important;
-  }
-
-  .show-on-sm {
-    display: block;
-  }
-}
-
 @media only screen and (max-width: 550px) {
-  .hide-on-xs {
-    display: none !important;
-  }
-
-  .show-on-xs {
-    display: block;
-  }
-
   #main {
     grid-template-columns: 1fr 6fr;
 

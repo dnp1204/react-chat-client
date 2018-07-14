@@ -5,63 +5,14 @@
 @import 'components/button.scss';
 @import 'components/flex.scss';
 @import 'components/form.scss';
+@import 'components/common.scss';
 
 @import 'variables.scss';
 @import 'breakpoints.scss';
 @import 'animation.scss';
+@import 'responsive.scss';
 
 html,
 body {
   overflow: hidden;
-}
-
-// border
-.border-right {
-  border-right: 1px solid $border-color;
-}
-
-.border-left {
-  border-left: 1px solid $border-color;
-}
-
-.border-bottom {
-  border-bottom: 1px solid $border-color;
-}
-
-.border-top {
-  border-top: 1px solid $border-color;
-}
-
-// float
-.float__left {
-  float: left;
-}
-
-.float__right {
-  float: right;
-}
-
-// scroll bar
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  display: none;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-  background: rgba(0, 0, 0, 0.4);
-}
-
-::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(0, 0, 0, 0.3);
 }

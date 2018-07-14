@@ -1,0 +1,31 @@
+@import 'breakpoints.scss';
+
+@media #{$media-tablet-landscape} {
+  .hide-on-md {
+    display: none;
+  }
+
+  .show-on-md {
+    display: block;
+  }
+}
+
+@media #{$media-tablet-portrait} {
+  .hide-on-sm {
+    display: none !important;
+  }
+
+  .show-on-sm {
+    display: block;
+  }
+}
+
+@media #{$media-mobile} {
+  .hide-on-xs {
+    display: none !important;
+  }
+
+  .show-on-xs {
+    display: block;
+  }
+}

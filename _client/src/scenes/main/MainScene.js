@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './MainScene.scss';
 import {
   fetchSystemSettings,
+  changeSystemColor,
   changeShowSummaryAndToolSection
 } from '../../actions';
 import Header from '../../components/elements/header/Header';
@@ -13,8 +14,17 @@ import FriendSection from './friendSection/FriendSection';
 import MessageSection from './messageSection/MessageSection';
 import SummaryAndTool from './summaryAndToolSection/SummaryAndTool';
 import OnlineTime from '../../components/elements/online-time/OnlineTime';
+import { socketEvent } from '../../utils/constants';
 
 class MainScene extends Component {
+  componentDidMount() {
+    const { socket, changeSystemColor, user } = this.props;
+    socket.on(socketEvent.NEW_SYSTEM_COLOR, data => {
+      console.log(data);
+      changeSystemColor(user.systemSetting.id, data);
+    });
+  }
+
   render() {
     const {
       ui,
@@ -126,7 +136,8 @@ function mapStateToProps(state) {
   return {
     user: state.auth,
     ui: state.ui,
-    conversations: state.conversations
+    conversations: state.conversations,
+    socket: state.socket
   };
 }
 
@@ -134,6 +145,7 @@ export default connect(
   mapStateToProps,
   {
     fetchSystemSettings,
+    changeSystemColor,
     changeShowSummaryAndToolSection
   }
 )(MainScene);

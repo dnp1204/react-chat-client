@@ -56,6 +56,16 @@ const onDisconnect = (socket, userId) => {
   });
 };
 
+const onNewColor = socket => {
+  socket.on(socketEvent.CHANGE_SYSTEM_COLOR, data => {
+    const { conversationId, color } = data;
+    chatLogger.debug(
+      `Change system color for conversation ${conversationId} with color ${color}`
+    );
+    socket.to(conversationId).emit(socketEvent.NEW_SYSTEM_COLOR, color);
+  });
+};
+
 module.exports = (io, session) => {
   io.of('/').on('connection', socket => {
     const cookieString = socket.request.headers.cookie;
@@ -73,6 +83,8 @@ module.exports = (io, session) => {
       onJoin(socket);
 
       onNewMessage(io, socket, userId);
+
+      onNewColor(socket);
 
       onDisconnect(socket, userId);
     });

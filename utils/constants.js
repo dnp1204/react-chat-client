@@ -4,6 +4,8 @@ module.exports = {
     IN_MESSAGE: 'in_message',
     DISCONNECT: 'disconnect',
     LEAVE: 'leave',
-    ONLINE: 'online'
+    ONLINE: 'online',
+    CHANGE_SYSTEM_COLOR: 'change_system_color',
+    NEW_SYSTEM_COLOR: 'new_system_color'
   }
 };

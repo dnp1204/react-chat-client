@@ -4,25 +4,37 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { changeSystemColor } from '../../../../../actions';
-import { Color } from '../../../../../utils/constants';
+import { Color, socketEvent } from '../../../../../utils/constants';
 import BasePanel from '../basePanel/BasePanel';
 
 class ColorsPanel extends PureComponent {
   renderColors(colors) {
+    const {
+      systemColor,
+      socket,
+      cancelButtonAction,
+      conversations
+    } = this.props;
+    const {
+      selectedConversation: { id }
+    } = conversations;
+
     return colors.map(color => {
       return (
         <div
           key={color}
-          className={`color-element ${
-            this.props.systemColor === color ? 'active' : ''
-          }`}
+          className={`color-element ${systemColor === color ? 'active' : ''}`}
           style={{ backgroundColor: color }}
           onClick={() => {
+            socket.emit(socketEvent.CHANGE_SYSTEM_COLOR, {
+              color,
+              conversationId: id
+            });
             this.props.changeSystemColor(
               this.props.user.systemSetting.id,
               color
             );
-            this.props.cancelButtonAction();
+            cancelButtonAction();
           }}
         />
       );
@@ -84,7 +96,9 @@ class ColorsPanel extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth
+    user: state.auth,
+    socket: state.socket,
+    conversations: state.conversations
   };
 }
 

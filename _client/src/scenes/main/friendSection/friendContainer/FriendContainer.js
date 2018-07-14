@@ -23,7 +23,7 @@ const FriendContainer = ({
       }`}
     >
       <CircleAvatar avatar={avatar} />
-      <div className="friend-container--info">
+      <div className="friend-container--info hide-on-xs">
         <div className="friend-container--name-and-date">
           <div className="friend-container--name">
             <h4 style={nameStyle} className={classNameForName}>
@@ -32,7 +32,7 @@ const FriendContainer = ({
           </div>
           <div className="friend-container--date">{rightComponent}</div>
         </div>
-        <div>{subTitleComponent}</div>
+        <div className="friend-container--sub-title">{subTitleComponent}</div>
       </div>
     </div>
   );

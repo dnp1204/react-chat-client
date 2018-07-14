@@ -36,7 +36,7 @@ class FriendSection extends Component {
             <p className="light-text hide-on-sm">{lastMessage}</p>
           }
           rightComponent={
-            <p className="light-text hide-on-md">
+            <p className="light-text hide-on-sm">
               {moment(updatedAt).calendar(null, {
                 sameDay: 'h:mm a',
                 lastDay: 'ddd',

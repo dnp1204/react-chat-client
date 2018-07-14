@@ -1,3 +1,5 @@
+@import 'src/styles/breakpoints.scss';
+
 .friend-container {
   display: flex;
   flex-direction: row;
@@ -10,6 +12,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 0;
 
     .friend-container--name-and-date {
       display: flex;
@@ -18,16 +21,30 @@
       margin-bottom: 4px;
 
       .friend-container--name {
-        width: 70%;
+        min-width: 0;
 
         h4 {
-          display: block;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           margin-bottom: 5px;
+          margin: 0;
         }
       }
+    }
+  }
+
+  .friend-container--name {
+    width: 70%;
+  }
+
+  .friend-container--sub-title {
+    p {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 260px;
+      text-overflow: ellipsis;
     }
   }
 
@@ -39,4 +56,28 @@
 .mouse-hover:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: $breakpoint-desktop-small) {
+  .friend-container {
+    .friend-container--name {
+      width: 60%;
+    }
+
+    .friend-container--sub-title {
+      p {
+        width: 220px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-tablet-landscape) {
+  .friend-container {
+    .friend-container--sub-title {
+      p {
+        width: 140px;
+      }
+    }
+  }
 }

@@ -9,7 +9,10 @@ const systemSettingSchema = new Schema(
     showPhotos: { type: Boolean, default: true },
     showSearch: { type: Boolean, default: false },
     recentlyEmoji: [{ type: String }],
-    selectedEmoji: { type: String, default: '👍' },
+    selectedEmoji: {
+      id: { type: String, default: '+1' },
+      native: { type: String, default: '👍' }
+    },
     showSummaryAndToolSection: { type: Boolean, default: true }
   },
   {

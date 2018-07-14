@@ -16,7 +16,7 @@ import OnlineTime from '../../components/elements/online-time/OnlineTime';
 
 class MainScene extends Component {
   componentDidMount() {
-    this.props.fetchSystemSettings();
+    this.props.fetchSystemSettings(this.props.user.systemSetting);
   }
 
   render() {

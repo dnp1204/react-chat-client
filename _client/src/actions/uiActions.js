@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Color } from '../utils/constants';
 import {
   CHANGE_SYSTEM_COLOR,
@@ -21,8 +22,15 @@ const initialState = {
   showSummaryAndToolSection: true
 };
 
-export const fetchSystemSettings = () => async dispatch => {
-  dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: initialState });
+export const fetchSystemSettings = id => async dispatch => {
+  try {
+    const request = await axios.get(`/api/system/${id}`);
+    console.log(request.data);
+    dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: request.data });
+  } catch (err) {
+    console.log(err);
+  }
+  // dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: initialState });
 };
 
 export const changeSystemColor = color => async dispatch => {

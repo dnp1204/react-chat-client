@@ -79,6 +79,17 @@ class MessageSection extends Component {
     this.setState({ recievedNewInput: false, forceScroll: false });
   }
 
+  onPickSelectedEmoji(emoji) {
+    const { selectedConversation } = this.props.conversations;
+    const message = {
+      conversationId: selectedConversation.id,
+      content: emoji.native
+    };
+    this.socket.emit(socketEvent.NEW_MESSAGE, message);
+
+    this.onNewMessageHandler();
+  }
+
   render() {
     const { selectedEmoji, showSearch } = this.props.systemSettings;
     const { selectedConversation } = this.props.conversations;
@@ -105,6 +116,7 @@ class MessageSection extends Component {
         <MessageTools
           pickEmoji={emoji => this.setState({ emoji })}
           selectedEmojiId={selectedEmoji.id}
+          pickSelectedEmojiId={this.onPickSelectedEmoji.bind(this)}
         />
       </div>
     );

@@ -70,11 +70,17 @@ class MessageTools extends Component {
       }
     ];
 
+    const { pickSelectedEmojiId, selectedEmojiId } = this.props;
+
     return (
       <div className="message-section--tool flex--row align__center justify--space__between">
         <MultipleIconRow iconArray={iconArray} />
         <div className="cursor-pointer">
-          <Emoji emoji={{ id: this.props.selectedEmojiId }} size={24} />
+          <Emoji
+            onClick={data => pickSelectedEmojiId(data)}
+            emoji={{ id: selectedEmojiId }}
+            size={24}
+          />
         </div>
       </div>
     );

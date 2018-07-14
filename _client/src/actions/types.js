@@ -1,3 +1,5 @@
+export const SET_SOCKET = 'set_socket';
+
 export const FETCH_USER = 'fetch_user';
 
 export const FETCH_CONVERSATION_LIST = 'fetch_conversation_list';

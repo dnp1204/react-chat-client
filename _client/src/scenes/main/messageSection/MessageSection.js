@@ -3,7 +3,6 @@ import './MessageSection.scss';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import io from 'socket.io-client';
 
 import { socketEvent } from '../../../utils/constants';
 import {
@@ -20,27 +19,26 @@ class MessageSection extends Component {
     super(props);
 
     this.state = { recievedNewInput: false, forceScroll: false, emoji: '' };
-    this.socket = io('http://localhost:5000', {
-      transports: ['websocket']
-    });
   }
 
   componentDidMount() {
+    const { socket } = this.props;
     const { conversations } = this.props.conversations;
+
     conversations.forEach(conversation => {
-      this.socket.emit('join', conversation.id);
+      socket.emit('join', conversation.id);
     });
 
-    this.socket.on(socketEvent.IN_MESSAGE, data => {
+    socket.on(socketEvent.IN_MESSAGE, data => {
       this.props.receiveMessage(data);
       this.setState({ recievedNewInput: true });
     });
 
-    this.socket.on(socketEvent.ONLINE, data => {
+    socket.on(socketEvent.ONLINE, data => {
       this.props.friendGoOnline(data);
     });
 
-    this.socket.on(socketEvent.LEAVE, data => {
+    socket.on(socketEvent.LEAVE, data => {
       this.props.friendGoOffline(data);
     });
   }
@@ -56,7 +54,6 @@ class MessageSection extends Component {
 
     // console.log(diff);
     if (diff.length > 0) {
-      console.log('yes');
       const { conversations } = this.props.conversations;
       conversations.forEach(conversation => {
         this.socket.emit('join', conversation.id);
@@ -72,7 +69,7 @@ class MessageSection extends Component {
   }
 
   onNewMessageHandler() {
-    this.setState({ recievedNewInput: true });
+    this.setState({ recievedNewInput: true, emoji: '' });
   }
 
   onScrollToBottomFinishHandler() {
@@ -85,7 +82,7 @@ class MessageSection extends Component {
       conversationId: selectedConversation.id,
       content: emoji.native
     };
-    this.socket.emit(socketEvent.NEW_MESSAGE, message);
+    this.props.socket.emit(socketEvent.NEW_MESSAGE, message);
 
     this.onNewMessageHandler();
   }
@@ -108,7 +105,7 @@ class MessageSection extends Component {
           }
         />
         <MessageInput
-          socket={this.socket}
+          socket={this.props.socket}
           emoji={this.state.emoji}
           conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
@@ -125,6 +122,7 @@ class MessageSection extends Component {
 
 function mapStateToProps(state) {
   return {
+    socket: state.socket,
     auth: state.auth,
     conversations: state.conversations,
     ui: state.ui

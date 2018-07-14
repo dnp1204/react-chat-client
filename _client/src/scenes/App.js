@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
+import io from 'socket.io-client';
 
-import { fetchUser } from '../actions';
+import { fetchUser, setSocket } from '../actions';
 import AuthGuard from '../components/hoc/AuthGuard';
 import Loading from '../components/tools/spinner/Loading';
 import Login from './login/Login';
@@ -11,6 +12,10 @@ import SignUp from './signUp/SignUp';
 
 class App extends Component {
   componentDidMount() {
+    this.socket = io('http://localhost:5000', {
+      transports: ['websocket']
+    });
+    this.props.setSocket(this.socket);
     this.props.fetchUser();
   }
 
@@ -77,5 +82,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchUser }
+  { fetchUser, setSocket }
 )(App);

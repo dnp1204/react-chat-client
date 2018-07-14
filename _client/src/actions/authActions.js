@@ -1,11 +1,20 @@
-import { FETCH_USER, LOADING, FETCH_CONVERSATION_LIST } from './types';
 import axios from 'axios';
+
+import {
+  FETCH_CONVERSATION_LIST,
+  FETCH_SYSTEM_SETTINGS,
+  FETCH_USER,
+  LOADING
+} from './types';
 
 const getUserAndConversations = async dispatch => {
   try {
     let request = await axios.get(`/api/getUser`);
     dispatch({ type: FETCH_USER, payload: request.data });
-    const { conversations } = request.data;
+    const { conversations, systemSetting } = request.data;
+
+    dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: systemSetting });
+
     if (conversations.length > 0) {
       const id = conversations[0].id;
       request = await axios.get(`/api/conversation/${id}`);

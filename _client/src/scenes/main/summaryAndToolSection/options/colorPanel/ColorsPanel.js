@@ -18,7 +18,10 @@ class ColorsPanel extends PureComponent {
           }`}
           style={{ backgroundColor: color }}
           onClick={() => {
-            this.props.changeSystemColor(color);
+            this.props.changeSystemColor(
+              this.props.user.systemSetting.id,
+              color
+            );
             this.props.cancelButtonAction();
           }}
         />
@@ -79,4 +82,13 @@ class ColorsPanel extends PureComponent {
   }
 }
 
-export default connect(null, { changeSystemColor })(ColorsPanel);
+function mapStateToProps(state) {
+  return {
+    user: state.auth
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { changeSystemColor }
+)(ColorsPanel);

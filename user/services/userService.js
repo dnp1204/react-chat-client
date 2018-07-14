@@ -39,25 +39,30 @@ const findUserById = (id, deepPopulate = false) => {
     try {
       let existingUser;
       if (deepPopulate) {
-        existingUser = await User.findById(id).populate({
-          path: 'conversations',
-          options: {
-            sort: { updatedAt: -1 },
-            limit: 15
-          },
-          populate: [
-            {
-              path: 'users'
+        existingUser = await User.findById(id).populate([
+          {
+            path: 'conversations',
+            options: {
+              sort: { updatedAt: -1 },
+              limit: 15
             },
-            {
-              path: 'contents',
-              options: {
-                sort: { createdAt: -1 },
-                limit: 1
+            populate: [
+              {
+                path: 'users'
+              },
+              {
+                path: 'contents',
+                options: {
+                  sort: { createdAt: -1 },
+                  limit: 1
+                }
               }
-            }
-          ]
-        });
+            ]
+          },
+          {
+            path: 'systemSetting'
+          }
+        ]);
       } else {
         existingUser = await User.findById(id);
       }

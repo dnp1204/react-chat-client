@@ -1,12 +1,12 @@
 import {
-  LOADING,
-  CHANGE_SYSTEM_COLOR,
   CHANGE_SHOW_OPTIONS,
   CHANGE_SHOW_PHOTOS,
-  CHANGE_SYSTEM_EMOJI,
+  CHANGE_SHOW_SEARCH_INPUT,
   CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
+  CHANGE_SYSTEM_COLOR,
+  CHANGE_SYSTEM_EMOJI,
   FETCH_SYSTEM_SETTINGS,
-  CHANGE_SHOW_SEARCH_INPUT
+  LOADING
 } from '../actions/types';
 import { Color, EmojiId } from '../utils/constants';
 
@@ -39,12 +39,15 @@ export default function(state = initialState, action) {
     case FETCH_SYSTEM_SETTINGS:
       return {
         ...state,
-        systemSettings: Object.assign({}, state.systemSettings, action.payload)
+        systemSettings: { ...state.systemSettings, ...action.payload }
       };
     case CHANGE_SYSTEM_COLOR:
       return {
         ...state,
-        systemSettings: { ...state.systemSettings, systemColor: action.payload }
+        systemSettings: {
+          ...state.systemSettings,
+          systemColor: action.payload
+        }
       };
     case CHANGE_SHOW_OPTIONS:
       return {

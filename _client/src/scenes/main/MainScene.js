@@ -15,10 +15,6 @@ import SummaryAndTool from './summaryAndToolSection/SummaryAndTool';
 import OnlineTime from '../../components/elements/online-time/OnlineTime';
 
 class MainScene extends Component {
-  componentDidMount() {
-    this.props.fetchSystemSettings(this.props.user.systemSetting);
-  }
-
   render() {
     const {
       selectedConversation: { users }

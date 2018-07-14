@@ -1,40 +1,33 @@
 import axios from 'axios';
-import { Color } from '../utils/constants';
+
 import {
-  CHANGE_SYSTEM_COLOR,
   CHANGE_SHOW_OPTIONS,
   CHANGE_SHOW_PHOTOS,
-  CHANGE_SYSTEM_EMOJI,
-  CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
   CHANGE_SHOW_SEARCH_INPUT,
+  CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
+  CHANGE_SYSTEM_COLOR,
+  CHANGE_SYSTEM_EMOJI,
   FETCH_SYSTEM_SETTINGS
 } from './types';
 
-const initialState = {
-  systemColor: Color.BLUE,
-  showOptions: true,
-  showPhotos: false,
-  showSearch: false,
-  selectedEmoji: {
-    id: '+1',
-    native: '👍'
-  },
-  showSummaryAndToolSection: true
-};
+const URL = '/api/system';
 
 export const fetchSystemSettings = id => async dispatch => {
   try {
-    const request = await axios.get(`/api/system/${id}`);
-    console.log(request.data);
+    const request = await axios.get(`${URL}/${id}`);
     dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: request.data });
   } catch (err) {
     console.log(err);
   }
-  // dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: initialState });
 };
 
-export const changeSystemColor = color => async dispatch => {
-  dispatch({ type: CHANGE_SYSTEM_COLOR, payload: color });
+export const changeSystemColor = (id, color) => async dispatch => {
+  try {
+    const request = await axios.post(`${URL}/${id}`, { systemColor: color });
+    dispatch({ type: CHANGE_SYSTEM_COLOR, payload: request.data.systemColor });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const changeShowOptions = isShow => async dispatch => {

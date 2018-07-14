@@ -27,7 +27,8 @@ const findById = id => {
 const update = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const systemSetting = await SystemSetting.findByIdAndUpdate(id, data);
+      await SystemSetting.findByIdAndUpdate(id, data);
+      const systemSetting = await SystemSetting.findById(id);
       resolve(systemSetting);
     } catch (err) {
       reject(err);

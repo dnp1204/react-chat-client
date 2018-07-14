@@ -17,10 +17,14 @@
       justify-content: space-between;
       margin-bottom: 4px;
 
-      .friend-container--info__name {
-        margin-left: 10px;
+      .friend-container--name {
+        width: 70%;
 
         h4 {
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           margin-bottom: 5px;
         }
       }

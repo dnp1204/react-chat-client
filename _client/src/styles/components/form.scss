@@ -1,0 +1,31 @@
+@import 'variables.scss';
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+}
+
+.form-control {
+  box-sizing: border-box;
+  padding: 12px 10px;
+  margin-bottom: 5px;
+  background-color: $bg-color;
+  border: 0.5px solid $border-color;
+  border-radius: 4px;
+  outline: none;
+}
+
+.form-control-error {
+  border: 0.5px solid $border-error-color;
+}
+
+.form-has-error {
+  color: $danger;
+  display: inline-block;
+  margin-bottom: 5px;
+  animation: fadeIn 300ms ease-in-out;
+}

@@ -1,0 +1,31 @@
+@import 'variables.scss';
+
+.btn {
+  color: #fff;
+  border-radius: 6px;
+  min-width: 100px;
+  width: fit-content;
+  padding: 8px 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-default {
+  color: #000;
+
+  &:hover {
+    background-color: $darken-default;
+  }
+}
+
+.btn-primary {
+  background-color: $primary;
+
+  &:hover {
+    background-color: $darken-primary;
+  }
+}
+
+.btn-block {
+  width: 100%;
+}

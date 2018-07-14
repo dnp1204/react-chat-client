@@ -1,6 +1,5 @@
 import './SummaryAndTool.scss';
 
-import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 

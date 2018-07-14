@@ -22,16 +22,18 @@ const FriendContainer = ({
         isHover ? 'mouse-hover' : ''
       }`}
     >
+      <CircleAvatar avatar={avatar} />
       <div className="friend-container--info">
-        <CircleAvatar avatar={avatar} />
-        <div className="friend-container--info__name">
-          <h4 style={nameStyle} className={classNameForName}>
-            {firstName} {lastName}
-          </h4>
-          <div>{subTitleComponent}</div>
+        <div className="friend-container--name-and-date">
+          <div className="friend-container--name">
+            <h4 style={nameStyle} className={classNameForName}>
+              {firstName} {lastName}
+            </h4>
+          </div>
+          <div className="friend-container--date">{rightComponent}</div>
         </div>
+        <div>{subTitleComponent}</div>
       </div>
-      <div className="friend-container--date">{rightComponent}</div>
     </div>
   );
 };

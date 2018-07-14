@@ -4,7 +4,6 @@ const { Schema } = mongoose;
 
 const systemSettingSchema = new Schema(
   {
-    ofUser: { type: Schema.Types.ObjectId, ref: 'user' },
     systemColor: { type: String, default: '#0584FF' },
     showOptions: { type: Boolean, default: true },
     showPhotos: { type: Boolean, default: true },
@@ -20,5 +19,5 @@ const systemSettingSchema = new Schema(
   }
 );
 
-const SystemSetting = mongoose.model('system-settings', systemSettingSchema);
+const SystemSetting = mongoose.model('system-setting', systemSettingSchema);
 module.exports = SystemSetting;

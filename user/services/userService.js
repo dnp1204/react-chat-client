@@ -2,11 +2,20 @@ const Promise = require('bluebird').Promise;
 
 const User = require('../models/User');
 const Conversation = require('../../chat/models/Conversation');
+const systemService = require('../services/systemService');
 
 const createUser = data => {
   return new Promise(async (resolve, reject) => {
     try {
-      const user = await User.create(data);
+      // Will create new system setting that associate with this user
+      const systemSetting = await systemService.createNewSystemSetting();
+      try {
+        const user = new User(data);
+        user.systemSetting = systemSetting._id;
+        await user.save();
+      } catch (err) {
+        reject(err);
+      }
       resolve(user);
     } catch (err) {
       reject(err);

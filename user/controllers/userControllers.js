@@ -4,6 +4,7 @@ const {
   findUserByEmail,
   findUserById
 } = require('../services/userService');
+const systemSettingService = require('../services/systemService');
 const { userLogger } = require('../../utils/logger');
 const helper = require('../../utils/helper');
 
@@ -133,10 +134,39 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getSystemSetting = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    userLogger.debug(`Find system setting ${id}`);
+    const systemSetting = await systemSettingService.findById(id);
+    res.send(systemSetting);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateSystemSetting = async (req, res, next) => {
+  const { id } = req.params;
+  const data = req.body;
+
+  try {
+    userLogger.debug(
+      `Update system setting ${id} with value ${JSON.stringify(data)}`
+    );
+    const systemSetting = await systemSettingService.update(id, data);
+    res.send(systemSetting);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getCurrentUser,
   getUser,
   logIn,
   signOut,
-  signUp
+  signUp,
+  getSystemSetting,
+  updateSystemSetting
 };

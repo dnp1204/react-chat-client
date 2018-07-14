@@ -24,7 +24,8 @@ const userSchema = new Schema(
     active: { type: Boolean, default: false },
     conversations: [{ type: Schema.Types.ObjectId, ref: 'conversation' }],
     isOnline: Boolean,
-    lastTimeOnline: { type: Date, default: Date.now() }
+    lastTimeOnline: { type: Date, default: Date.now() },
+    systemSetting: { type: Schema.Types.ObjectId, ref: 'system-setting' }
   },
   {
     timestamps: true,

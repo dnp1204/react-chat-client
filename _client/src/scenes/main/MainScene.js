@@ -12,6 +12,7 @@ import MultipleIconRow from '../../components/elements/icon/MultipleIconRow';
 import FriendSection from './friendSection/FriendSection';
 import MessageSection from './messageSection/MessageSection';
 import SummaryAndTool from './summaryAndToolSection/SummaryAndTool';
+import OnlineTime from '../../components/elements/online-time/OnlineTime';
 
 class MainScene extends Component {
   componentDidMount() {
@@ -19,8 +20,10 @@ class MainScene extends Component {
   }
 
   render() {
-    const { fullName } = this.props.user;
-
+    const {
+      selectedConversation: { users }
+    } = this.props.conversations;
+    const { fullName, isOnline, lastTimeOnline } = users[0];
     const {
       systemColor,
       showOptions,
@@ -81,7 +84,13 @@ class MainScene extends Component {
           <Header
             className="second-header"
             title={fullName}
-            subTitle="Active on Messenger"
+            subTitleComponent={
+              <OnlineTime
+                small
+                isOnline={isOnline}
+                lastTimeOnline={lastTimeOnline}
+              />
+            }
             rightComponent={
               <MultipleIconRow className="hide-on-sm" iconArray={iconArray} />
             }
@@ -112,7 +121,11 @@ class MainScene extends Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.auth, systemSettings: state.systemSettings };
+  return {
+    user: state.auth,
+    systemSettings: state.systemSettings,
+    conversations: state.conversations
+  };
 }
 
 export default connect(

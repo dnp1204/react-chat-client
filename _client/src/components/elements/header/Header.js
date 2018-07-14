@@ -7,6 +7,7 @@ const Header = ({
   rightComponent,
   title,
   subTitle,
+  subTitleComponent,
   className,
   classNameForTitle
 }) => {
@@ -15,7 +16,11 @@ const Header = ({
       <div className="header--left">{leftComponent}</div>
       <div className={`header--title ${classNameForTitle}`}>
         <h3>{title}</h3>
-        <small className="light-text">{subTitle}</small>
+        {subTitle ? (
+          <small className="light-text">{subTitle}</small>
+        ) : (
+          subTitleComponent
+        )}
       </div>
       <div className="header--right">{rightComponent}</div>
     </div>
@@ -27,6 +32,7 @@ Header.propTypes = {
   rightComponent: PropTypes.element,
   title: PropTypes.string,
   subTitle: PropTypes.string,
+  subTitleComponent: PropTypes.element,
   className: PropTypes.string
 };
 

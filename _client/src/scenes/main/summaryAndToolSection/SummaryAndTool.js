@@ -11,6 +11,7 @@ import { Color } from '../../../utils/constants';
 import FriendContainer from '../friendSection/friendContainer/FriendContainer';
 import Options from './options/Options';
 import Photos from './photos/Photos';
+import OnlineTime from '../../../components/elements/online-time/OnlineTime';
 
 class SummaryAndTool extends Component {
   renderDropDownComponent() {
@@ -53,16 +54,6 @@ class SummaryAndTool extends Component {
       lastTimeOnline
     } = users[0];
 
-    moment.updateLocale('en', {
-      relativeTime: {
-        ss: '%d seconds',
-        mm: '%d minutes',
-        hh: '%d hours',
-        dd: '%d days',
-        MM: '%d months'
-      }
-    });
-
     return (
       <div id="tool">
         <div className="tool--section tool--header border-bottom">
@@ -72,11 +63,7 @@ class SummaryAndTool extends Component {
             firstName={firstName}
             lastName={lastName}
             subTitleComponent={
-              <p className="light-text">
-                {isOnline
-                  ? 'Active Now'
-                  : `Active ${moment(lastTimeOnline).fromNow()}`}
-              </p>
+              <OnlineTime isOnline={isOnline} lastTimeOnline={lastTimeOnline} />
             }
             isHover={false}
             rightComponent={this.renderRightComponentForToolHeader()}

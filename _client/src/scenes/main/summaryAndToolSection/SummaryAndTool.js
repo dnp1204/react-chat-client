@@ -42,9 +42,17 @@ class SummaryAndTool extends Component {
   }
 
   render() {
-    const { systemColor, showOptions, showPhotos, showSearch } = this.props;
-    const { selectedConversation } = this.props.conversations;
-    const { users } = selectedConversation;
+    const {
+      systemColor,
+      showOptions,
+      showPhotos,
+      showSearch,
+      user,
+      conversations
+    } = this.props;
+    const {
+      selectedConversation: { users }
+    } = conversations;
     const {
       avatarUrl,
       firstName,
@@ -72,12 +80,16 @@ class SummaryAndTool extends Component {
           showSearch={showSearch}
           systemColor={systemColor}
           isShow={showOptions}
-          onIconClickHandler={show => this.props.changeShowOptions(show)}
+          onIconClickHandler={show =>
+            this.props.changeShowOptions(user.systemSetting.id, show)
+          }
         />
         <Photos
           systemColor={systemColor}
           isShow={showPhotos}
-          onIconClickHandler={show => this.props.changeShowPhotos(show)}
+          onIconClickHandler={show =>
+            this.props.changeShowPhotos(user.systemSetting.id, show)
+          }
         />
       </div>
     );
@@ -85,7 +97,7 @@ class SummaryAndTool extends Component {
 }
 
 function mapStateToProps(state) {
-  return { conversations: state.conversations };
+  return { user: state.auth, conversations: state.conversations };
 }
 
 export default connect(

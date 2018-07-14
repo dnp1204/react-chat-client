@@ -30,20 +30,43 @@ export const changeSystemColor = (id, color) => async dispatch => {
   }
 };
 
-export const changeShowOptions = isShow => async dispatch => {
-  dispatch({ type: CHANGE_SHOW_OPTIONS, payload: isShow });
+export const changeShowOptions = (id, isShow) => async dispatch => {
+  try {
+    const request = await axios.post(`${URL}/${id}`, { showOptions: isShow });
+    dispatch({ type: CHANGE_SHOW_OPTIONS, payload: request.data.showOptions });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export const changeShowPhotos = isShow => async dispatch => {
-  dispatch({ type: CHANGE_SHOW_PHOTOS, payload: isShow });
+export const changeShowPhotos = (id, isShow) => async dispatch => {
+  try {
+    const request = await axios.post(`${URL}/${id}`, { showPhotos: isShow });
+    dispatch({ type: CHANGE_SHOW_PHOTOS, payload: request.data.showPhotos });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const changeSelectedEmoji = (emojiId, emojiNative) => async dispatch => {
   dispatch({ type: CHANGE_SYSTEM_EMOJI, payload: { emojiId, emojiNative } });
 };
 
-export const changeShowSummaryAndToolSection = isShow => async dispatch => {
-  dispatch({ type: CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION, payload: isShow });
+export const changeShowSummaryAndToolSection = (
+  id,
+  isShow
+) => async dispatch => {
+  try {
+    const request = await axios.post(`${URL}/${id}`, {
+      showSummaryAndToolSection: isShow
+    });
+    dispatch({
+      type: CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
+      payload: request.data.showSummaryAndToolSection
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const changeShowSearchInput = isShow => async dispatch => {

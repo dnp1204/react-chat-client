@@ -17,8 +17,13 @@ import OnlineTime from '../../components/elements/online-time/OnlineTime';
 class MainScene extends Component {
   render() {
     const {
+      ui,
+      conversations,
+      user: { systemSetting }
+    } = this.props;
+    const {
       selectedConversation: { users }
-    } = this.props.conversations;
+    } = conversations;
     const { fullName, isOnline, lastTimeOnline } = users[0];
     const {
       systemColor,
@@ -26,7 +31,7 @@ class MainScene extends Component {
       showPhotos,
       showSearch,
       showSummaryAndToolSection
-    } = this.props.ui.systemSettings;
+    } = ui.systemSettings;
     const iconArray = [
       // { iconName: 'phone', iconType: 'solid', color: systemColor },
       { iconName: 'video', iconType: 'solid', color: systemColor },
@@ -36,6 +41,7 @@ class MainScene extends Component {
         color: systemColor,
         onClickHandler: () => {
           this.props.changeShowSummaryAndToolSection(
+            systemSetting.id,
             !showSummaryAndToolSection
           );
         }

@@ -1,3 +1,3 @@
-export * from './systemSettingsAction';
+export * from './uiActions';
 export * from './authActions';
 export * from './conversationAction';

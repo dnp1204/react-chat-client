@@ -30,7 +30,7 @@ class MainScene extends Component {
       showPhotos,
       showSearch,
       showSummaryAndToolSection
-    } = this.props.systemSettings;
+    } = this.props.ui.systemSettings;
     const iconArray = [
       // { iconName: 'phone', iconType: 'solid', color: systemColor },
       { iconName: 'video', iconType: 'solid', color: systemColor },
@@ -123,7 +123,7 @@ class MainScene extends Component {
 function mapStateToProps(state) {
   return {
     user: state.auth,
-    systemSettings: state.systemSettings,
+    ui: state.ui,
     conversations: state.conversations
   };
 }

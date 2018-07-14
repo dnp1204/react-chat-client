@@ -91,7 +91,7 @@ class MessageSection extends Component {
   }
 
   render() {
-    const { selectedEmoji, showSearch } = this.props.systemSettings;
+    const { selectedEmoji, showSearch } = this.props.ui.systemSettings;
     const { selectedConversation } = this.props.conversations;
 
     return (
@@ -127,7 +127,7 @@ function mapStateToProps(state) {
   return {
     auth: state.auth,
     conversations: state.conversations,
-    systemSettings: state.systemSettings
+    ui: state.ui
   };
 }
 

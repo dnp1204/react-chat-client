@@ -11,7 +11,7 @@ class EmojiPanel extends PureComponent {
   render() {
     const title = 'Pick an emoji for this conversation';
     const text = 'Everyone in this conversation will see this';
-    const { emojiIdsForOptions } = this.props.systemSettings;
+    const { emojiIdsForOptions } = this.props.ui.systemSettings;
 
     return (
       <BasePanel
@@ -51,7 +51,10 @@ class EmojiPanel extends PureComponent {
 }
 
 function mapStateToProps(state) {
-  return { systemSettings: state.systemSettings };
+  return { ui: state.ui };
 }
 
-export default connect(mapStateToProps, { changeSelectedEmoji })(EmojiPanel);
+export default connect(
+  mapStateToProps,
+  { changeSelectedEmoji }
+)(EmojiPanel);

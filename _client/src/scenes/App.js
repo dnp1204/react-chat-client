@@ -17,7 +17,9 @@ class App extends Component {
   render() {
     const {
       auth,
-      ui: { isLoading }
+      ui: {
+        loading: { isLoading }
+      }
     } = this.props;
     const isAuthenticated = auth ? true : false;
 

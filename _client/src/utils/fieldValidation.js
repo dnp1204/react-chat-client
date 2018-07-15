@@ -49,7 +49,6 @@ export const asyncValidate = (data, dispatch) => {
 
   return new Promise(async (resolve, reject) => {
     const request = await axios.get(`/api/user/validate/${data.email}`);
-    console.log(request.data);
     if (request.data) {
       reject({ email: 'This email has already been taken' });
     } else {

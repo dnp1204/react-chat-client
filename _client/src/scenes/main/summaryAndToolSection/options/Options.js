@@ -128,8 +128,10 @@ class Options extends Component {
         classNameToCustom="tool--options"
         isNeededBorderBottom={true}
       >
-        {this.renderToolIconWithoutModal()}
-        {this.renderToolIconWithModal()}
+        <div style={{ paddingBottom: '8px' }}>
+          {this.renderToolIconWithoutModal()}
+          {this.renderToolIconWithModal()}
+        </div>
       </BaseComponent>
     );
   }

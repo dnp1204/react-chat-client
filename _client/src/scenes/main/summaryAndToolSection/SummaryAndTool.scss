@@ -35,7 +35,7 @@
       transition: all 200ms ease-in-out;
 
       p {
-        font-size: 18px;
+        font-size: 15px;
       }
 
       &:hover {
@@ -49,8 +49,6 @@
   }
 
   .tool--options {
-    padding-bottom: 10px;
-
     .element {
       padding: 2px 0px;
       display: flex;

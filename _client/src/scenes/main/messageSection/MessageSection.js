@@ -4,12 +4,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { socketEvent } from '../../../utils/constants';
 import {
-  receiveMessage,
   friendGoOffline,
-  friendGoOnline
+  friendGoOnline,
+  receiveMessage
 } from '../../../actions';
+import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';
 import MessageTools from './messageTools/MessageTools';

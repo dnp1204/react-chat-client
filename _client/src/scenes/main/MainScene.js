@@ -1,26 +1,26 @@
+import './MainScene.scss';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './MainScene.scss';
 import {
-  fetchSystemSettings,
+  changeShowSummaryAndToolSection,
   changeSystemColor,
-  changeShowSummaryAndToolSection
+  fetchSystemSettings
 } from '../../actions';
 import Header from '../../components/elements/header/Header';
 import Icon from '../../components/elements/icon/Icon';
 import MultipleIconRow from '../../components/elements/icon/MultipleIconRow';
+import OnlineTime from '../../components/elements/online-time/OnlineTime';
+import { socketEvent } from '../../utils/constants';
 import FriendSection from './friendSection/FriendSection';
 import MessageSection from './messageSection/MessageSection';
 import SummaryAndTool from './summaryAndToolSection/SummaryAndTool';
-import OnlineTime from '../../components/elements/online-time/OnlineTime';
-import { socketEvent } from '../../utils/constants';
 
 class MainScene extends Component {
   componentDidMount() {
     const { socket, changeSystemColor, user } = this.props;
     socket.on(socketEvent.NEW_SYSTEM_COLOR, data => {
-      console.log(data);
       changeSystemColor(user.systemSetting.id, data);
     });
   }

@@ -6,9 +6,9 @@ import io from 'socket.io-client';
 import { fetchUser, setSocket } from '../actions';
 import AuthGuard from '../components/hoc/AuthGuard';
 import Loading from '../components/tools/spinner/Loading';
-import Login from './login/Login';
 import MainScene from './main/MainScene';
-import SignUp from './signUp/SignUp';
+import Login from './un-auth/Login';
+import SignUp from './un-auth/SignUp';
 
 class App extends Component {
   componentDidMount() {

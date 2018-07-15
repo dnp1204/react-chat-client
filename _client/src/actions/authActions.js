@@ -37,7 +37,6 @@ export const login = (data, callback) => async dispatch => {
     getUserAndConversations(dispatch);
   } catch (err) {
     console.log(err);
-  } finally {
     dispatch({ type: LOADING, payload: false });
   }
 };

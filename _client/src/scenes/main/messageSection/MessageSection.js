@@ -43,7 +43,7 @@ class MessageSection extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const diff = _.differenceWith(
       prevProps.conversations.conversations,
       this.props.conversations.conversations,
@@ -52,11 +52,10 @@ class MessageSection extends Component {
       }
     );
 
-    // console.log(diff);
     if (diff.length > 0) {
       const { conversations } = this.props.conversations;
       conversations.forEach(conversation => {
-        this.socket.emit('join', conversation.id);
+        this.props.socket.emit('join', conversation.id);
       });
     }
 

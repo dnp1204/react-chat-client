@@ -4,8 +4,15 @@ export const required = value =>
 export const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 
-export const minLength = min => value =>
+const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
+
+export const minLength3 = minLength(3);
+
+export const passwordMatch = (value, allValues) =>
+  value !== allValues.password
+    ? 'Confirmation password does not match'
+    : undefined;
 
 export const number = value =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;

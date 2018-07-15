@@ -50,8 +50,8 @@
 
   .message-bubble--timestamp__left {
     right: 0;
-    //transform-origin: left;
-    // animation: rotate-left 200ms ease-in-out;
+    /* transform-origin: left;
+    // animation: rotate-left 200ms ease-in-out; */
 
     &:before {
       left: -4px;
@@ -61,8 +61,8 @@
 
   .message-bubble--timestamp__right {
     left: 0;
-    //transform-origin: 100% 50%;
-    // animation: rotate-right 200ms ease-in-out;
+    /* transform-origin: 100% 50%;
+    // animation: rotate-right 200ms ease-in-out; */
 
     &:after {
       right: -4px;

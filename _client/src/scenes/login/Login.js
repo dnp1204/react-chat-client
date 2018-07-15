@@ -78,7 +78,7 @@ class Login extends Component {
             />
             <Field
               name="password"
-              type="text"
+              type="password"
               component={this.renderField}
               placeholder="Password"
               validate={[required]}

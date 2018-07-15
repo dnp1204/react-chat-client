@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import { login } from '../../actions';
@@ -19,11 +18,16 @@ class Login extends Component {
   };
 
   render() {
-    const { handleSubmit, submitting, invalid, pristine } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <BaseComponent
+        data={this.props}
+        primaryButtonTitle="Login"
+        defaultButtonTitle="Create New Account"
+        defaultButtonLink="/signup"
         handleKeyDown={this.handleKeyDown}
+        handleSubmit={this.handleSubmit}
         render={renderField => (
           <form
             className="form-group"
@@ -45,23 +49,7 @@ class Login extends Component {
             />
           </form>
         )}
-      >
-        <div className="button-container">
-          <button
-            type="submit"
-            onClick={handleSubmit(this.handleSubmit)}
-            disabled={invalid | submitting | pristine}
-            className="btn btn-block btn-primary"
-          >
-            Log In
-          </button>
-          <Link disabled={submitting} to="/signup">
-            <button className="btn btn-block btn-default">
-              Create New Account
-            </button>
-          </Link>
-        </div>
-      </BaseComponent>
+      />
     );
   }
 }

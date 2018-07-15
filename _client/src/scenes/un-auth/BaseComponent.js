@@ -2,6 +2,7 @@ import './BaseComponent.scss';
 
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
 import FormField from './FormField';
 import LinkWithIcon from '../../components/elements/icon/LinkWithIcon';
 
@@ -27,6 +28,13 @@ class BaseComponent extends Component {
   };
 
   render() {
+    const {
+      primaryButtonTitle,
+      defaultButtonTitle,
+      defaultButtonLink
+    } = this.props;
+    const { handleSubmit, submitting, invalid, pristine } = this.props.data;
+
     return (
       <div className="app-login-page">
         <div className="login-page-container">
@@ -45,8 +53,24 @@ class BaseComponent extends Component {
             <div className="between">OR</div>
             <div className="split-line" />
           </div>
+
           {this.props.render(this.renderField)}
-          {this.props.children}
+
+          <div className="button-container">
+            <button
+              type="submit"
+              onClick={handleSubmit(this.props.handleSubmit)}
+              disabled={invalid | submitting | pristine}
+              className="btn btn-block btn-primary"
+            >
+              {primaryButtonTitle}
+            </button>
+            <Link disabled={submitting} to={defaultButtonLink}>
+              <button className="btn btn-block btn-default">
+                {defaultButtonTitle}
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     );

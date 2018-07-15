@@ -38,31 +38,31 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => (
+            render={props => (
               <AuthGuard
                 isAuthenticated={isAuthenticated}
                 needAuth
-                render={() => <MainScene />}
+                render={() => <MainScene history={props.history} />}
               />
             )}
           />
           <Route
             path="/login"
-            render={() => (
+            render={props => (
               <AuthGuard
                 isAuthenticated={isAuthenticated}
                 redirectTo="/"
-                render={() => <Login />}
+                render={() => <Login history={props.history} />}
               />
             )}
           />
           <Route
             path="/signup"
-            render={() => (
+            render={props => (
               <AuthGuard
                 isAuthenticated={isAuthenticated}
                 redirectTo="/"
-                render={() => <SignUp />}
+                render={() => <SignUp history={props.history} />}
               />
             )}
           />

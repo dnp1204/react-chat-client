@@ -25,7 +25,12 @@ const signUp = async (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     return next(
-      helper.createError('Invalid input', 400, userLogger.info, 'Invalid input')
+      helper.createError(
+        'Invalid input',
+        400,
+        userLogger.debug,
+        'Invalid input'
+      )
     );
   }
 

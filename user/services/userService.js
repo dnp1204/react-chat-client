@@ -7,13 +7,28 @@ const Conversation = require('../../chat/models/Conversation');
 const createUser = data => {
   return new Promise(async (resolve, reject) => {
     try {
-      // Will create new system setting that associate with this user
-      const systemSetting = await SystemSetting.create({});
+      const promise = await Promise.all([
+        User.create(data),
+        Conversation.create({}),
+        SystemSetting.create({})
+      ]);
+
+      const [user, conversation, systemSetting] = promise;
       try {
-        const user = new User(data);
-        user.systemSetting = systemSetting._id;
-        await user.save();
-        resolve(user);
+        conversation.users.push(user._id);
+        try {
+          const promise = await Promise.all([
+            User.findByIdAndUpdate(user._id, {
+              systemSetting: systemSetting._id,
+              $push: { conversations: conversation._id }
+            }),
+            conversation.save()
+          ]);
+
+          resolve(promise[0]);
+        } catch (err) {
+          reject(err);
+        }
       } catch (err) {
         reject(err);
       }

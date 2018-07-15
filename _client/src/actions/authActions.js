@@ -35,8 +35,22 @@ export const login = (data, callback) => async dispatch => {
   try {
     await axios.post(`/api/login`, data);
     getUserAndConversations(dispatch);
+    callback();
   } catch (err) {
     console.log(err);
+    dispatch({ type: LOADING, payload: false });
+  }
+};
+
+export const signUp = (data, callback) => async dispatch => {
+  dispatch({ type: LOADING, payload: true });
+
+  try {
+    await axios.post(`/api/signup`, data);
+    callback();
+  } catch (err) {
+    console.log(err);
+  } finally {
     dispatch({ type: LOADING, payload: false });
   }
 };

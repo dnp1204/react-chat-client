@@ -9,9 +9,11 @@ const onConnect = async (socket, userId) => {
     isOnline: true
   });
   const user = await userService.findUserById(userId);
-  user.conversations.forEach(conversation => {
-    socket.to(conversation._id).emit(socketEvent.ONLINE, user);
-  });
+  if (user) {
+    user.conversations.forEach(conversation => {
+      socket.to(conversation._id).emit(socketEvent.ONLINE, user);
+    });
+  }
 };
 
 const onJoin = socket => {

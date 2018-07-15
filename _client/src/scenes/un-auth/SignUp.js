@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { login } from '../../actions';
+import { signUp } from '../../actions';
 import {
   email,
   required,
@@ -19,7 +19,10 @@ class SignUp extends Component {
   };
 
   handleSubmit = value => {
-    this.props.login(value, this.props.reset);
+    this.props.signUp(value, () => {
+      this.props.reset();
+      this.props.history.push('/login');
+    });
   };
 
   render() {
@@ -46,14 +49,14 @@ class SignUp extends Component {
               validate={[required, email]}
             />
             <Field
-              name="first-name"
+              name="firstName"
               type="text"
               component={renderField}
               placeholder="First Name"
               validate={[required, minLength3]}
             />
             <Field
-              name="last-name"
+              name="lastName"
               type="text"
               component={renderField}
               placeholder="Last Name"
@@ -67,7 +70,7 @@ class SignUp extends Component {
               validate={[required]}
             />
             <Field
-              name="confirm-password"
+              name="confirmationPassword"
               type="password"
               component={renderField}
               placeholder="Password Again"
@@ -83,6 +86,6 @@ class SignUp extends Component {
 export default reduxForm({ form: 'signUpForm' })(
   connect(
     null,
-    { login }
+    { signUp }
   )(SignUp)
 );

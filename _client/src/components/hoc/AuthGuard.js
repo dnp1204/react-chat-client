@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 class AuthGuard extends React.PureComponent {
   render() {
     const { needAuth, isAuthenticated, redirectTo, render } = this.props;
-
     if (needAuth) {
       return isAuthenticated ? (
         render()

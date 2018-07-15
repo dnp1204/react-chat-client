@@ -14,10 +14,12 @@ passport.deserializeUser(async (id, done) => {
   try {
     const user = await userService.findUserById(id, true);
     const conversations = user.conversations.map(conversation => {
-      const users = conversation.users.filter(userData => {
-        return userData._id.toString() !== user._id.toString();
-      });
-      conversation.users = users;
+      if (conversation.users.length > 1) {
+        const users = conversation.users.filter(userData => {
+          return userData._id.toString() !== user._id.toString();
+        });
+        conversation.users = users;
+      }
       return conversation;
     });
     user.conversations = conversations;

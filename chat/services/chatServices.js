@@ -29,10 +29,13 @@ const getConversation = conversationId => {
 };
 
 const removeCurrentUserInConversationFriends = (conversation, id) => {
-  const users = conversation.users.filter(userData => {
-    return userData._id.toString() !== id.toString();
-  });
-  conversation.users = users;
+  let users = [];
+  if (conversation.users.length > 1) {
+    users = conversation.users.filter(userData => {
+      return userData._id.toString() !== id.toString();
+    });
+    conversation.users = users;
+  }
   return conversation;
 };
 

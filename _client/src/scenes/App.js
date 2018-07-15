@@ -12,21 +12,26 @@ import SignUp from './un-auth/SignUp';
 
 class App extends Component {
   componentDidMount() {
-    this.socket = io('http://localhost:5000', {
-      transports: ['websocket']
-    });
-    this.props.setSocket(this.socket);
     this.props.fetchUser();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.user && this.props.user) {
+      this.socket = io('http://localhost:5000', {
+        transports: ['websocket']
+      });
+      this.props.setSocket(this.socket);
+    }
   }
 
   render() {
     const {
-      auth,
+      user,
       ui: {
         loading: { isLoading }
       }
     } = this.props;
-    const isAuthenticated = auth ? true : false;
+    const isAuthenticated = user ? true : false;
 
     if (isLoading) {
       return <Loading />;
@@ -74,7 +79,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth,
+    user: state.auth,
     friendList: state.friendList,
     ui: state.ui
   };

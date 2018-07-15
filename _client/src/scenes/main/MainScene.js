@@ -2,11 +2,13 @@ import './MainScene.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 
 import {
   changeShowSummaryAndToolSection,
   changeSystemColor,
-  fetchSystemSettings
+  fetchSystemSettings,
+  setSocket
 } from '../../actions';
 import Header from '../../components/elements/header/Header';
 import Icon from '../../components/elements/icon/Icon';
@@ -146,6 +148,7 @@ export default connect(
   {
     fetchSystemSettings,
     changeSystemColor,
-    changeShowSummaryAndToolSection
+    changeShowSummaryAndToolSection,
+    setSocket
   }
 )(MainScene);

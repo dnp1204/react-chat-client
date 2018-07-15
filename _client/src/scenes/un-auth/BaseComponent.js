@@ -15,9 +15,15 @@ class BaseComponent extends Component {
     document.removeEventListener('keydown', this.props.handleKeyDown);
   }
 
-  renderField = ({ input, placeholder, type, meta: { touched, error } }) => {
+  renderField = ({
+    input,
+    placeholder,
+    type,
+    meta: { touched, error, asyncValidating }
+  }) => {
     return (
       <FormField
+        asyncValidating={asyncValidating}
         input={input}
         placeholder={placeholder}
         type={type}

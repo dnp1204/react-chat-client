@@ -7,7 +7,8 @@ import {
   email,
   required,
   minLength3,
-  passwordMatch
+  passwordMatch,
+  asyncValidate
 } from '../../utils/fieldValidation';
 import BaseComponent from './BaseComponent';
 
@@ -83,7 +84,11 @@ class SignUp extends Component {
   }
 }
 
-export default reduxForm({ form: 'signUpForm' })(
+export default reduxForm({
+  form: 'signUpForm',
+  asyncValidate,
+  asyncBlurFields: ['email']
+})(
   connect(
     null,
     { signUp }

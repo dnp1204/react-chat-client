@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const required = value =>
   value || typeof value === 'number' ? undefined : 'Required field';
 
@@ -39,3 +41,19 @@ export const phoneNumber = value =>
   value && !/^(0|[1-9][0-9]{9})$/i.test(value)
     ? 'Invalid phone number, must be 10 digits'
     : undefined;
+
+export const asyncValidate = (data, dispatch) => {
+  if (!data.email) {
+    return Promise.resolve({});
+  }
+
+  return new Promise(async (resolve, reject) => {
+    const request = await axios.get(`/api/user/validate/${data.email}`);
+    console.log(request.data);
+    if (request.data) {
+      reject({ email: 'This email has already been taken' });
+    } else {
+      resolve();
+    }
+  });
+};

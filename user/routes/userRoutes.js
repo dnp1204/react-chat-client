@@ -6,6 +6,7 @@ module.exports = () => {
     get: {
       '/getUser': controller.getCurrentUser,
       '/user/:id': controller.getUser,
+      '/user/validate/:email': controller.getUserByEmail,
       '/signout': controller.signOut,
       '/system/:id': controller.getSystemSetting
     },

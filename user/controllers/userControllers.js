@@ -166,6 +166,17 @@ const updateSystemSetting = async (req, res, next) => {
   }
 };
 
+const getUserByEmail = async (req, res, next) => {
+  const { email } = req.params;
+  try {
+    userLogger.debug(`Find user by email to validate ${email}`);
+    const existingUser = await findUserByEmail(email);
+    res.send(existingUser);
+  } catch(err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getCurrentUser,
   getUser,
@@ -173,5 +184,6 @@ module.exports = {
   signOut,
   signUp,
   getSystemSetting,
+  getUserByEmail,
   updateSystemSetting
 };

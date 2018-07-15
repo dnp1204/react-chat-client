@@ -32,6 +32,6 @@ server.listen(app.get('port'), err => {
   if (err) {
     appLogger.error(err);
   } else {
-    appLogger.info(`Server is running on port: ${app.get('port')}`);
+    appLogger.debug(`Server is running on port: ${app.get('port')}`);
   }
 });

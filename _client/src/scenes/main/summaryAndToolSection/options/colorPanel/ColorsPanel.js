@@ -8,6 +8,7 @@ import { Color, socketEvent } from '../../../../../utils/constants';
 import BasePanel from '../basePanel/BasePanel';
 
 class ColorsPanel extends PureComponent {
+  // TODO: Refactor
   renderColors(colors) {
     const {
       systemColor,

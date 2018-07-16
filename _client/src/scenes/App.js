@@ -9,6 +9,7 @@ import Loading from '../components/tools/spinner/Loading';
 import MainScene from './main/MainScene';
 import Login from './un-auth/Login';
 import SignUp from './un-auth/SignUp';
+import Notification from '../components/elements/notification/Notification';
 
 class App extends Component {
   componentDidMount() {
@@ -38,41 +39,44 @@ class App extends Component {
     }
 
     return (
-      <BrowserRouter>
-        <div>
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <AuthGuard
-                isAuthenticated={isAuthenticated}
-                needAuth
-                render={() => <MainScene history={props.history} />}
-              />
-            )}
-          />
-          <Route
-            path="/login"
-            render={props => (
-              <AuthGuard
-                isAuthenticated={isAuthenticated}
-                redirectTo="/"
-                render={() => <Login history={props.history} />}
-              />
-            )}
-          />
-          <Route
-            path="/signup"
-            render={props => (
-              <AuthGuard
-                isAuthenticated={isAuthenticated}
-                redirectTo="/"
-                render={() => <SignUp history={props.history} />}
-              />
-            )}
-          />
-        </div>
-      </BrowserRouter>
+      <div>
+        <Notification />
+        <BrowserRouter>
+          <div>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <AuthGuard
+                  isAuthenticated={isAuthenticated}
+                  needAuth
+                  render={() => <MainScene history={props.history} />}
+                />
+              )}
+            />
+            <Route
+              path="/login"
+              render={props => (
+                <AuthGuard
+                  isAuthenticated={isAuthenticated}
+                  redirectTo="/"
+                  render={() => <Login history={props.history} />}
+                />
+              )}
+            />
+            <Route
+              path="/signup"
+              render={props => (
+                <AuthGuard
+                  isAuthenticated={isAuthenticated}
+                  redirectTo="/"
+                  render={() => <SignUp history={props.history} />}
+                />
+              )}
+            />
+          </div>
+        </BrowserRouter>
+      </div>
     );
   }
 }

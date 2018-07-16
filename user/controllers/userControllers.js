@@ -94,14 +94,14 @@ const logIn = (req, res, next) => {
 
     if (!user) {
       return next(
-        helper.createError(info.message, 404, userLogger.debug, info.message)
+        helper.createError(info.message, 422, userLogger.debug, info.message)
       );
     }
 
     req.logIn(user, err => {
       if (err) {
         return next(
-          helper.createError(err.message, 404, userLogger.debug, err.message)
+          helper.createError(err.message, 422, userLogger.debug, err.message)
         );
       }
 
@@ -172,10 +172,10 @@ const getUserByEmail = async (req, res, next) => {
     userLogger.debug(`Find user by email to validate ${email}`);
     const existingUser = await findUserByEmail(email);
     res.send(existingUser);
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
-}
+};
 
 module.exports = {
   getCurrentUser,

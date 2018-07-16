@@ -6,7 +6,9 @@ import {
   CHANGE_SYSTEM_COLOR,
   CHANGE_SYSTEM_EMOJI,
   FETCH_SYSTEM_SETTINGS,
-  LOADING
+  LOADING,
+  LOGIN_ERROR,
+  RESET_ERROR
 } from '../actions/types';
 import { Color, EmojiId } from '../utils/constants';
 
@@ -31,6 +33,9 @@ const initialState = {
     isLoadingConversations: false,
     isLoadingToSendMessage: false,
     isLoadingToLoadFriend: false
+  },
+  errors: {
+    loginError: ''
   }
 };
 
@@ -85,6 +90,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: { ...state.loading, isLoading: action.payload }
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        errors: {
+          ...state.error,
+          loginError: action.payload
+        }
+      };
+    case RESET_ERROR:
+      return {
+        ...state,
+        errors: initialState.errors
       };
     default:
       return state;

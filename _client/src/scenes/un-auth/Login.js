@@ -14,7 +14,7 @@ class Login extends Component {
   };
 
   handleSubmit = value => {
-    this.props.login(value, this.props.reset);
+    this.props.login(value, this.props.destroy);
   };
 
   render() {
@@ -54,7 +54,7 @@ class Login extends Component {
   }
 }
 
-export default reduxForm({ form: 'loginForm' })(
+export default reduxForm({ form: 'loginForm', destroyOnUnmount: false })(
   connect(
     null,
     { login }

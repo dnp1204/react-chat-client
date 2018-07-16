@@ -4,7 +4,8 @@ import {
   FETCH_CONVERSATION_LIST,
   FETCH_SYSTEM_SETTINGS,
   FETCH_USER,
-  LOADING
+  LOADING,
+  LOGIN_ERROR
 } from './types';
 
 const getUserAndConversations = async dispatch => {
@@ -38,6 +39,10 @@ export const login = (data, callback) => async dispatch => {
     callback();
   } catch (err) {
     console.log(err);
+    dispatch({
+      type: LOGIN_ERROR,
+      payload: 'We cannot find a user! Invalid Email or Password'
+    });
     dispatch({ type: LOADING, payload: false });
   }
 };

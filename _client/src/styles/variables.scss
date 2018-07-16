@@ -7,9 +7,12 @@ $darken-primary: darken(
   $color: $primary,
   $amount: 7
 );
+
 $default: #fff;
 $darken-default: darken(
   $color: $default,
   $amount: 7
 );
-$danger: #d44946;
+
+$danger: #f75a67;
+$success: #ceead5;

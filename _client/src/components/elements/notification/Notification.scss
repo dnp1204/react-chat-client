@@ -1,0 +1,30 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/animation.scss';
+
+.notification-container {
+  background-color: $success;
+  border-radius: 2px;
+  left: 50%;
+  max-width: 500px;
+  padding: 10px 20px;
+  transform: translateX(-50%);
+  width: fit-content;
+  position: fixed;
+
+  &.notification-error {
+    background-color: $danger !important;
+    color: #5a151c;
+  }
+
+  &.notification-auto-hide {
+    animation: slideUp 300ms ease-in-out 0s 1 normal forwards;
+    top: -100px;
+  }
+
+  &.notification-show {
+    animation: slideDown 300ms ease-in-out;
+    animation-fill-mode: forwards;
+    top: 0;
+    display: block;
+  }
+}

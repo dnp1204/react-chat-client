@@ -12,8 +12,7 @@ class Notification extends Component {
     this.state = {
       show: false,
       message: '',
-      type: 'success',
-      hideClassName: ''
+      type: 'success'
     };
   }
 
@@ -45,10 +44,15 @@ class Notification extends Component {
       typeClassName = 'notification-error';
     }
 
+    let hideClassName = 'notification-hide';
+    if (message) {
+      hideClassName = 'notification-auto-hide';
+    }
+
     return (
       <div
         className={`notification-container ${typeClassName} ${
-          show ? 'notification-show' : 'notification-auto-hide'
+          show ? 'notification-show' : hideClassName
         }`}
       >
         <div>{message}</div>

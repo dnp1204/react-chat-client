@@ -16,6 +16,10 @@
     color: #5a151c;
   }
 
+  &.notification-hide {
+    top: -100px;
+  }
+
   &.notification-auto-hide {
     animation: slideUp 300ms ease-in-out 0s 1 normal forwards;
     top: -100px;

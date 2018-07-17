@@ -22,7 +22,7 @@ class Notification extends Component {
 
   checkError = () => {
     const {
-      ui: { errors }
+      message: { errors }
     } = this.props;
     for (let error in errors) {
       if (errors[error]) {
@@ -62,7 +62,7 @@ class Notification extends Component {
 }
 
 function mapStateToProps(state) {
-  return { ui: state.ui };
+  return { message: state.message };
 }
 
 export default connect(

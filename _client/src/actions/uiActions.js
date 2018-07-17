@@ -7,9 +7,7 @@ import {
   CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
   CHANGE_SYSTEM_COLOR,
   CHANGE_SYSTEM_EMOJI,
-  FETCH_SYSTEM_SETTINGS,
-  LOGIN_ERROR,
-  RESET_ERROR
+  FETCH_SYSTEM_SETTINGS
 } from './types';
 
 const URL = '/api/system';
@@ -73,12 +71,4 @@ export const changeShowSummaryAndToolSection = (
 
 export const changeShowSearchInput = isShow => async dispatch => {
   dispatch({ type: CHANGE_SHOW_SEARCH_INPUT, payload: isShow });
-};
-
-export const setLoginError = message => {
-  return { type: LOGIN_ERROR, payload: message };
-};
-
-export const resetError = () => {
-  return { type: RESET_ERROR };
 };

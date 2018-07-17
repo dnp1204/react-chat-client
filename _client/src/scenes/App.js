@@ -9,7 +9,7 @@ import Loading from '../components/tools/spinner/Loading';
 import MainScene from './main/MainScene';
 import Login from './un-auth/Login';
 import SignUp from './un-auth/SignUp';
-import Notification from '../components/elements/notification/Notification';
+import Notification from './notification/Notification';
 
 class App extends Component {
   componentDidMount() {

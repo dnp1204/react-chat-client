@@ -3,7 +3,7 @@ import './Notification.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { resetError } from '../../../actions';
+import { resetError } from '../../actions';
 
 class Notification extends Component {
   constructor(props) {

@@ -4,13 +4,27 @@ import { connect } from 'react-redux';
 
 import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
 import CustomModal from '../../../../components/hoc/modal/Modal';
-import { OptionTools } from '../../../../utils/constants';
+import { OptionTools, socketEvent } from '../../../../utils/constants';
 import BaseComponent from '../BaseComponent';
 import ColorsPanel from './colorPanel/ColorsPanel';
 import EmojiPanel from './emojiPanel/EmojiPanel';
-import { changeShowSearchInput } from '../../../../actions';
+import {
+  changeShowSearchInput,
+  changeSystemColor,
+  changeSelectedEmoji
+} from '../../../../actions';
 
 class Options extends Component {
+  changeSystemColor(color) {
+    const { socket, changeSystemColor, user, conversations } = this.props;
+    const { selectedConversation } = conversations;
+    socket.emit(socketEvent.CHANGE_SYSTEM_COLOR, {
+      color,
+      conversationId: selectedConversation.id
+    });
+    changeSystemColor(user.systemSetting.id, color);
+  }
+
   renderModalContent(toolName, hideModal) {
     switch (toolName) {
       case OptionTools.CHANGE_COLOR:
@@ -18,10 +32,19 @@ class Options extends Component {
           <ColorsPanel
             cancelButtonAction={hideModal}
             systemColor={this.props.systemColor}
+            changeSystemColor={color => this.changeSystemColor(color)}
           />
         );
       case OptionTools.CHANGE_EMOJI:
-        return <EmojiPanel cancelButtonAction={hideModal} />;
+        return (
+          <EmojiPanel
+            emojiIdsForOptions={this.props.ui.systemSettings.emojiIdsForOptions}
+            changeSelectedEmoji={emoji => {
+              this.props.changeSelectedEmoji(emoji.id, emoji.native);
+            }}
+            cancelButtonAction={hideModal}
+          />
+        );
       default:
         return <div />;
     }
@@ -137,7 +160,16 @@ class Options extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    ui: state.ui,
+    user: state.auth,
+    socket: state.socket,
+    conversations: state.conversations
+  };
+}
+
 export default connect(
-  null,
-  { changeShowSearchInput }
+  mapStateToProps,
+  { changeShowSearchInput, changeSystemColor, changeSelectedEmoji }
 )(Options);

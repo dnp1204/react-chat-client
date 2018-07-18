@@ -1,18 +1,19 @@
-const http = require('http');
-const socket = require('socket.io');
-const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const expressValidator = require('express-validator');
-const flash = require('express-flash');
-const passport = require('passport');
-const lusca = require('lusca');
-const cookieSession = require('cookie-session');
+const compression = require('compression');
+const CookieSession = require('cookie-session');
 const cors = require('cors');
+const express = require('express');
+const expressValidator = require('express-validator');
+const http = require('http');
+const lusca = require('lusca');
+const morgan = require('morgan');
+const passport = require('passport');
+const socket = require('socket.io');
 
 const { appLogger } = require('./utils/logger');
 const config = require('./config');
-const session = new cookieSession({
+
+const session = new CookieSession({
   maxAge: 7 * 24 * 60 * 60 * 1000,
   keys: [config.cookieKey]
 });
@@ -23,11 +24,11 @@ app.set('port', process.env.PORT || 5000);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(compression());
 app.use(expressValidator());
 app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 app.use(lusca.xssProtection(true));
 if (process.env.NODE_ENV !== 'production') {
   app.use(

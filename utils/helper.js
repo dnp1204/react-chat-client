@@ -12,6 +12,15 @@ const createError = (message, statusCode, logger, logMessage) => {
   return err;
 };
 
+const createActivateEmailTemplate = link => {
+  return `
+            <h1>Thank you for creating a new account</h1>
+            <p>Please click the link below to activate your account. Thanks!</p>
+            <a href=${link}>Click here to verify your email!</a>
+        `;
+};
+
 module.exports = {
-  createError
+  createError,
+  createActivateEmailTemplate
 };

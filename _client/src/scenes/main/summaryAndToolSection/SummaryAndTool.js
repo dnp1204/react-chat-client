@@ -16,7 +16,9 @@ class SummaryAndTool extends Component {
   renderDropDownComponent() {
     return (
       <ul className="user-setting">
-        <li className="cursor-pointer">Placeholder</li>
+        <li className="cursor-pointer">
+          <a href="/api/signout">Sign Out</a>
+        </li>
       </ul>
     );
   }

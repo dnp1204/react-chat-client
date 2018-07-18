@@ -25,6 +25,10 @@
         border-top: 0.3px solid rgba(0, 0, 0, 0.3);
         z-index: 999;
       }
+
+      li {
+        width: fit-content;
+      }
     }
   }
 

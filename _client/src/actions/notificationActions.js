@@ -1,4 +1,4 @@
-import { SEND_ERROR_NOTIFICATION, RESET_ERROR } from './types';
+import { SEND_ERROR_NOTIFICATION, RESET_ERROR, RESET_SUCCESS } from './types';
 
 export const sendErrorNotification = message => {
   return {
@@ -9,4 +9,8 @@ export const sendErrorNotification = message => {
 
 export const resetError = () => {
   return { type: RESET_ERROR };
+};
+
+export const resetSuccess = () => {
+  return { type: RESET_SUCCESS };
 };

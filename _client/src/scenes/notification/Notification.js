@@ -3,7 +3,7 @@ import './Notification.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { resetError } from '../../actions';
+import { resetError, resetSuccess } from '../../actions';
 
 class Notification extends Component {
   constructor(props) {
@@ -21,10 +21,6 @@ class Notification extends Component {
     this.checkSuccess();
   }
 
-  // componentDidUpdate() {
-  //   this.checkError();
-  // }
-
   checkSuccess = () => {
     const {
       notification: {
@@ -35,7 +31,7 @@ class Notification extends Component {
     if (content) {
       this.setState({ show: true, message: content, type: 'success' });
       setTimeout(() => {
-        this.props.resetError();
+        this.props.resetSuccess();
         this.setState({ show: false });
       }, timeout);
     }
@@ -88,5 +84,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { resetError }
+  { resetError, resetSuccess }
 )(Notification);

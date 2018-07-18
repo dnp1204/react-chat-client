@@ -1,7 +1,8 @@
 import {
   SEND_ERROR_NOTIFICATION,
   RESET_ERROR,
-  SEND_SUCCESS_NOTIFICATION
+  SEND_SUCCESS_NOTIFICATION,
+  RESET_SUCCESS
 } from '../actions/types';
 
 const initialState = {
@@ -32,6 +33,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         error: initialState.error
+      };
+    case RESET_SUCCESS:
+      return {
+        ...state,
+        success: initialState.success
       };
     default:
       return state;

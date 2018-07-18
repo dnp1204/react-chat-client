@@ -9,7 +9,7 @@ const signUp = async (req, res, next) => {
   req
     .assert(
       'password',
-      'You must provide password that must be at least 6 characters long',
+      'You must provide password that must be at least 6 characters long'
     )
     .len({ min: 6 });
   req
@@ -24,8 +24,8 @@ const signUp = async (req, res, next) => {
         'Invalid input',
         400,
         userLogger.debug,
-        'Invalid input',
-      ),
+        'Invalid input'
+      )
     );
   }
 
@@ -37,8 +37,8 @@ const signUp = async (req, res, next) => {
           'Email is in use',
           422,
           userLogger.debug,
-          `User with email ${email} is already exists`,
-        ),
+          `User with email ${email} is already exists`
+        )
       );
     }
 
@@ -70,8 +70,8 @@ const logIn = (req, res, next) => {
         'Invalid input',
         400,
         userLogger.debug,
-        'Invalid input',
-      ),
+        'Invalid input'
+      )
     );
   }
 
@@ -82,21 +82,21 @@ const logIn = (req, res, next) => {
           err.message,
           err.status,
           userLogger.error,
-          err.message,
-        ),
+          err.message
+        )
       );
     }
 
     if (!user) {
       return next(
-        helper.createError(info.message, 422, userLogger.debug, info.message),
+        helper.createError(info.message, 422, userLogger.debug, info.message)
       );
     }
 
     req.logIn(user, err => {
       if (err) {
         return next(
-          helper.createError(err.message, 422, userLogger.debug, err.message),
+          helper.createError(err.message, 422, userLogger.debug, err.message)
         );
       }
 
@@ -118,7 +118,7 @@ const getCurrentUser = (req, res) => {
 };
 
 const signOut = (req, res) => {
-  userLogger.debug(`User sign out`);
+  userLogger.debug('User sign out');
   req.logout();
   res.redirect('/');
 };
@@ -152,5 +152,5 @@ module.exports = {
   logIn,
   signOut,
   signUp,
-  getUserByEmail,
+  getUserByEmail
 };

@@ -10,6 +10,9 @@
     "no-unused-vars": ["warn"],
     "no-var": ["off"],
     "one-var": ["off"],
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "consistent-return": "off"
   }
 }

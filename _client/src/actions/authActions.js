@@ -32,16 +32,15 @@ const getUserAndConversations = async dispatch => {
 
 export const login = (data, callback) => async dispatch => {
   dispatch({ type: LOADING, payload: true });
-
   try {
     await axios.post(`/api/login`, data);
     getUserAndConversations(dispatch);
     callback();
   } catch (err) {
-    console.log(err);
+    const { response } = JSON.parse(JSON.stringify(err));
     dispatch({
       type: SEND_ERROR_NOTIFICATION,
-      payload: 'We cannot find a user! Invalid Email or Password'
+      payload: response.data.message
     });
     dispatch({ type: LOADING, payload: false });
   }

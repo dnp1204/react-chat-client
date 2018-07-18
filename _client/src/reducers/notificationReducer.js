@@ -24,7 +24,6 @@ export default function(state = initialState, action) {
         success: { content: action.payload, timeout: 3000 }
       };
     case SEND_ERROR_NOTIFICATION:
-      console.log(action.payload);
       return {
         ...state,
         error: { content: action.payload, timeout: 3000 }

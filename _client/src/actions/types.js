@@ -26,5 +26,14 @@ export const CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION =
 export const CHANGE_SHOW_SEARCH_INPUT = 'change_show_search_input';
 export const CHANGE_SYSTEM_EMOJI = 'change_system_emoji';
 
-export const LOGIN_ERROR = 'login_error';
-export const RESET_ERROR = 'reset_error';
+// Notification
+export const SEND_ERROR_NOTIFICATION = '@@notification/send_error_notification';
+export const SEND_ERROR_NOTIFICATION_WITHOUT_TIMEOUT =
+  '@@notification/send_error_notification_without_timeout';
+export const RESET_ERROR = '@@notification/reset_error';
+
+export const SEND_SUCCESS_NOTIFICATION =
+  '@@notification/send_success_notification';
+export const SEND_SUCCESS_NOTIFICATION_WITHOUT_TIMEOUT =
+  '@@notification/send_success_notification_without_timeout';
+export const RESET_SUCCESS = '@@notification/reset_success';

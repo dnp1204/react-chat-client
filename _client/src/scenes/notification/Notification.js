@@ -18,21 +18,42 @@ class Notification extends Component {
 
   componentDidMount() {
     this.checkError();
+    this.checkSuccess();
   }
+
+  // componentDidUpdate() {
+  //   this.checkError();
+  // }
+
+  checkSuccess = () => {
+    const {
+      notification: {
+        success: { content, timeout }
+      }
+    } = this.props;
+
+    if (content) {
+      this.setState({ show: true, message: content, type: 'success' });
+      setTimeout(() => {
+        this.props.resetError();
+        this.setState({ show: false });
+      }, timeout);
+    }
+  };
 
   checkError = () => {
     const {
-      message: { errors }
-    } = this.props;
-    for (let error in errors) {
-      if (errors[error]) {
-        this.setState({ show: true, message: errors[error], type: 'error' });
-        setTimeout(() => {
-          this.props.resetError();
-          this.setState({ show: false });
-        }, 3000);
-        break;
+      notification: {
+        error: { content, timeout }
       }
+    } = this.props;
+
+    if (content) {
+      this.setState({ show: true, message: content, type: 'error' });
+      setTimeout(() => {
+        this.props.resetError();
+        this.setState({ show: false });
+      }, timeout);
     }
   };
 
@@ -62,7 +83,7 @@ class Notification extends Component {
 }
 
 function mapStateToProps(state) {
-  return { message: state.message };
+  return { notification: state.notification };
 }
 
 export default connect(

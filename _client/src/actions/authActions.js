@@ -5,7 +5,8 @@ import {
   FETCH_SYSTEM_SETTINGS,
   FETCH_USER,
   LOADING,
-  LOGIN_ERROR
+  SEND_ERROR_NOTIFICATION,
+  SEND_SUCCESS_NOTIFICATION
 } from './types';
 
 const getUserAndConversations = async dispatch => {
@@ -40,7 +41,7 @@ export const login = (data, callback) => async dispatch => {
   } catch (err) {
     console.log(err);
     dispatch({
-      type: LOGIN_ERROR,
+      type: SEND_ERROR_NOTIFICATION,
       payload: 'We cannot find a user! Invalid Email or Password'
     });
     dispatch({ type: LOADING, payload: false });
@@ -53,6 +54,11 @@ export const signUp = (data, callback) => async dispatch => {
   try {
     await axios.post(`/api/signup`, data);
     callback();
+    dispatch({
+      type: SEND_SUCCESS_NOTIFICATION,
+      payload:
+        'Your account was created successfully. Please check your email to activate before logging in!'
+    });
   } catch (err) {
     console.log(err);
   } finally {

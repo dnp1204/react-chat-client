@@ -10,10 +10,15 @@
   transform: translateX(-50%);
   width: fit-content;
   position: fixed;
+  text-align: center;
 
   &.notification-error {
     background-color: $danger !important;
     color: #5a151c;
+  }
+
+  &.notification-success {
+    color: #3c763d;
   }
 
   &.notification-hide {

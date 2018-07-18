@@ -1,10 +1,5 @@
 const passport = require('passport');
-const {
-  createUser,
-  findUserByEmail,
-  findUserById
-} = require('../services/userService');
-const systemSettingService = require('../services/systemService');
+const userService = require('../services/userService');
 const { userLogger } = require('../../utils/logger');
 const helper = require('../../utils/helper');
 
@@ -14,7 +9,7 @@ const signUp = async (req, res, next) => {
   req
     .assert(
       'password',
-      'You must provide password that must be at least 6 characters long'
+      'You must provide password that must be at least 6 characters long',
     )
     .len({ min: 6 });
   req
@@ -29,26 +24,26 @@ const signUp = async (req, res, next) => {
         'Invalid input',
         400,
         userLogger.debug,
-        'Invalid input'
-      )
+        'Invalid input',
+      ),
     );
   }
 
   try {
-    const existingUser = await findUserByEmail(email);
+    const existingUser = await userService.findUserByEmail(email);
     if (existingUser) {
       return next(
         helper.createError(
           'Email is in use',
           422,
           userLogger.debug,
-          `User with email ${email} is already exists`
-        )
+          `User with email ${email} is already exists`,
+        ),
       );
     }
 
     try {
-      await createUser(req.body);
+      await userService.createUser(req.body);
       userLogger.debug(`Create new user with email ${email}`);
       res
         .status(200)
@@ -75,8 +70,8 @@ const logIn = (req, res, next) => {
         'Invalid input',
         400,
         userLogger.debug,
-        'Invalid input'
-      )
+        'Invalid input',
+      ),
     );
   }
 
@@ -87,21 +82,21 @@ const logIn = (req, res, next) => {
           err.message,
           err.status,
           userLogger.error,
-          err.message
-        )
+          err.message,
+        ),
       );
     }
 
     if (!user) {
       return next(
-        helper.createError(info.message, 422, userLogger.debug, info.message)
+        helper.createError(info.message, 422, userLogger.debug, info.message),
       );
     }
 
     req.logIn(user, err => {
       if (err) {
         return next(
-          helper.createError(err.message, 422, userLogger.debug, err.message)
+          helper.createError(err.message, 422, userLogger.debug, err.message),
         );
       }
 
@@ -132,35 +127,8 @@ const getUser = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const user = await findUserById(id);
+    const user = await userService.findUserById(id);
     res.send(user);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getSystemSetting = async (req, res, next) => {
-  const { id } = req.params;
-
-  try {
-    userLogger.debug(`Find system setting ${id}`);
-    const systemSetting = await systemSettingService.findById(id);
-    res.send(systemSetting);
-  } catch (err) {
-    next(err);
-  }
-};
-
-const updateSystemSetting = async (req, res, next) => {
-  const { id } = req.params;
-  const data = req.body;
-
-  try {
-    userLogger.debug(
-      `Update system setting ${id} with value ${JSON.stringify(data)}`
-    );
-    const systemSetting = await systemSettingService.update(id, data);
-    res.send(systemSetting);
   } catch (err) {
     next(err);
   }
@@ -168,9 +136,10 @@ const updateSystemSetting = async (req, res, next) => {
 
 const getUserByEmail = async (req, res, next) => {
   const { email } = req.params;
+
   try {
     userLogger.debug(`Find user by email to validate ${email}`);
-    const existingUser = await findUserByEmail(email);
+    const existingUser = await userService.findUserByEmail(email);
     res.send(existingUser);
   } catch (err) {
     next(err);
@@ -183,7 +152,5 @@ module.exports = {
   logIn,
   signOut,
   signUp,
-  getSystemSetting,
   getUserByEmail,
-  updateSystemSetting
 };

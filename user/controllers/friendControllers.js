@@ -7,15 +7,15 @@ const getAllFriends = async (req, res, next) => {
   res.send({ friends: userFriends });
 };
 
-const getFriend = async(req, res, next) => {
+const getFriend = async (req, res, next) => {
   const { id } = req.params;
   try {
     const friend = await userService.findUserById(id);
     res.json(friend);
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
-}
+};
 
 const addFriend = async (req, res, next) => {
   const { id } = req.params;
@@ -31,7 +31,9 @@ const addFriend = async (req, res, next) => {
   try {
     const friend = await userService.addFriend(req.user._id, id);
     userLogger.debug(`Add a friend with email ${friend.email}`);
-    res.json(friend);
+    return res
+      .status(422)
+      .send({ message: `You add this friend ${id} successfully` });
   } catch (err) {
     userLogger.error(err);
     next(err);

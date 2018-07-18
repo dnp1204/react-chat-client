@@ -1,7 +1,7 @@
 const Promise = require('bluebird').Promise;
 
 const User = require('../models/User');
-const SystemSetting = require('../models/SystemSetting');
+const ConversationSetting = require('../../chat/models/ConversationSetting');
 const Conversation = require('../../chat/models/Conversation');
 
 const createUser = data => {
@@ -10,16 +10,16 @@ const createUser = data => {
       const promise = await Promise.all([
         User.create(data),
         Conversation.create({}),
-        SystemSetting.create({})
+        ConversationSetting.create({})
       ]);
 
-      const [user, conversation, systemSetting] = promise;
+      const [user, conversation, conversationSetting] = promise;
       try {
         conversation.users.push(user._id);
+        conversation.setting = conversationSetting._id;
         try {
           const promise = await Promise.all([
             User.findByIdAndUpdate(user._id, {
-              systemSetting: systemSetting._id,
               $push: { conversations: conversation._id }
             }),
             conversation.save()
@@ -73,9 +73,6 @@ const findUserById = (id, deepPopulate = false) => {
                 }
               }
             ]
-          },
-          {
-            path: 'systemSetting'
           }
         ]);
       } else {
@@ -113,7 +110,9 @@ const getAllFriends = id => {
 const addFriend = (userId, friendId) => {
   return new Promise(async (resolve, reject) => {
     const conversation = new Conversation();
+    const conversationSetting = new ConversationSetting();
     conversation.users.push(userId, friendId);
+    conversation.setting = conversationSetting._id;
     try {
       await conversation.save();
     } catch (err) {
@@ -126,7 +125,8 @@ const addFriend = (userId, friendId) => {
         }),
         User.findByIdAndUpdate(friendId, {
           $push: { friends: userId, conversations: conversation._id }
-        })
+        }),
+        conversationSetting.save()
       ]);
       resolve(promise[1]);
     } catch (err) {

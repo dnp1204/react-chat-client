@@ -13,9 +13,7 @@ const getUserAndConversations = async dispatch => {
   try {
     let request = await axios.get(`/api/getUser`);
     dispatch({ type: FETCH_USER, payload: request.data });
-    const { conversations, systemSetting } = request.data;
-
-    dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: systemSetting });
+    const { conversations } = request.data;
 
     if (conversations.length > 0) {
       const id = conversations[0].id;
@@ -25,6 +23,7 @@ const getUserAndConversations = async dispatch => {
       type: FETCH_CONVERSATION_LIST,
       payload: { conversations, selectedConversation: request.data }
     });
+    dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: request.data.setting });
   } catch (err) {
   } finally {
     dispatch({ type: LOADING, payload: false });

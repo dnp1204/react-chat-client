@@ -8,13 +8,11 @@ module.exports = () => {
       '/user/:id': controller.getUser,
       '/user/validate/:email': controller.getUserByEmail,
       '/signout': controller.signOut,
-      '/system/:id': controller.getSystemSetting
     },
     post: {
       '/signup': controller.signUp,
       '/login': controller.logIn,
-      '/system/:id': controller.updateSystemSetting
-    }
+    },
   };
 
   return routeHelper(routes);

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import {
   changeShowSummaryAndToolSection,
   changeSystemColor,
-  fetchSystemSettings,
   setSocket
 } from '../../actions';
 import Header from '../../components/elements/header/Header';
@@ -20,19 +19,20 @@ import SummaryAndTool from './summaryAndToolSection/SummaryAndTool';
 
 class MainScene extends Component {
   componentDidMount() {
-    const { socket, changeSystemColor, user } = this.props;
+    const {
+      socket,
+      changeSystemColor,
+      conversations: { selectedConversation }
+    } = this.props;
     socket.on(socketEvent.NEW_SYSTEM_COLOR, data => {
-      changeSystemColor(user.systemSetting.id, data);
+      changeSystemColor(selectedConversation.setting.id, data);
     });
   }
 
   render() {
+    const { ui, conversations } = this.props;
     const {
-      ui,
-      conversations,
-      user: { systemSetting }
-    } = this.props;
-    const {
+      selectedConversation,
       selectedConversation: { users }
     } = conversations;
     const { fullName, isOnline, lastTimeOnline } = users[0];
@@ -52,7 +52,7 @@ class MainScene extends Component {
         color: systemColor,
         onClickHandler: () => {
           this.props.changeShowSummaryAndToolSection(
-            systemSetting.id,
+            selectedConversation.setting.id,
             !showSummaryAndToolSection
           );
         }
@@ -135,7 +135,6 @@ class MainScene extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth,
     ui: state.ui,
     conversations: state.conversations,
     socket: state.socket
@@ -145,7 +144,6 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    fetchSystemSettings,
     changeSystemColor,
     changeShowSummaryAndToolSection,
     setSocket

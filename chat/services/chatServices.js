@@ -18,6 +18,9 @@ const getConversation = conversationId => {
             populate: {
               path: 'sendByUser'
             }
+          },
+          {
+            path: 'setting'
           }
         ]
       );

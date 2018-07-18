@@ -16,13 +16,13 @@ import {
 
 class Options extends Component {
   changeSystemColor(color) {
-    const { socket, changeSystemColor, user, conversations } = this.props;
+    const { socket, changeSystemColor, conversations } = this.props;
     const { selectedConversation } = conversations;
     socket.emit(socketEvent.CHANGE_SYSTEM_COLOR, {
       color,
       conversationId: selectedConversation.id
     });
-    changeSystemColor(user.systemSetting.id, color);
+    changeSystemColor(selectedConversation.setting.id, color);
   }
 
   renderModalContent(toolName, hideModal) {
@@ -163,7 +163,6 @@ class Options extends Component {
 function mapStateToProps(state) {
   return {
     ui: state.ui,
-    user: state.auth,
     socket: state.socket,
     conversations: state.conversations
   };

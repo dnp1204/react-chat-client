@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const systemSettingSchema = new Schema(
+const conversationSettingSchema = new Schema(
   {
     systemColor: { type: String, default: '#0584FF' },
     showOptions: { type: Boolean, default: true },
@@ -22,5 +22,8 @@ const systemSettingSchema = new Schema(
   }
 );
 
-const SystemSetting = mongoose.model('system-setting', systemSettingSchema);
-module.exports = SystemSetting;
+const ConversationSetting = mongoose.model(
+  'conversation-setting',
+  conversationSettingSchema
+);
+module.exports = ConversationSetting;

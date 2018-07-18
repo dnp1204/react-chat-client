@@ -10,7 +10,7 @@ import {
   FETCH_SYSTEM_SETTINGS
 } from './types';
 
-const URL = '/api/system';
+const URL = '/api/conversation-setting';
 
 export const fetchSystemSettings = id => async dispatch => {
   try {

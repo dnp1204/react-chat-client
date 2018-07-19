@@ -44,6 +44,38 @@ const onNewMessage = (io, socket, userId) => {
   });
 };
 
+const onNewColor = socket => {
+  socket.on(socketEvent.CHANGE_SYSTEM_COLOR, data => {
+    const { conversationId, color } = data;
+    chatLogger.debug(
+      `Change system color for conversation ${conversationId} with color ${color}`
+    );
+    socket.to(conversationId).emit(socketEvent.NEW_SYSTEM_COLOR, color);
+  });
+};
+
+const onTyping = socket => {
+  socket.on(socketEvent.USER_TYPING, data => {
+    const { user, conversationId } = data;
+    chatLogger.debug(
+      `User ${user.id} is typing in the conversaton id ${conversationId}`
+    );
+
+    socket.to(conversationId).emit(socketEvent.IN_USER_TYPING, user);
+  });
+};
+
+const onStopTyping = socket => {
+  socket.on(socketEvent.USER_STOP_TYPING, data => {
+    const { user, conversationId } = data;
+    chatLogger.debug(
+      `User ${user.id} stops typing in the conversaton id ${conversationId}`
+    );
+
+    socket.to(conversationId).emit(socketEvent.IN_USER_STOP_TYPING, user);
+  });
+};
+
 const onDisconnect = (socket, userId) => {
   socket.on(socketEvent.DISCONNECT, async () => {
     chatLogger.debug(`user with id ${userId} disconnect`);
@@ -55,16 +87,6 @@ const onDisconnect = (socket, userId) => {
     user.conversations.forEach(conversation => {
       socket.to(conversation._id).emit(socketEvent.LEAVE, user);
     });
-  });
-};
-
-const onNewColor = socket => {
-  socket.on(socketEvent.CHANGE_SYSTEM_COLOR, data => {
-    const { conversationId, color } = data;
-    chatLogger.debug(
-      `Change system color for conversation ${conversationId} with color ${color}`
-    );
-    socket.to(conversationId).emit(socketEvent.NEW_SYSTEM_COLOR, color);
   });
 };
 
@@ -87,6 +109,10 @@ module.exports = (io, session) => {
       onNewMessage(io, socket, userId);
 
       onNewColor(socket);
+
+      onTyping(socket);
+
+      onStopTyping(socket);
 
       onDisconnect(socket, userId);
     });

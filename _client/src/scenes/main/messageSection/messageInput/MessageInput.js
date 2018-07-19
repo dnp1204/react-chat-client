@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { socketEvent } from '../../../../utils/constants';
 
 class MessageInput extends Component {
-  state = { messageText: '' };
+  state = { messageText: '', emitTyping: false, emitStopTyping: false };
 
   chunkString(stringToChunk, length) {
     let numOfElement = Math.ceil(stringToChunk.length / length);
@@ -23,7 +23,12 @@ class MessageInput extends Component {
   }
 
   onKeyPressHandler(event) {
-    const { socket, conversationId } = this.props;
+    const { socket, conversationId, user } = this.props;
+
+    if (!this.state.emitTyping) {
+      socket.emit(socketEvent.USER_TYPING, { conversationId, user });
+      this.setState({ emitTyping: true, emitStopTyping: false });
+    }
 
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -54,6 +59,15 @@ class MessageInput extends Component {
     }
   }
 
+  onBlurHandler = () => {
+    const { socket, conversationId, user } = this.props;
+
+    if (!this.state.emitStopTyping) {
+      socket.emit(socketEvent.USER_STOP_TYPING, { conversationId, user });
+      this.setState({ emitTyping: false, emitStopTyping: true });
+    }
+  };
+
   onChangeHandler(event) {
     this.setState({ messageText: event.target.value });
   }
@@ -62,6 +76,7 @@ class MessageInput extends Component {
     return (
       <div className="message-section--input border-top">
         <textarea
+          onBlur={this.onBlurHandler}
           value={this.state.messageText}
           onChange={this.onChangeHandler.bind(this)}
           onKeyPress={this.onKeyPressHandler.bind(this)}

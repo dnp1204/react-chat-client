@@ -41,6 +41,16 @@ class MessageSection extends Component {
     socket.on(socketEvent.LEAVE, data => {
       this.props.friendGoOffline(data);
     });
+
+    socket.on(socketEvent.IN_USER_TYPING, data => {
+      console.log(`User ${data.fullName} is typing`);
+      console.log(data);
+    });
+
+    socket.on(socketEvent.IN_USER_STOP_TYPING, data => {
+      console.log(`User ${data.fullName} stops typing`);
+      console.log(data);
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -94,7 +104,7 @@ class MessageSection extends Component {
     return (
       <div id="message-section" className="flex--column">
         <MessageConversation
-          userId={this.props.auth.id}
+          userId={this.props.user.id}
           showSearch={showSearch}
           bubleColor={systemColor}
           conversation={selectedConversation}
@@ -105,6 +115,7 @@ class MessageSection extends Component {
           }
         />
         <MessageInput
+          user={this.props.user}
           socket={this.props.socket}
           emoji={this.state.emoji}
           conversationId={selectedConversation.id}
@@ -123,7 +134,7 @@ class MessageSection extends Component {
 function mapStateToProps(state) {
   return {
     socket: state.socket,
-    auth: state.auth,
+    user: state.auth,
     conversations: state.conversations,
     ui: state.ui
   };

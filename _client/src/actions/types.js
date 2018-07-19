@@ -15,6 +15,7 @@ export const SELECT_EMOJI = 'select_emoji';
 
 export const FETCH_RECENTLY_USED_EMOJI = 'fetch_recently_used_emoji';
 export const FETCH_SYSTEM_SETTINGS = 'fetch_system_settings';
+export const FETCH_CONVERSATION_SETTINGS = 'fetch_conversation_settings';
 
 // UI Action Types
 export const LOADING = 'loading';

@@ -87,7 +87,8 @@ class MessageSection extends Component {
   }
 
   render() {
-    const { selectedEmoji, showSearch } = this.props.ui.systemSettings;
+    const { showSearch } = this.props.ui.systemSettings;
+    const { systemColor, selectedEmoji } = this.props.ui.conversationSettings;
     const { selectedConversation } = this.props.conversations;
 
     return (
@@ -95,7 +96,7 @@ class MessageSection extends Component {
         <MessageConversation
           userId={this.props.auth.id}
           showSearch={showSearch}
-          bubleColor={this.props.systemColor}
+          bubleColor={systemColor}
           conversation={selectedConversation}
           shouldScroll={this.state.forceScroll}
           scrollSmooth={this.state.recievedNewInput}

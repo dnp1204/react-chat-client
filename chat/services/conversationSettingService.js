@@ -1,4 +1,4 @@
-const Promise = require('bluebird').Promise;
+const { Promise } = require('bluebird');
 
 const ConversationSetting = require('../models/ConversationSetting');
 
@@ -8,7 +8,7 @@ const createConversationSetting = () => {
       const conversationSetting = await ConversationSetting.create();
       resolve(conversationSetting);
     } catch (err) {
-      reject(conversationSetting);
+      reject(err);
     }
   });
 };

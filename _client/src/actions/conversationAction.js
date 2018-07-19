@@ -5,7 +5,7 @@ import {
   FRIEND_ONLINE,
   FRIEND_OFFLINE,
   LOADING,
-  FETCH_SYSTEM_SETTINGS
+  FETCH_CONVERSATION_SETTINGS
 } from './types';
 
 export const selectConversation = conversationId => async dispatch => {
@@ -13,7 +13,10 @@ export const selectConversation = conversationId => async dispatch => {
   try {
     const request = await axios.get(`/api/conversation/${conversationId}`);
     dispatch({ type: SELECT_CONVERSATION, payload: request.data });
-    dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: request.data.setting });
+    dispatch({
+      type: FETCH_CONVERSATION_SETTINGS,
+      payload: request.data.setting
+    });
   } catch (err) {
     console.log(err);
   } finally {

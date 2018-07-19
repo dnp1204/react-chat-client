@@ -25,7 +25,8 @@ const userSchema = new Schema(
     conversations: [{ type: Schema.Types.ObjectId, ref: 'conversation' }],
     isOnline: Boolean,
     lastTimeOnline: { type: Date, default: Date.now() },
-    lastPasswordReset: { type: Date, default: Date.now() }
+    lastPasswordReset: { type: Date, default: Date.now() },
+    systemSetting: { type: Schema.Types.ObjectId, ref: 'system-setting' }
   },
   {
     timestamps: true,

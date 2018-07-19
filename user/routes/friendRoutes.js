@@ -3,7 +3,7 @@ const controller = require('../controllers/friendControllers');
 const requiredAuth = require('../../middlewares/requiredAuth');
 
 module.exports = () => {
-  let routes = {
+  const routes = {
     get: {
       '/friends': controller.getAllFriends,
       '/friend/:id': controller.getFriend

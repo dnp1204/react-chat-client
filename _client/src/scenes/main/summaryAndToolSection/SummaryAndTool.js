@@ -45,16 +45,14 @@ class SummaryAndTool extends Component {
 
   render() {
     const {
-      systemColor,
+      conversations: { selectedConversation },
       showOptions,
       showPhotos,
       showSearch,
-      conversations
+      systemColor,
+      user: { systemSetting }
     } = this.props;
-    const {
-      selectedConversation,
-      selectedConversation: { users }
-    } = conversations;
+    const { users } = selectedConversation;
     const {
       avatarUrl,
       firstName,
@@ -83,14 +81,14 @@ class SummaryAndTool extends Component {
           systemColor={systemColor}
           isShow={showOptions}
           onIconClickHandler={show =>
-            this.props.changeShowOptions(selectedConversation.setting.id, show)
+            this.props.changeShowOptions(systemSetting.id, show)
           }
         />
         <Photos
           systemColor={systemColor}
           isShow={showPhotos}
           onIconClickHandler={show =>
-            this.props.changeShowPhotos(selectedConversation.setting.id, show)
+            this.props.changeShowPhotos(systemSetting.id, show)
           }
         />
       </div>
@@ -99,7 +97,7 @@ class SummaryAndTool extends Component {
 }
 
 function mapStateToProps(state) {
-  return { conversations: state.conversations };
+  return { user: state.auth, conversations: state.conversations };
 }
 
 export default connect(

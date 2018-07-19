@@ -4,7 +4,7 @@ const chatService = require('../services/chatServices');
 const userService = require('../../user/services/userService');
 
 const onConnect = async (socket, userId) => {
-  chatLogger.debug(`socket is on connection`);
+  chatLogger.debug(`socket id ${socket.id} is on connection`);
   await userService.findByIdAndUpdateUser(userId, {
     isOnline: true
   });

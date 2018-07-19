@@ -10,38 +10,54 @@ import {
   FETCH_SYSTEM_SETTINGS
 } from './types';
 
-const URL = '/api/conversation-setting';
+const CONVERSATION_URL = '/api/conversation-setting';
+const SYSTEM_URL = '/api/system';
 
-export const fetchSystemSettings = id => async dispatch => {
+export const fetchSystemSettings = systemSettingId => async dispatch => {
   try {
-    const request = await axios.get(`${URL}/${id}`);
+    const request = await axios.get(`${SYSTEM_URL}/${systemSettingId}`);
     dispatch({ type: FETCH_SYSTEM_SETTINGS, payload: request.data });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const changeSystemColor = (id, color) => async dispatch => {
+export const changeSystemColor = (
+  conversationSettingId,
+  color
+) => async dispatch => {
   try {
-    const request = await axios.post(`${URL}/${id}`, { systemColor: color });
+    const request = await axios.post(
+      `${CONVERSATION_URL}/${conversationSettingId}`,
+      {
+        systemColor: color
+      }
+    );
     dispatch({ type: CHANGE_SYSTEM_COLOR, payload: request.data.systemColor });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const changeShowOptions = (id, isShow) => async dispatch => {
+export const changeShowOptions = (
+  systemSettingId,
+  isShow
+) => async dispatch => {
   try {
-    const request = await axios.post(`${URL}/${id}`, { showOptions: isShow });
+    const request = await axios.post(`${SYSTEM_URL}/${systemSettingId}`, {
+      showOptions: isShow
+    });
     dispatch({ type: CHANGE_SHOW_OPTIONS, payload: request.data.showOptions });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const changeShowPhotos = (id, isShow) => async dispatch => {
+export const changeShowPhotos = (systemSettingId, isShow) => async dispatch => {
   try {
-    const request = await axios.post(`${URL}/${id}`, { showPhotos: isShow });
+    const request = await axios.post(`${SYSTEM_URL}/${systemSettingId}`, {
+      showPhotos: isShow
+    });
     dispatch({ type: CHANGE_SHOW_PHOTOS, payload: request.data.showPhotos });
   } catch (err) {
     console.log(err);
@@ -53,11 +69,11 @@ export const changeSelectedEmoji = (emojiId, emojiNative) => async dispatch => {
 };
 
 export const changeShowSummaryAndToolSection = (
-  id,
+  systemSettingId,
   isShow
 ) => async dispatch => {
   try {
-    const request = await axios.post(`${URL}/${id}`, {
+    const request = await axios.post(`${SYSTEM_URL}/${systemSettingId}`, {
       showSummaryAndToolSection: isShow
     });
     dispatch({

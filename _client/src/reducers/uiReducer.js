@@ -5,6 +5,7 @@ import {
   CHANGE_SHOW_SUMMARY_AND_TOOL_SECTION,
   CHANGE_SYSTEM_COLOR,
   CHANGE_SYSTEM_EMOJI,
+  FETCH_CONVERSATION_SETTINGS,
   FETCH_SYSTEM_SETTINGS,
   LOADING
 } from '../actions/types';
@@ -14,17 +15,19 @@ const emojiIdsForOptions = [EmojiId.GRIN];
 
 const initialState = {
   systemSettings: {
-    systemColor: Color.BLUE,
     showOptions: true,
     showPhotos: true,
     showSearch: false,
     recentlyEmoji: [],
+    showSummaryAndToolSection: true,
+    emojiIdsForOptions
+  },
+  conversationSettings: {
+    systemColor: Color.BLUE,
     selectedEmoji: {
       id: '+1',
       native: ''
-    },
-    showSummaryAndToolSection: true,
-    emojiIdsForOptions
+    }
   },
   loading: {
     isLoading: false,
@@ -41,11 +44,19 @@ export default function(state = initialState, action) {
         ...state,
         systemSettings: { ...state.systemSettings, ...action.payload }
       };
+    case FETCH_CONVERSATION_SETTINGS:
+      return {
+        ...state,
+        conversationSettings: {
+          ...state.conversationSettings,
+          ...action.payload
+        }
+      };
     case CHANGE_SYSTEM_COLOR:
       return {
         ...state,
-        systemSettings: {
-          ...state.systemSettings,
+        conversationSettings: {
+          ...state.conversationSettings,
           systemColor: action.payload
         }
       };
@@ -63,8 +74,8 @@ export default function(state = initialState, action) {
       const { emojiId, emojiNative } = action.payload;
       return {
         ...state,
-        systemSettings: {
-          ...state.systemSettings,
+        conversationSettings: {
+          ...state.conversationSettings,
           selectedEmoji: { id: emojiId, native: emojiNative }
         }
       };

@@ -30,19 +30,20 @@ class MainScene extends Component {
   }
 
   render() {
-    const { ui, conversations } = this.props;
     const {
-      selectedConversation,
-      selectedConversation: { users }
-    } = conversations;
+      user: { systemSetting },
+      ui,
+      conversations: { selectedConversation }
+    } = this.props;
+    const { users } = selectedConversation;
     const { fullName, isOnline, lastTimeOnline } = users[0];
     const {
-      systemColor,
       showOptions,
       showPhotos,
       showSearch,
       showSummaryAndToolSection
     } = ui.systemSettings;
+    const { systemColor } = ui.conversationSettings;
     const iconArray = [
       // { iconName: 'phone', iconType: 'solid', color: systemColor },
       { iconName: 'video', iconType: 'solid', color: systemColor },
@@ -52,7 +53,7 @@ class MainScene extends Component {
         color: systemColor,
         onClickHandler: () => {
           this.props.changeShowSummaryAndToolSection(
-            selectedConversation.setting.id,
+            systemSetting.id,
             !showSummaryAndToolSection
           );
         }
@@ -135,6 +136,7 @@ class MainScene extends Component {
 
 function mapStateToProps(state) {
   return {
+    user: state.auth,
     ui: state.ui,
     conversations: state.conversations,
     socket: state.socket

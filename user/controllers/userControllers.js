@@ -1,5 +1,8 @@
 const passport = require('passport');
+
+const systemSettingService = require('../services/systemService');
 const userService = require('../services/userService');
+
 const { userLogger } = require('../../utils/logger');
 const helper = require('../../utils/helper');
 
@@ -134,6 +137,33 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getSystemSetting = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    userLogger.debug(`Find system setting ${id}`);
+    const systemSetting = await systemSettingService.findById(id);
+    res.send(systemSetting);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateSystemSetting = async (req, res, next) => {
+  const { id } = req.params;
+  const data = req.body;
+
+  try {
+    userLogger.debug(
+      `Update system setting ${id} with value ${JSON.stringify(data)}`
+    );
+    const systemSetting = await systemSettingService.update(id, data);
+    res.send(systemSetting);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const getUserByEmail = async (req, res, next) => {
   const { email } = req.params;
 
@@ -148,9 +178,11 @@ const getUserByEmail = async (req, res, next) => {
 
 module.exports = {
   getCurrentUser,
+  getSystemSetting,
   getUser,
+  getUserByEmail,
   logIn,
   signOut,
   signUp,
-  getUserByEmail
+  updateSystemSetting
 };

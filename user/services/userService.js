@@ -1,25 +1,29 @@
-const Promise = require('bluebird').Promise;
+const { Promise } = require('bluebird');
 
+const SystemSetting = require('../models/SystemSetting');
 const User = require('../models/User');
-const ConversationSetting = require('../../chat/models/ConversationSetting');
+
 const Conversation = require('../../chat/models/Conversation');
+const ConversationSetting = require('../../chat/models/ConversationSetting');
 
 const createUser = data => {
   return new Promise(async (resolve, reject) => {
     try {
       const promise = await Promise.all([
         User.create(data),
+        SystemSetting.create({}),
         Conversation.create({}),
         ConversationSetting.create({})
       ]);
 
-      const [user, conversation, conversationSetting] = promise;
+      const [user, systemSetting, conversation, conversationSetting] = promise;
       try {
         conversation.users.push(user._id);
         conversation.setting = conversationSetting._id;
         try {
           const promise = await Promise.all([
             User.findByIdAndUpdate(user._id, {
+              systemSetting: systemSetting._id,
               $push: { conversations: conversation._id }
             }),
             conversation.save()
@@ -73,6 +77,9 @@ const findUserById = (id, deepPopulate = false) => {
                 }
               }
             ]
+          },
+          {
+            path: 'systemSetting'
           }
         ]);
       } else {

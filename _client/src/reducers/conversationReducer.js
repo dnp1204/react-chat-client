@@ -63,13 +63,16 @@ export default function(state = initialState, action) {
         };
       }
 
-      filteredConversations = state.conversations;
-      for (let conversation of filteredConversations) {
+      filteredConversations = state.conversations.filter(conversation => {
         if (conversation.id === conversationId) {
-          conversation.contents.unshift(message);
-          break;
+          updatedConversation = conversation;
+          updatedConversation.contents.push(message);
+          updatedConversation.updatedAt = message.createdAt;
         }
-      }
+
+        return conversation.id !== conversationId;
+      });
+      filteredConversations.unshift(updatedConversation);
 
       return { ...state, conversations: filteredConversations };
 

@@ -18,7 +18,7 @@ const conversationSchema = new Schema(
 );
 
 conversationSchema.pre('remove', function(next) {
-  ConversationSetting.findByIdAndRemove(setting, (err, result) => {
+  ConversationSetting.findByIdAndRemove(this.setting, err => {
     if (err) {
       return next(err);
     }

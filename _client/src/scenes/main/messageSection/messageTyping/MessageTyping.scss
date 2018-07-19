@@ -1,0 +1,21 @@
+.message-typing-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  &.message-typing-hide {
+    display: none;
+  }
+
+  .message-typing-loading {
+    margin-left: 12px;
+    height: fit-content;
+    width: fit-content;
+    background-color: #f1f0f0;
+    padding: 8px 10px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 200;
+  }
+}

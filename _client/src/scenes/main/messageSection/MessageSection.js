@@ -13,12 +13,18 @@ import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
 import MessageInput from './messageInput/MessageInput';
 import MessageTools from './messageTools/MessageTools';
+import MessageTyping from './messageTyping/MessageTyping';
 
 class MessageSection extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { recievedNewInput: false, forceScroll: false, emoji: '' };
+    this.state = {
+      recievedNewInput: false,
+      forceScroll: false,
+      emoji: '',
+      showTyping: false
+    };
   }
 
   componentDidMount() {
@@ -44,12 +50,14 @@ class MessageSection extends Component {
 
     socket.on(socketEvent.IN_USER_TYPING, data => {
       const { user, conversationId } = data;
+      this.setState({ showTyping: true });
       console.log(conversationId);
       console.log(`User ${user.fullName} is typing`);
     });
 
     socket.on(socketEvent.IN_USER_STOP_TYPING, data => {
       const { user, conversationId } = data;
+      this.setState({ showTyping: false });
       console.log(conversationId);
       console.log(`User ${user.fullName} stops typing`);
     });
@@ -102,6 +110,7 @@ class MessageSection extends Component {
     const { showSearch } = this.props.ui.systemSettings;
     const { systemColor, selectedEmoji } = this.props.ui.conversationSettings;
     const { selectedConversation } = this.props.conversations;
+    const { showTyping } = this.state;
 
     return (
       <div id="message-section" className="flex--column">
@@ -115,6 +124,11 @@ class MessageSection extends Component {
           onScrollToBottomFinishHandler={() =>
             this.onScrollToBottomFinishHandler()
           }
+        />
+        <MessageTyping
+          show={showTyping}
+          avatarSize={30}
+          imageUrl="https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg"
         />
         <MessageInput
           user={this.props.user}

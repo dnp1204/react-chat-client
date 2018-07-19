@@ -61,7 +61,9 @@ const onTyping = socket => {
       `User ${user.id} is typing in the conversaton id ${conversationId}`
     );
 
-    socket.to(conversationId).emit(socketEvent.IN_USER_TYPING, user);
+    socket
+      .to(conversationId)
+      .emit(socketEvent.IN_USER_TYPING, { user, conversationId });
   });
 };
 
@@ -72,7 +74,9 @@ const onStopTyping = socket => {
       `User ${user.id} stops typing in the conversaton id ${conversationId}`
     );
 
-    socket.to(conversationId).emit(socketEvent.IN_USER_STOP_TYPING, user);
+    socket
+      .to(conversationId)
+      .emit(socketEvent.IN_USER_STOP_TYPING, { user, conversationId });
   });
 };
 

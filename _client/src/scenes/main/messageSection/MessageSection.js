@@ -43,13 +43,15 @@ class MessageSection extends Component {
     });
 
     socket.on(socketEvent.IN_USER_TYPING, data => {
-      console.log(`User ${data.fullName} is typing`);
-      console.log(data);
+      const { user, conversationId } = data;
+      console.log(conversationId);
+      console.log(`User ${user.fullName} is typing`);
     });
 
     socket.on(socketEvent.IN_USER_STOP_TYPING, data => {
-      console.log(`User ${data.fullName} stops typing`);
-      console.log(data);
+      const { user, conversationId } = data;
+      console.log(conversationId);
+      console.log(`User ${user.fullName} stops typing`);
     });
   }
 

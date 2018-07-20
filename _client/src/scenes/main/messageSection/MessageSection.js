@@ -23,13 +23,18 @@ class MessageSection extends Component {
       recievedNewInput: false,
       forceScroll: false,
       emoji: '',
-      showTyping: false
+      showTyping: false,
+      selectedConversationId: '',
+      usersAreTyping: [],
+      userTypingNameList: '',
+      userTypingAvatarList: []
     };
   }
 
   componentDidMount() {
     const { socket } = this.props;
-    const { conversations } = this.props.conversations;
+    const { conversations, selectedConversation } = this.props.conversations;
+    this.setState({ selectedConversationId: selectedConversation.id });
 
     conversations.forEach(conversation => {
       socket.emit('join', conversation.id);
@@ -50,16 +55,24 @@ class MessageSection extends Component {
 
     socket.on(socketEvent.IN_USER_TYPING, data => {
       const { user, conversationId } = data;
-      this.setState({ showTyping: true });
-      console.log(conversationId);
-      console.log(`User ${user.fullName} is typing`);
+
+      if (this.state.selectedConversationId === conversationId) {
+        this.setState({ showTyping: true });
+        console.log(
+          `User ${user.fullName} is typing in room id ${conversationId}`
+        );
+      }
     });
 
     socket.on(socketEvent.IN_USER_STOP_TYPING, data => {
       const { user, conversationId } = data;
-      this.setState({ showTyping: false });
-      console.log(conversationId);
-      console.log(`User ${user.fullName} stops typing`);
+
+      if (this.state.selectedConversationId === conversationId) {
+        this.setState({ showTyping: false });
+        console.log(
+          `User ${user.fullName} stops typing in room id ${conversationId}`
+        );
+      }
     });
   }
 
@@ -83,7 +96,10 @@ class MessageSection extends Component {
       prevProps.conversations.selectedConversation.id !==
       this.props.conversations.selectedConversation.id
     ) {
-      this.setState({ forceScroll: true });
+      this.setState({
+        forceScroll: true,
+        selectedConversationId: this.props.conversations.selectedConversation.id
+      });
     }
   }
 

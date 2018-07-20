@@ -24,17 +24,39 @@ class MessageSection extends Component {
       forceScroll: false,
       emoji: '',
       showTyping: false,
-      selectedConversationId: '',
       usersAreTyping: [],
       userTypingNameList: '',
       userTypingAvatarList: []
     };
   }
 
+  handleInUserTyping = data => {
+    const { selectedConversation } = this.props.conversations;
+    const { user, conversationId } = data;
+
+    if (selectedConversation.id === conversationId) {
+      this.setState({ showTyping: true });
+      console.log(
+        `User ${user.fullName} is typing in room id ${conversationId}`
+      );
+    }
+  };
+
+  handleInUserStopTyping = data => {
+    const { selectedConversation } = this.props.conversations;
+    const { user, conversationId } = data;
+
+    if (selectedConversation.id === conversationId) {
+      this.setState({ showTyping: false });
+      console.log(
+        `User ${user.fullName} stops typing in room id ${conversationId}`
+      );
+    }
+  };
+
   componentDidMount() {
     const { socket } = this.props;
-    const { conversations, selectedConversation } = this.props.conversations;
-    this.setState({ selectedConversationId: selectedConversation.id });
+    const { conversations } = this.props.conversations;
 
     conversations.forEach(conversation => {
       socket.emit('join', conversation.id);
@@ -54,25 +76,11 @@ class MessageSection extends Component {
     });
 
     socket.on(socketEvent.IN_USER_TYPING, data => {
-      const { user, conversationId } = data;
-
-      if (this.state.selectedConversationId === conversationId) {
-        this.setState({ showTyping: true });
-        console.log(
-          `User ${user.fullName} is typing in room id ${conversationId}`
-        );
-      }
+      this.handleInUserTyping(data);
     });
 
     socket.on(socketEvent.IN_USER_STOP_TYPING, data => {
-      const { user, conversationId } = data;
-
-      if (this.state.selectedConversationId === conversationId) {
-        this.setState({ showTyping: false });
-        console.log(
-          `User ${user.fullName} stops typing in room id ${conversationId}`
-        );
-      }
+      this.handleInUserStopTyping(data);
     });
   }
 
@@ -96,10 +104,7 @@ class MessageSection extends Component {
       prevProps.conversations.selectedConversation.id !==
       this.props.conversations.selectedConversation.id
     ) {
-      this.setState({
-        forceScroll: true,
-        selectedConversationId: this.props.conversations.selectedConversation.id
-      });
+      this.setState({ forceScroll: true });
     }
   }
 

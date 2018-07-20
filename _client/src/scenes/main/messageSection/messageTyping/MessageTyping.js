@@ -8,8 +8,8 @@ import { Color } from '../../../../utils/constants';
 
 class MessageTyping extends PureComponent {
   render() {
-    const { avatarSize, imageUrl, show } = this.props;
-
+    const { avatarSize, show, avatarList, nameList } = this.props;
+    console.log(nameList.join(' '));
     return (
       <div
         className={`message-typing-container ${
@@ -17,7 +17,7 @@ class MessageTyping extends PureComponent {
         }`}
       >
         <CircleAvatar
-          avatar={imageUrl}
+          avatar={avatarList[0]}
           width={avatarSize}
           height={avatarSize}
         />

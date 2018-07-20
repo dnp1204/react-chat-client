@@ -25,32 +25,63 @@ class MessageSection extends Component {
       emoji: '',
       showTyping: false,
       usersAreTyping: [],
-      userTypingNameList: '',
+      userTypingNameList: [],
       userTypingAvatarList: []
     };
   }
 
   handleInUserTyping = data => {
     const { selectedConversation } = this.props.conversations;
+    const {
+      usersAreTyping,
+      userTypingAvatarList,
+      userTypingNameList
+    } = this.state;
     const { user, conversationId } = data;
 
     if (selectedConversation.id === conversationId) {
+      if (!usersAreTyping.includes(user.id)) {
+        userTypingAvatarList.push(user.avatarUrl);
+        usersAreTyping.push(user.id);
+        userTypingNameList.push(user.fullName);
+        this.setState({
+          usersAreTyping,
+          userTypingAvatarList,
+          userTypingNameList
+        });
+      }
+
       this.setState({ showTyping: true });
-      console.log(
-        `User ${user.fullName} is typing in room id ${conversationId}`
-      );
     }
   };
 
   handleInUserStopTyping = data => {
     const { selectedConversation } = this.props.conversations;
+    const {
+      usersAreTyping,
+      userTypingAvatarList,
+      userTypingNameList
+    } = this.state;
     const { user, conversationId } = data;
 
     if (selectedConversation.id === conversationId) {
+      if (usersAreTyping.includes(user.id)) {
+        const newUsersAreTyping = usersAreTyping.filter(userId => {
+          return userId !== user.id;
+        });
+        const newUserTypingAvatar = userTypingAvatarList.filter(avatar => {
+          return avatar !== user.avatarUrl;
+        });
+        const newUserTypingNameList = userTypingNameList.filter(name => {
+          return name !== user.fullName;
+        });
+        this.setState({
+          usersAreTyping: newUsersAreTyping,
+          userTypingAvatarList: newUserTypingAvatar,
+          userTypingNameList: newUserTypingNameList
+        });
+      }
       this.setState({ showTyping: false });
-      console.log(
-        `User ${user.fullName} stops typing in room id ${conversationId}`
-      );
     }
   };
 
@@ -131,7 +162,7 @@ class MessageSection extends Component {
     const { showSearch } = this.props.ui.systemSettings;
     const { systemColor, selectedEmoji } = this.props.ui.conversationSettings;
     const { selectedConversation } = this.props.conversations;
-    const { showTyping } = this.state;
+    const { showTyping, userTypingAvatarList, userTypingNameList } = this.state;
 
     return (
       <div id="message-section" className="flex--column">
@@ -149,7 +180,8 @@ class MessageSection extends Component {
         <MessageTyping
           show={showTyping}
           avatarSize={30}
-          imageUrl="https://pbs.twimg.com/profile_images/833767319973212161/Ft904pMk_400x400.jpg"
+          avatarList={userTypingAvatarList}
+          nameList={userTypingNameList}
         />
         <MessageInput
           user={this.props.user}

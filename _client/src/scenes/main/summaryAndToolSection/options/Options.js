@@ -90,12 +90,12 @@ class Options extends Component {
   renderToolIconWithModal() {
     const { systemColor } = this.props;
     const iconTools = [
-      {
-        iconName: 'pencil-alt',
-        iconType: 'solid',
-        isCursorPointer: true,
-        text: OptionTools.EDIT_NICK_NAME
-      },
+      // {
+      //   iconName: 'pencil-alt',
+      //   iconType: 'solid',
+      //   isCursorPointer: true,
+      //   text: OptionTools.EDIT_NICK_NAME
+      // },
       {
         iconName: 'paint-brush',
         iconType: 'solid',

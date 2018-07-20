@@ -1,8 +1,7 @@
 .message-typing-container {
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  margin: -10px 0px 10px 10px;
 
   &.message-typing-hide {
     display: none;

@@ -51,7 +51,7 @@ class MessageSection extends Component {
         });
       }
 
-      this.setState({ showTyping: true });
+      this.setState({ showTyping: true, recievedNewInput: true });
     }
   };
 
@@ -81,7 +81,7 @@ class MessageSection extends Component {
           userTypingNameList: newUserTypingNameList
         });
       }
-      this.setState({ showTyping: false });
+      this.setState({ showTyping: false, recievedNewInput: false });
     }
   };
 

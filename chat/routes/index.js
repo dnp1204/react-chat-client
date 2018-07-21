@@ -3,7 +3,7 @@ const controller = require('../controllers/chatController');
 const requiredAuth = require('../../middlewares/requiredAuth');
 
 module.exports = () => {
-  let routes = {
+  const routes = {
     get: {
       '/conversation/:id': [requiredAuth, controller.getConversation],
       '/conversation-setting/:id': [

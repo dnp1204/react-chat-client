@@ -1,6 +1,7 @@
+const { Promise } = require('bluebird');
+
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
-const Promise = require('bluebird').Promise;
 
 const getConversation = conversationId => {
   return new Promise(async (resolve, reject) => {
@@ -33,13 +34,14 @@ const getConversation = conversationId => {
 
 const removeCurrentUserInConversationFriends = (conversation, id) => {
   let users = [];
+  const filteredConversation = conversation;
   if (conversation.users.length > 1) {
     users = conversation.users.filter(userData => {
       return userData._id.toString() !== id.toString();
     });
-    conversation.users = users;
+    filteredConversation.users = users;
   }
-  return conversation;
+  return filteredConversation;
 };
 
 const addNewMessage = async (userId, conversationId, content) => {

@@ -5,6 +5,7 @@ import EmojiPicker from '../../../../components/elements/emojiPicker/EmojiPicker
 import MultipleIconRow from '../../../../components/elements/icon/MultipleIconRow';
 import Recorder from '../../../../components/elements/recorder/Recorder';
 import { Color } from '../../../../utils/constants.js';
+import Camera from '../../../../components/elements/camera/Camera';
 
 class MessageTools extends Component {
   renderIconPicker() {
@@ -13,6 +14,14 @@ class MessageTools extends Component {
 
   renderRecorder() {
     return <Recorder />;
+  }
+
+  renderCamera() {
+    return (
+      <div style={{ width: 430, height: 430 }}>
+        <Camera width={400} height={400} />
+      </div>
+    );
   }
 
   renderImagePicker() {
@@ -65,8 +74,10 @@ class MessageTools extends Component {
         iconName: 'camera',
         size,
         color,
+        showComponentWhenClick: this.renderCamera(),
         componentIsDropdown: false,
-        iconType: 'solid'
+        iconType: 'solid',
+        componentOpenModal: true
       }
     ];
 

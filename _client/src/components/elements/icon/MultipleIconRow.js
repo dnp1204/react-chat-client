@@ -4,6 +4,7 @@ import React from 'react';
 
 import Dropdown from '../../tools/dropDown/Dropdown';
 import Icon from './Icon';
+import CustomModal from '../../hoc/modal/Modal';
 
 const multipleIconRowStyle = { display: 'flex', flexDirection: 'row' };
 const iconStyle = { marginLeft: 20 };
@@ -13,6 +14,11 @@ const renderIconArray = iconArray => {
     if (icon.componentIsDropdown) {
       return renderIconWithDropdown(icon);
     }
+
+    if (icon.componentOpenModal) {
+      return renderIconWithModal(icon);
+    }
+
     return renderIcon(icon);
   });
 };
@@ -66,6 +72,35 @@ const renderIconWithDropdown = ({
         style={Object.assign({}, style, iconStyle)}
       />
     </Dropdown>
+  );
+};
+
+const renderIconWithModal = ({
+  iconName,
+  size,
+  style,
+  color,
+  showComponentWhenClick,
+  iconType
+}) => {
+  return (
+    <CustomModal
+      key={iconName}
+      render={onClickToShowModal => (
+        <div onClick={() => onClickToShowModal()}>
+          <Icon
+            key={iconName}
+            isCursorPointer
+            iconName={iconName}
+            iconType={iconType}
+            size={size}
+            color={color}
+            style={Object.assign({}, style, iconStyle)}
+          />
+        </div>
+      )}
+      renderModalContent={hideModal => showComponentWhenClick}
+    />
   );
 };
 

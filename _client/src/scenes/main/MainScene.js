@@ -37,12 +37,7 @@ class MainScene extends Component {
     } = this.props;
     const { users } = selectedConversation;
     const { fullName, isOnline, lastTimeOnline } = users[0];
-    const {
-      showOptions,
-      showPhotos,
-      showSearch,
-      showSummaryAndToolSection
-    } = ui.systemSettings;
+    const { showSummaryAndToolSection } = ui.systemSettings;
     const { systemColor } = ui.conversationSettings;
     const iconArray = [
       // { iconName: 'phone', iconType: 'solid', color: systemColor },
@@ -59,11 +54,6 @@ class MainScene extends Component {
         }
       }
     ];
-
-    let toolStyle = {};
-    if (!showSummaryAndToolSection) {
-      toolStyle = { visibility: 'hidden' };
-    }
 
     return (
       <div id="main">
@@ -117,15 +107,17 @@ class MainScene extends Component {
             }`}
           >
             <div className="message-section border-right">
-              <MessageSection systemColor={systemColor} />
+              <MessageSection />
             </div>
-            <div style={toolStyle} className="hide-on-xs">
-              <SummaryAndTool
-                systemColor={systemColor}
-                showOptions={showOptions}
-                showPhotos={showPhotos}
-                showSearch={showSearch}
-              />
+            <div
+              style={
+                showSummaryAndToolSection
+                  ? { visibility: 'visible' }
+                  : { visibility: 'hidden' }
+              }
+              className="hide-on-xs"
+            >
+              <SummaryAndTool />
             </div>
           </div>
         </div>

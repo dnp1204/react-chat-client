@@ -16,19 +16,15 @@ import MessageTools from './messageTools/MessageTools';
 import MessageTyping from './messageTyping/MessageTyping';
 
 class MessageSection extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      recievedNewInput: false,
-      forceScroll: false,
-      emoji: '',
-      showTyping: false,
-      usersAreTyping: [],
-      userTypingNameList: [],
-      userTypingAvatarList: []
-    };
-  }
+  state = {
+    recievedNewInput: false,
+    forceScroll: false,
+    emoji: '',
+    showTyping: false,
+    usersAreTyping: [],
+    userTypingNameList: [],
+    userTypingAvatarList: []
+  };
 
   handleInUserTyping = data => {
     const { selectedConversation } = this.props.conversations;
@@ -90,7 +86,7 @@ class MessageSection extends Component {
     const { conversations } = this.props.conversations;
 
     conversations.forEach(conversation => {
-      socket.emit('join', conversation.id);
+      socket.emit(socketEvent.JOIN, conversation.id);
     });
 
     socket.on(socketEvent.IN_MESSAGE, data => {
@@ -116,24 +112,29 @@ class MessageSection extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const {
+      conversations: { conversations, selectedConversation }
+    } = this.props;
+
     const diff = _.differenceWith(
+      conversations,
       prevProps.conversations.conversations,
-      this.props.conversations.conversations,
       (con1, con2) => {
         return con1.id === con2.id;
       }
     );
 
+    // TODO: iterate the diff instead of conversations
     if (diff.length > 0) {
-      const { conversations } = this.props.conversations;
+      console.log(diff);
       conversations.forEach(conversation => {
-        this.props.socket.emit('join', conversation.id);
+        this.props.socket.emit(socketEvent.JOIN, conversation.id);
       });
     }
 
     if (
       prevProps.conversations.selectedConversation.id !==
-      this.props.conversations.selectedConversation.id
+      selectedConversation.id
     ) {
       this.setState({ forceScroll: true });
     }

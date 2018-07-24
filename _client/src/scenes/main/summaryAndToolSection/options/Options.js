@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import IconWithNextText from '../../../../components/elements/icon/IconWithNextText';
 import CustomModal from '../../../../components/hoc/modal/Modal';
@@ -8,11 +7,6 @@ import { OptionTools, socketEvent } from '../../../../utils/constants';
 import BaseComponent from '../BaseComponent';
 import ColorsPanel from './colorPanel/ColorsPanel';
 import EmojiPanel from './emojiPanel/EmojiPanel';
-import {
-  changeShowSearchInput,
-  changeSystemColor,
-  changeSelectedEmoji
-} from '../../../../actions';
 
 class Options extends Component {
   changeSystemColor(color) {
@@ -38,7 +32,7 @@ class Options extends Component {
       case OptionTools.CHANGE_EMOJI:
         return (
           <EmojiPanel
-            emojiIdsForOptions={this.props.ui.systemSettings.emojiIdsForOptions}
+            emojiIdsForOptions={this.props.emojiIdsForOptions}
             changeSelectedEmoji={emoji => {
               this.props.changeSelectedEmoji(emoji.id, emoji.native);
             }}
@@ -160,15 +154,4 @@ class Options extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    ui: state.ui,
-    socket: state.socket,
-    conversations: state.conversations
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  { changeShowSearchInput, changeSystemColor, changeSelectedEmoji }
-)(Options);
+export default Options;

@@ -3,7 +3,13 @@ import './SummaryAndTool.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { changeShowOptions, changeShowPhotos } from '../../../actions';
+import {
+  changeShowOptions,
+  changeShowPhotos,
+  changeShowSearchInput,
+  changeSystemColor,
+  changeSelectedEmoji
+} from '../../../actions';
 import Icon from '../../../components/elements/icon/Icon';
 import Dropdown from '../../../components/tools/dropDown/Dropdown';
 import { Color } from '../../../utils/constants';
@@ -45,14 +51,22 @@ class SummaryAndTool extends Component {
 
   render() {
     const {
-      conversations: { selectedConversation },
+      changeSelectedEmoji,
+      changeShowSearchInput,
+      changeSystemColor,
+      conversations,
+      socket,
+      ui,
+      user: { systemSetting }
+    } = this.props;
+    const {
       showOptions,
       showPhotos,
       showSearch,
-      systemColor,
-      user: { systemSetting }
-    } = this.props;
-    const { users } = selectedConversation;
+      emojiIdsForOptions
+    } = ui.systemSettings;
+    const { systemColor } = ui.conversationSettings;
+    const { users } = conversations.selectedConversation;
     const {
       avatarUrl,
       firstName,
@@ -77,9 +91,15 @@ class SummaryAndTool extends Component {
           />
         </div>
         <Options
-          showSearch={showSearch}
-          systemColor={systemColor}
+          changeSelectedEmoji={changeSelectedEmoji}
+          changeShowSearchInput={changeShowSearchInput}
+          changeSystemColor={changeSystemColor}
+          conversations={conversations}
+          emojiIdsForOptions={emojiIdsForOptions}
           isShow={showOptions}
+          showSearch={showSearch}
+          socket={socket}
+          systemColor={systemColor}
           onIconClickHandler={show =>
             this.props.changeShowOptions(systemSetting.id, show)
           }
@@ -97,13 +117,21 @@ class SummaryAndTool extends Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.auth, conversations: state.conversations };
+  return {
+    conversations: state.conversations,
+    socket: state.socket,
+    ui: state.ui,
+    user: state.auth
+  };
 }
 
 export default connect(
   mapStateToProps,
   {
     changeShowOptions,
-    changeShowPhotos
+    changeShowPhotos,
+    changeShowSearchInput,
+    changeSystemColor,
+    changeSelectedEmoji
   }
 )(SummaryAndTool);

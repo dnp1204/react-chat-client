@@ -16,9 +16,17 @@ class Cloudinary {
 
   uploadFileAsync(path) {
     return new Promise((resolve, reject) => {
-      cloudinary.uploader.upload(path, result => {
-        resolve(result.secure_url);
-      });
+      cloudinary.uploader.upload(
+        path,
+        { folder: 'react-chat' },
+        (err, result) => {
+          if (err) {
+            return reject(err);
+          }
+
+          resolve(result.secure_url);
+        }
+      );
     });
   }
 }

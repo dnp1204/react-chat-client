@@ -17,6 +17,20 @@ const conversationSchema = new Schema(
   }
 );
 
+conversationSchema.pre('save', function(next) {
+  if (!this.setting) {
+    ConversationSetting.create({})
+      .then(newConversationSetting => {
+        this.setting = newConversationSetting._id;
+      })
+      .catch(err => {
+        return next(err);
+      });
+  }
+
+  next();
+});
+
 conversationSchema.pre('remove', function(next) {
   ConversationSetting.findByIdAndRemove(this.setting, err => {
     if (err) {

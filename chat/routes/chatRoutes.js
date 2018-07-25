@@ -1,6 +1,6 @@
-const routeHelper = require('../../utils/routesHelper');
 const controller = require('../controllers/chatController');
 const requiredAuth = require('../../middlewares/requiredAuth');
+const routeHelper = require('../../utils/routesHelper');
 
 module.exports = () => {
   const routes = {

@@ -17,7 +17,7 @@ const onConnect = async (socket, userId) => {
 };
 
 const onJoin = socket => {
-  socket.on('join', conversationId => {
+  socket.on(socketEvent.JOIN, conversationId => {
     chatLogger.debug(`user joins conversation id ${conversationId}`);
     socket.join(conversationId);
   });

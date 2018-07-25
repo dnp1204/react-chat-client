@@ -1,6 +1,5 @@
 const { Promise } = require('bluebird');
 
-const SystemSetting = require('../models/SystemSetting');
 const User = require('../models/User');
 
 const Conversation = require('../../chat/models/Conversation');
@@ -11,19 +10,15 @@ const createUser = data => {
     try {
       const promise = await Promise.all([
         User.create(data),
-        SystemSetting.create({}),
-        Conversation.create({}),
-        ConversationSetting.create({})
+        Conversation.create({})
       ]);
 
-      const [user, systemSetting, conversation, conversationSetting] = promise;
+      const [user, conversation] = promise;
       try {
         conversation.users.push(user._id);
-        conversation.setting = conversationSetting._id;
         try {
           const promise = await Promise.all([
             User.findByIdAndUpdate(user._id, {
-              systemSetting: systemSetting._id,
               $push: { conversations: conversation._id }
             }),
             conversation.save()

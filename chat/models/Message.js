@@ -10,6 +10,7 @@ const messageSchema = new Schema(
       enum: ['text', 'image', 'video', 'file'],
       default: 'text'
     },
+    fileName: String,
     content: String
   },
   {

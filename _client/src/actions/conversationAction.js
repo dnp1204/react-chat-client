@@ -35,3 +35,10 @@ export const friendGoOnline = data => {
 export const friendGoOffline = data => {
   return { type: FRIEND_OFFLINE, payload: data };
 };
+
+export const uploadImage = files => async dispatch => {
+  let formData = new FormData();
+  formData.append('file', files[0]);
+  const request = await axios.post('/api/image/upload', formData);
+  return dispatch({ type: 'haha', payload: request.data });
+};

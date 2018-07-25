@@ -17,6 +17,7 @@
     "arrow-body-style": "off",
     "func-names": "off",
     "space-before-function-paren": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "class-methods-use-this": "off"
   }
 }

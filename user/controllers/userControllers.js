@@ -1,4 +1,5 @@
 const passport = require('passport');
+const formidable = require('formidable');
 
 const systemSettingService = require('../services/systemService');
 const userService = require('../services/userService');
@@ -176,6 +177,16 @@ const getUserByEmail = async (req, res, next) => {
   }
 };
 
+const uploadImage = (req, res, next) => {
+  const form = new formidable.IncomingForm();
+  console.log(req.files);
+  form.parse(req, (err, fields, files) => {
+    console.log(fields);
+    console.log(files);
+  });
+  res.send({ files: 'haha' });
+};
+
 module.exports = {
   getCurrentUser,
   getSystemSetting,
@@ -184,5 +195,6 @@ module.exports = {
   logIn,
   signOut,
   signUp,
-  updateSystemSetting
+  updateSystemSetting,
+  uploadImage
 };

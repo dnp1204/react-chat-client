@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import {
   friendGoOffline,
   friendGoOnline,
-  receiveMessage
+  receiveMessage,
+  uploadImage
 } from '../../../actions';
 import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
@@ -23,7 +24,8 @@ class MessageSection extends Component {
     showTyping: false,
     usersAreTyping: [],
     userTypingNameList: [],
-    userTypingAvatarList: []
+    userTypingAvatarList: [],
+    files: []
   };
 
   handleInUserTyping = data => {
@@ -159,11 +161,21 @@ class MessageSection extends Component {
     this.onNewMessageHandler();
   }
 
+  onFileChange = files => {
+    this.setState({ files });
+    this.props.uploadImage(files);
+  };
+
   render() {
     const { showSearch } = this.props.ui.systemSettings;
     const { systemColor, selectedEmoji } = this.props.ui.conversationSettings;
     const { selectedConversation } = this.props.conversations;
-    const { showTyping, userTypingAvatarList, userTypingNameList } = this.state;
+    const {
+      showTyping,
+      userTypingAvatarList,
+      userTypingNameList,
+      files
+    } = this.state;
 
     return (
       <div id="message-section" className="flex--column">
@@ -190,11 +202,13 @@ class MessageSection extends Component {
           emoji={this.state.emoji}
           conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
+          files={files}
         />
         <MessageTools
           pickEmoji={emoji => this.setState({ emoji })}
           selectedEmojiId={selectedEmoji.id}
           pickSelectedEmojiId={this.onPickSelectedEmoji.bind(this)}
+          onFileChange={this.onFileChange}
         />
       </div>
     );
@@ -212,5 +226,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { receiveMessage, friendGoOffline, friendGoOnline }
+  { receiveMessage, friendGoOffline, friendGoOnline, uploadImage }
 )(MessageSection);

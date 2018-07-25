@@ -23,6 +23,8 @@ class MessageTools extends Component {
         title="Add Files"
         accept="image/*"
         id="image-picker"
+        multiple
+        onChange={event => this.props.onFileChange(event.target.files)}
       />
     );
   }

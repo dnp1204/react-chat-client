@@ -1,14 +1,14 @@
 import './MessageSection.scss';
 
 import _ from 'lodash';
+import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
   friendGoOffline,
   friendGoOnline,
-  receiveMessage,
-  uploadImage
+  receiveMessage
 } from '../../../actions';
 import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
@@ -25,7 +25,7 @@ class MessageSection extends Component {
     usersAreTyping: [],
     userTypingNameList: [],
     userTypingAvatarList: [],
-    files: []
+    images: []
   };
 
   handleInUserTyping = data => {
@@ -161,9 +161,23 @@ class MessageSection extends Component {
     this.onNewMessageHandler();
   }
 
-  onFileChange = files => {
-    this.setState({ files });
-    this.props.uploadImage(files);
+  onFileChange = async files => {
+    let formData = new FormData();
+
+    for (const file of files) {
+      formData.append('images', file, file.name);
+    }
+
+    try {
+      const request = await axios.post('/api/image/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      this.setState({ images: request.data.images, recievedNewInput: true });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -174,7 +188,7 @@ class MessageSection extends Component {
       showTyping,
       userTypingAvatarList,
       userTypingNameList,
-      files
+      images
     } = this.state;
 
     return (
@@ -202,7 +216,7 @@ class MessageSection extends Component {
           emoji={this.state.emoji}
           conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
-          files={files}
+          images={images}
         />
         <MessageTools
           pickEmoji={emoji => this.setState({ emoji })}
@@ -226,5 +240,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { receiveMessage, friendGoOffline, friendGoOnline, uploadImage }
+  { receiveMessage, friendGoOffline, friendGoOnline }
 )(MessageSection);

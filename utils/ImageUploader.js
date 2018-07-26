@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary');
 
 const keys = require('../config');
 
-class Cloudinary {
+class ImageUploader {
   constructor() {
     const cloudinaryKeys = keys.cloudinary;
 
@@ -16,19 +16,29 @@ class Cloudinary {
 
   uploadFileAsync(path) {
     return new Promise((resolve, reject) => {
-      cloudinary.uploader.upload(
-        path,
-        { folder: 'react-chat' },
-        (err, result) => {
-          if (err) {
-            return reject(err);
+      cloudinary.uploader.upload(path, response => {
+        if (response.error) {
+          return reject(response.error);
+        }
+
+        resolve(response);
+      });
+    });
+  }
+
+  uploadImageBufferAsync(file) {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(response => {
+          if (response.error) {
+            return reject(response.error);
           }
 
-          resolve(result.secure_url);
-        }
-      );
+          resolve(response);
+        })
+        .end(file.buffer);
     });
   }
 }
 
-module.exports = new Cloudinary();
+module.exports = new ImageUploader();

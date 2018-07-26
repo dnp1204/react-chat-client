@@ -38,7 +38,21 @@ export const friendGoOffline = data => {
 
 export const uploadImage = files => async dispatch => {
   let formData = new FormData();
-  formData.append('file', files[0]);
-  const request = await axios.post('/api/image/upload', formData);
-  return dispatch({ type: 'haha', payload: request.data });
+
+  for (const file of files) {
+    formData.append('images', file, file.name);
+  }
+
+  try {
+    const request = await axios.post('/api/image/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log(request.data);
+  } catch (err) {
+    console.log(err);
+  }
+
+  return dispatch({ type: 'haha', payload: {} });
 };

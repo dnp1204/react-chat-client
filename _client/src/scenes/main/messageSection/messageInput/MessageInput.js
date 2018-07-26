@@ -1,6 +1,9 @@
+import './MessageInput.scss';
+
 import React, { Component } from 'react';
 
-import { socketEvent } from '../../../../utils/constants';
+import Icon from '../../../../components/elements/icon/Icon';
+import { socketEvent, Color } from '../../../../utils/constants';
 
 class MessageInput extends Component {
   state = { messageText: '', emitTyping: false, emitStopTyping: false };
@@ -88,9 +91,33 @@ class MessageInput extends Component {
     this.setState({ messageText: event.target.value });
   };
 
+  renderUploadedImages = () => {
+    const { images } = this.props;
+    if (images.length > 0) {
+      return images.map(image => {
+        const { original_filename, secure_url } = image;
+        return (
+          <div key={original_filename}>
+            <img src={secure_url} alt={original_filename} />
+            <Icon
+              color={Color.BLACK_OPACITY_04}
+              iconName="times-circle"
+              iconType="solid"
+              size="lg"
+              isCursorPointer
+            />
+          </div>
+        );
+      });
+    }
+  };
+
   render() {
     return (
       <div className="message-section--input border-top">
+        <div className="uploaded-image-container">
+          {this.renderUploadedImages()}
+        </div>
         <textarea
           onBlur={this.onBlurHandler}
           value={this.state.messageText}

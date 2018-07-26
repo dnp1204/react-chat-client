@@ -1,3 +1,4 @@
+const { Promise } = require('bluebird');
 const passport = require('passport');
 const formidable = require('formidable');
 
@@ -6,6 +7,7 @@ const userService = require('../services/userService');
 
 const { userLogger } = require('../../utils/logger');
 const helper = require('../../utils/helper');
+const imageUploader = require('../../utils/ImageUploader');
 
 const signUp = async (req, res, next) => {
   const { email, password } = req.body;
@@ -179,12 +181,33 @@ const getUserByEmail = async (req, res, next) => {
 
 const uploadImage = (req, res, next) => {
   const form = new formidable.IncomingForm();
-  console.log(req.files);
-  form.parse(req, (err, fields, files) => {
-    console.log(fields);
-    console.log(files);
-  });
-  res.send({ files: 'haha' });
+  form.multiples = true;
+
+  if (form) {
+    form.parse(req, async (err, fields, files) => {
+      if (err) {
+        return next(err);
+      }
+
+      const { images } = files;
+      try {
+        const promise = [];
+
+        if (images instanceof Array) {
+          images.forEach(image => {
+            promise.push(imageUploader.uploadFileAsync(image.path));
+          });
+        } else {
+          promise.push(imageUploader.uploadFileAsync(images.path));
+        }
+
+        const results = await Promise.all(promise);
+        res.send({ images: results });
+      } catch (err) {
+        return next(err);
+      }
+    });
+  }
 };
 
 module.exports = {

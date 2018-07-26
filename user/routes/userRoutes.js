@@ -1,9 +1,5 @@
-const multer = require('multer');
-
 const routeHelper = require('../../utils/routesHelper');
 const controller = require('../controllers/userControllers');
-
-const upload = multer();
 
 module.exports = () => {
   const routes = {

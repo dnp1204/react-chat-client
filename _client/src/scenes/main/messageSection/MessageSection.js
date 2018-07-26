@@ -182,6 +182,7 @@ class MessageSection extends Component {
   };
 
   onClickImageToRemove = async publicId => {
+    console.log('click');
     try {
       await axios.delete(`/api/image/delete/${publicId}`);
       const images = this.state.images;
@@ -189,6 +190,7 @@ class MessageSection extends Component {
       for (const index in images) {
         if (images[index]['public_id'] === publicId) {
           images.splice(index, 1);
+          break;
         }
       }
       this.setState({ images });

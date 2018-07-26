@@ -41,8 +41,10 @@ const uploadImage = (req, res, next) => {
 
 const removeImage = async (req, res, next) => {
   const { publicId } = req.params;
+
   try {
     const result = cloudinary.removeImageAsync(publicId);
+    userLogger.debug(`User remove image with public id is ${publicId}`);
     res.send({ removeImage: result });
   } catch (err) {
     next(err);

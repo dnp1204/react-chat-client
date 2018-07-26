@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import {
   friendGoOffline,
   friendGoOnline,
-  receiveMessage
+  receiveMessage,
+  sendErrorNotification
 } from '../../../actions';
 import { socketEvent } from '../../../utils/constants';
 import MessageConversation from './messageConversation/MessageConversation';
@@ -163,20 +164,36 @@ class MessageSection extends Component {
 
   onFileChange = async files => {
     let formData = new FormData();
-
+    console.log(files);
     for (const file of files) {
       formData.append('images', file, file.name);
     }
 
     try {
-      const request = await axios.post('/api/image/upload', formData, {
+      const response = await axios.post('/api/image/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      this.setState({ images: request.data.images, recievedNewInput: true });
+      this.setState({ images: response.data.images, recievedNewInput: true });
     } catch (err) {
-      console.log(err);
+      this.props.sendErrorNotification(err);
+    }
+  };
+
+  onClickImageToRemove = async publicId => {
+    try {
+      await axios.delete(`/api/image/delete/${publicId}`);
+      const images = this.state.images;
+
+      for (const index in images) {
+        if (images[index]['public_id'] === publicId) {
+          images.splice(index, 1);
+        }
+      }
+      this.setState({ images });
+    } catch (err) {
+      this.props.sendErrorNotification(err);
     }
   };
 
@@ -217,6 +234,7 @@ class MessageSection extends Component {
           conversationId={selectedConversation.id}
           onNewMessageHandler={() => this.onNewMessageHandler()}
           images={images}
+          onClickImageToRemove={this.onClickImageToRemove}
         />
         <MessageTools
           pickEmoji={emoji => this.setState({ emoji })}
@@ -240,5 +258,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { receiveMessage, friendGoOffline, friendGoOnline }
+  { receiveMessage, friendGoOffline, friendGoOnline, sendErrorNotification }
 )(MessageSection);

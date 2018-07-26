@@ -13,8 +13,7 @@ module.exports = () => {
     post: {
       '/signup': controller.signUp,
       '/login': controller.logIn,
-      '/system/:id': controller.updateSystemSetting,
-      '/image/upload': controller.uploadImage
+      '/system/:id': controller.updateSystemSetting
     }
   };
 

@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary');
 
 const keys = require('../config');
 
-class ImageUploader {
+class Cloudinary {
   constructor() {
     const cloudinaryKeys = keys.cloudinary;
 
@@ -39,6 +39,18 @@ class ImageUploader {
         .end(file.buffer);
     });
   }
+
+  removeImageAsync(publicId) {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader.destroy(publicId, response => {
+        if (response.error) {
+          return reject(response.error);
+        }
+
+        resolve(response);
+      });
+    });
+  }
 }
 
-module.exports = new ImageUploader();
+module.exports = new Cloudinary();

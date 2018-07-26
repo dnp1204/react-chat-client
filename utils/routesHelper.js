@@ -1,8 +1,6 @@
-'use strict';
 const router = require('express').Router();
 
-// Iterate through the routes object and mount the routes
-let _registerRoutes = (routes, method) => {
+const _registerRoutes = (routes, method) => {
   for (let key in routes) {
     if (
       typeof routes[key] === 'object' &&
@@ -16,6 +14,8 @@ let _registerRoutes = (routes, method) => {
         router.get(key, routes[key]);
       } else if (method === 'post') {
         router.post(key, routes[key]);
+      } else if (method === 'delete') {
+        router.delete(key, routes[key]);
       } else {
         router.use(routes[key]);
       }
@@ -23,7 +23,7 @@ let _registerRoutes = (routes, method) => {
   }
 };
 
-let route = routes => {
+const route = routes => {
   _registerRoutes(routes);
   return router;
 };

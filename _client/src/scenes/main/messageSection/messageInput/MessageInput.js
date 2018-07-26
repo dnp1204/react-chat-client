@@ -92,10 +92,11 @@ class MessageInput extends Component {
   };
 
   renderUploadedImages = () => {
-    const { images } = this.props;
+    const { images, onClickImageToRemove } = this.props;
+
     if (images.length > 0) {
       return images.map(image => {
-        const { original_filename, secure_url } = image;
+        const { original_filename, secure_url, public_id } = image;
         return (
           <div key={original_filename}>
             <img src={secure_url} alt={original_filename} />
@@ -105,6 +106,7 @@ class MessageInput extends Component {
               iconType="solid"
               size="lg"
               isCursorPointer
+              onClickHandler={() => onClickImageToRemove(public_id)}
             />
           </div>
         );

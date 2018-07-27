@@ -164,7 +164,6 @@ class MessageSection extends Component {
 
   onFileChange = async files => {
     let formData = new FormData();
-    console.log(files);
     for (const file of files) {
       formData.append('images', file, file.name);
     }
@@ -182,7 +181,6 @@ class MessageSection extends Component {
   };
 
   onClickImageToRemove = async publicId => {
-    console.log('click');
     try {
       await axios.delete(`/api/image/delete/${publicId}`);
       const images = this.state.images;

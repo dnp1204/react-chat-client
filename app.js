@@ -8,6 +8,7 @@ const http = require('http');
 const lusca = require('lusca');
 const morgan = require('morgan');
 const passport = require('passport');
+const path = require('path');
 const socket = require('socket.io');
 
 const { appLogger } = require('./utils/logger');
@@ -44,6 +45,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 const server = http.createServer(app);
 const io = socket(server);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('_client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '_client', 'build', 'index.html'));
+  });
+}
 
 module.exports = {
   server,

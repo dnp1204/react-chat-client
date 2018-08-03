@@ -27,14 +27,6 @@ chat(app, io, session);
 
 app.use(handleError);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('_client/build'));
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '_client', 'build', 'index.html'));
-  });
-}
-
 server.listen(app.get('port'), err => {
   if (err) {
     appLogger.error(err);

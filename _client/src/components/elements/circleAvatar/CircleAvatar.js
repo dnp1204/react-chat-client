@@ -1,14 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CircleAvatar = ({ avatar, width, height }) => {
-  return (
-    <img
-      style={{ width, height, borderRadius: 50, backgroundColor: '#000' }}
-      className="circle-avatar"
-      src={avatar}
-      alt={avatar}
-    />
+const CircleAvatar = ({
+  avatar,
+  width,
+  height
+}) => {
+  return ( <
+    img style = {
+      {
+        width,
+        height,
+        borderRadius: 50,
+        backgroundColor: '#000'
+      }
+    }
+    className = "circle-avatar"
+    src = {
+      avatar
+    }
+    alt = "avatar" /
+    >
   );
 };
 
